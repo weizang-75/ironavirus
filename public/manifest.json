@@ -3,8 +3,8 @@
   "name": "Ironavirus",
   "description": "在这些困难和不寻常的时刻",
   "start_url": ".",
-  "theme_color": "#fef600",
-  "background_color": "#fef600",
+  "theme_color": "#211b1f",
+  "background_color": "#211b1f",
   "display": "standalone",
   "lang": "en-US",
   "icons": [
