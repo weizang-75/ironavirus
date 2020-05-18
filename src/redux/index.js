@@ -5,6 +5,7 @@ import { appReducer, appSlice } from './app/reducer'
 import { userentitiesReducer, userentitiesSlice } from './userentities/reducer'
 import { clockworkReducer, clockworkSlice } from './clockwork/reducer'
 import { pushToTalkReducer, pushToTalkSlice } from './pushToTalk/reducer'
+import { animationReducer, animationSlice } from './animation/reducer'
 
 const reduxStore = () => {
   const reducer = combineReducers({
@@ -12,6 +13,7 @@ const reduxStore = () => {
     userentities: userentitiesReducer,
     clockwork: clockworkReducer,
     pushToTalk: pushToTalkReducer,
+    animation: animationReducer,
   })
 
   const preloadedState = {
@@ -19,6 +21,7 @@ const reduxStore = () => {
     userentities: userentitiesSlice,
     clockwork: clockworkSlice,
     pushToTalk: pushToTalkSlice,
+    animation: animationSlice,
   }
   
   const middleware = [

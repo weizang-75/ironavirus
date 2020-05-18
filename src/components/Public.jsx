@@ -10,7 +10,11 @@ import {
     makeFingerprint,
     fetchIpgeo,
 } from '../redux/userentities/actions'
-import { Ironavirus } from '../graphics'
+import { 
+    Ironavirus,
+    WarningElements,
+} from '../graphics'
+import { fade } from '../animation'
 
 const useStyles = makeStyles(theme => ({
     screen:{
@@ -41,20 +45,43 @@ export default function Public(props) {
         fingerprint,
         fingerprinting,
     } = userentitiesSlice
+    const animationSlice = useSelector(state => state.animation)
+    const {
+        logoFaded,
+        logoFading,
+    } = animationSlice
 
     useEffect(() => {
         if (!fingerprinted && !fingerprinting) makeFingerprint()
         if (!saving && !saved){
             if (!ipgeoFetching && !ipgeoFetched) fetchIpgeo()
         }
-    }, [ dispatch, fingerprint, fingerprinted, fingerprinting, 
-            ipgeoFetched, ipgeoFetching, saving, saved])
+        // console.log ('logoFading', logoFading)
+        // platitude 
 
-    return  <div className={classes.screen}>
-                <div 
-                    className={classes.logo}
-                    id={`logo`}>
-                    <Ironavirus />
+        if (!logoFaded && !logoFading){
+            setTimeout(() => {
+                dispatch({type:`ANIMATION/LOGOFADING`, logoFading: true})
+                fade(`fadeOutSpin`, `#logo`, () => {
+                    dispatch({type:`ANIMATION/LOGOFADED`, logoFaded: true})
+                    dispatch({type:`ANIMATION/LOGOFADING`, logoFading: false})
+                })
+            }, 1000)
+        }
+
+    }, [ dispatch, fingerprint, fingerprinted, fingerprinting, 
+            ipgeoFetched, ipgeoFetching, saving, saved, 
+            logoFaded, logoFading])
+
+    if (!logoFaded){
+        return <div className={classes.screen}>
+                    <div 
+                        className={classes.logo}
+                        id={`logo`}>
+                        <Ironavirus />
+                    </div> 
                 </div>
-            </div>
+    }
+
+    return  <WarningElements />
 }

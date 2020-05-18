@@ -2,7 +2,6 @@ import { createAction } from '@reduxjs/toolkit'
 import UAParser from 'ua-parser-js'
 import { 
 	getStore,
-	getFStore, 
 } from '../../'
 import Fingerprint2 from 'fingerprintjs2'
 import axios from 'axios'
@@ -80,43 +79,6 @@ export const userentityPing = () => {
 		})
 }
 
-
-export const subscribeMessageCenter = () => {
-	
-	const store = getStore()
-	store.dispatch({ type: `USERENTITY/SUBSCRIBING`, subscribing: true })
-	const db = getFStore()
-	db.collection(`userentities`)
-	.orderBy(`updated`, `desc`)
-	.onSnapshot(function(snapshot) {
-	    let subscription = []
-	    snapshot.forEach(function(doc) {
-	        subscription.push({
-	          id: doc.id,
-	          data: doc.data()
-	        })
-	    })
-	    // console.log ('userentities subscription', subscription)
-	    store.dispatch({ type: `USERENTITY/SUBSCRIPTION`, subscription })
-	    store.dispatch({ type: `USERENTITY/SUBSCRIBED`, subscribed: true })
-	    store.dispatch({ type: `USERENTITY/SUBSCRIBING`, subscribing: false })
-	}, function(error) {
-	    store.dispatch(
-	      { type: `APP/FEEDBACK`, 
-	        feedback: {
-	          open: true,
-	          severity: `error`,
-	          message: error.toString()
-	        }
-	    })
-	    store.dispatch({ type: `USERENTITY/SUBSCRIBED`, subscribed: false })
-	    store.dispatch({ type: `USERENTITY/SUBSCRIBING`, subscribing: false })
-	})
-
-}
-
-
-
 export const userentityInitialPing = () => {
 	const store = getStore()
 	store.dispatch({ type: `USERENTITY/PINGING`, pinging: true })
@@ -126,16 +88,16 @@ export const userentityInitialPing = () => {
 	}
 	axios.post(endPoint, postObj)
 		.then(function(response) {
-			let severity = `success`
-			let message = response.data.message
-			if (!response.data.success){
-				severity = `warning`
-				message = response.data.message
-			}
-			store.dispatch({ type: `APP/SNACKBAR`, snackbar: {
-				severity,
-				message,
-			}})
+			// let severity = `success`
+			// let message = response.data.message
+			// if (!response.data.success){
+			// 	severity = `warning`
+			// 	message = response.data.message
+			// }
+			// store.dispatch({ type: `APP/SNACKBAR`, snackbar: {
+			// 	severity,
+			// 	message,
+			// }})
 		})
 		.catch(function(error) {
 			store.dispatch({ 
