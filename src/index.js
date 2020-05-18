@@ -14,8 +14,6 @@ import { createBrowserHistory } from 'history'
 import Clockwork from './Clockwork'
 import { 
   Public,
-} from './routes'
-import { 
   BottomAppbar,
   SimpleSnackbar,
   Settings,

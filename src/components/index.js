@@ -5,6 +5,9 @@ import Login from './Login'
 import InputTextfield from './InputTextfield'
 import SimpleSnackbar from './SimpleSnackbar'
 import Settings from './Settings'
+import Public from './Public'
+import PushToTalk from './PushToTalk'
+
 
 export {
 	BottomAppbar,
@@ -14,4 +17,6 @@ export {
 	InputTextfield,
 	SimpleSnackbar,
 	Settings,
+	Public,
+	PushToTalk,
 }
