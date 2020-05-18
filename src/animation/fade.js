@@ -21,10 +21,10 @@ const fadeOut = (div, callback) => {
 
 const fadeOutSpin = (div, callback) => {
      gsap.to(div, {
-        duration: 0.8 * duration,
+        duration: 1.75 * duration,
         opacity: 0,
-        scale: 0.9,
-        rotation: 180,
+        scale: 0.75,
+        rotation: 360,
         onComplete: callback,
     });
 }

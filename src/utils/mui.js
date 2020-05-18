@@ -7,9 +7,9 @@
 
 const muiTheme = {
   palette: {
-    type: 'light',
+    type: 'dark',
     primary: {
-      main: '#fef600',
+      main: '#211b1f',
     },
     secondary: {
       main: '#01a43b',
