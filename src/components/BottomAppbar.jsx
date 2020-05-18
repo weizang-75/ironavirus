@@ -18,9 +18,8 @@ const useStyles = makeStyles(theme => ({
   fabButton: {
     position: 'absolute',
     zIndex: 1,
-    top: -30,
-    left: 0,
-    right: 0,
+    top: -theme.spacing(),
+    right: theme.spacing(),
     margin: '0 auto',
   },
 }))
@@ -43,9 +42,7 @@ export default function BottomAppbar(props) {
                 className={classes.fabButton}
                 onClick={(e) => {
                   e.preventDefault()
-                  // dispatch({type: `APP/MESSAGES/TOGGLE`, messagesOpen: true})
-                  // history.push(`/push-to-talk`)
-                  console.log (`/push-to-talk`)
+                  console.log (`Open Inferface`)
                 }}>
                   <Badge badgeContent={0} color={`primary`}>
                     <Icon icon={`pushToTalk`} color={`inherit`} />
