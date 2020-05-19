@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getStore } from './'
-import { 
-    userentityInitialPing,
-    userentityPing,
-} from './redux/userentities/actions'
+// import { 
+//     userentityInitialPing,
+//     userentityPing,
+// } from './redux/userentities/actions'
 
 class Clockwork extends Component {
 
@@ -24,15 +24,15 @@ class Clockwork extends Component {
         
         if (readyToPing && !doneFirstPing ){
             store.dispatch({ type: `USERENTITY/DONE_FIRST_PING`, doneFirstPing: true })
-            userentityInitialPing ()
+            // userentityInitialPing ()
         }
 
         if (ticks === 4 && doneFirstPing) {
-            userentityPing ()
+            // userentityPing ()
         }
         
         if (ticks % 10 === 0 && doneFirstPing) {
-            userentityPing ()
+            // userentityPing ()
         }
 
     }
