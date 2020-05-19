@@ -1,22 +1,20 @@
 import React from 'react'
+import { 
+    useSelector, 
+    useDispatch 
+} from 'react-redux'
 import clsx from 'clsx'
 import { 
   makeStyles,
   Badge,
   Fab,
   Tooltip,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  Divider,
   SwipeableDrawer,
 } from '@material-ui/core'
-import InboxIcon from '@material-ui/icons/MoveToInbox'
-import MailIcon from '@material-ui/icons/Mail'
 import { 
   Icon,
   TheMessage, 
+  TheMenu,
 } from './'
 
 const useStyles = makeStyles(theme => ({
@@ -27,24 +25,32 @@ const useStyles = makeStyles(theme => ({
     right: theme.spacing(2),
     margin: '0 auto',
   },
+  list: {
+    // width: 250,
+  },
+  fullList: {
+    // width: 'auto',
+  },
 }))
 
 export default function UI() {
   
   const classes = useStyles()
+  const dispatch = useDispatch()
 
-  const [state, setState] = React.useState({
-    top: false,
-    left: false,
-    bottom: false,
-    right: false,
-  })
+  const appSlice = useSelector(state => state.app)
+  const {
+      uiOpen
+  } = appSlice
+
+  // console.log('uiOpen', uiOpen)
+
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return
     }
-    setState({ ...state, [anchor]: open })
+    // dispatch({ type: `APP/UI_OPEN`, uiOpen: false })
   }
 
   const list = (anchor) => (
@@ -57,39 +63,21 @@ export default function UI() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
 
-
-
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
+      <TheMenu />
     </div>
   )
 
   return  <React.Fragment>
+
             <TheMessage />
 
             <SwipeableDrawer
               anchor={`right`}
-              open={true}
+              open={uiOpen}
               onClose={toggleDrawer(`right`, false)}
               onOpen={toggleDrawer(`right`, true)}>
               {list(`right`)}
             </SwipeableDrawer>
-
 
             <Tooltip title={`点击这里`}>
               <Fab 
@@ -98,14 +86,14 @@ export default function UI() {
                 className={classes.fabButton}
                 onClick={(e) => {
                   e.preventDefault()
-                  toggleDrawer(`right`, true)
-                  console.log (`toggleDrawer`)
+                  dispatch({ type: `APP/UI_OPEN`, uiOpen: true })
                 }}>
                   <Badge badgeContent={0} color={`primary`}>
                     <Icon icon={`ui`} color={`inherit`} />
                   </Badge> 
               </Fab>
             </Tooltip>
+
           </React.Fragment>
 }
 

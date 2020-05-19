@@ -34,19 +34,6 @@ const useStyles = makeStyles(theme => ({
         width: 256,
         height: 256,
     },
-    theMessage:{
-        position: 'relative',
-    },
-    theMessageGrid: {
-        zIndex: 10,
-        position: 'absolute',
-        border: '1px solid red',
-    },
-    warningElements: {
-        zIndex: 5,
-        position: 'absolute',
-        border: '1px solid pink',
-    }
 }))
 
 export default function Public(props) {
@@ -74,9 +61,6 @@ export default function Public(props) {
         if (!saving && !saved){
             if (!ipgeoFetching && !ipgeoFetched) fetchIpgeo()
         }
-        // console.log ('logoFading', logoFading)
-        // platitude 
-
         if (!logoFaded && !logoFading){
             setTimeout(() => {
                 dispatch({type:`ANIMATION/LOGOFADING`, logoFading: true})
@@ -93,28 +77,14 @@ export default function Public(props) {
 
     if (!logoFaded){
         return <div className={classes.screen}>
-                    <div 
-                        className={classes.logo}
-                        id={`logo`}>
+                    <div className={classes.logo} id={`logo`}>
                         <Ironavirus />
                     </div> 
                 </div>
     }
-
     return  <UI />
 }
 
-/*
 
-<div className={classes.warningElements}>
-                        <WarningElements />
-                    </div>
-<div className={classes.screen}>
-                <div className={classes.theMessage}>
-                    The. Message
-                </div>
-                <div className={classes.warningElements}>
-                    
-                </div>
-            </div>
+/*
 */

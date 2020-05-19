@@ -1,7 +1,7 @@
 
 import React from 'react'
 import {
-    OutlinedInput,
+    FilledInput,
     InputLabel,
     FormControl,
     FormHelperText,
@@ -17,6 +17,7 @@ export default function InputTextfield(props) {
     autoFocus,
     id,
     disabled,
+    defaultValue,
     error,
     required,
     value,
@@ -33,9 +34,10 @@ export default function InputTextfield(props) {
             <InputLabel htmlFor={`field-${id}`}>
               {label}
             </InputLabel>
-            <OutlinedInput
+            <FilledInput
               id={`field-${id}`}
               disabled={disabled ? disabled : false}
+              defaultValue={defaultValue ? defaultValue : false}
               autoFocus={autoFocus ? autoFocus : false}
               required={required}
               error={error}
