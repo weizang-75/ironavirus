@@ -4,7 +4,7 @@ import { reduxBatch } from '@manaflair/redux-batch'
 import { appReducer, appSlice } from './app/reducer'
 import { userentitiesReducer, userentitiesSlice } from './userentities/reducer'
 import { clockworkReducer, clockworkSlice } from './clockwork/reducer'
-import { pushToTalkReducer, pushToTalkSlice } from './pushToTalk/reducer'
+import { theMessageReducer, theMessageSlice } from './theMessage/reducer'
 import { animationReducer, animationSlice } from './animation/reducer'
 
 const reduxStore = () => {
@@ -12,7 +12,7 @@ const reduxStore = () => {
     app: appReducer,
     userentities: userentitiesReducer,
     clockwork: clockworkReducer,
-    pushToTalk: pushToTalkReducer,
+    theMessage: theMessageReducer,
     animation: animationReducer,
   })
 
@@ -20,7 +20,7 @@ const reduxStore = () => {
     app: appSlice,
     userentities: userentitiesSlice,
     clockwork: clockworkSlice,
-    pushToTalk: pushToTalkSlice,
+    theMessage: theMessageSlice,
     animation: animationSlice,
   }
   

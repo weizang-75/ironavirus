@@ -1,4 +1,7 @@
 import React from 'react'
+import { 
+    useSelector,
+} from 'react-redux'
 // import {
 //     makeStyles,
 // } from '@material-ui/core/'
@@ -13,14 +16,24 @@ export default function TheMessage(props) {
 
     // const classes = useStyles()
 
+    const theMessageSlice = useSelector(state => state.theMessage)
+    const {
+          platitudeTop,
+          platitudeMiddleA,
+          platitudeMiddleB,
+          platitudeBottom,
+    } = theMessageSlice
+
+
+
     let c = {}
     c.background = `#fef600`
     c.elements = `#01a43b`
 
-    let platitudeTop = `stay alert`.toUpperCase()
-    let platitudeMiddleA = `control`.toUpperCase()
-    let platitudeMiddleB = `the virus`.toUpperCase()
-    let platitudeBottom = `save lives`.toUpperCase()
+    let platitudeTopFontSize = 58
+    let platitudeMiddleAFontSize = 72
+    let platitudeMiddleBFontSize = 68
+    let platitudeBottomFontSize = 64
 
     return (
         <React.Fragment>
@@ -60,24 +73,24 @@ export default function TheMessage(props) {
                             fontFamily="Hind-Bold, Hind" 
                             fontWeight="bold"
                         >
-                            <text id="STAY-ALERT" fontSize="58" textAnchor="middle">
+                            <text id="STAY-ALERT" fontSize={platitudeTopFontSize} textAnchor="middle">
                                 <tspan x="14.391" y="61">
-                                    { platitudeTop }
+                                    { platitudeTop.toUpperCase() }
                                 </tspan>
                             </text>
-                            <text id="SAVE-LIVES" fontSize="64" textAnchor="middle">
+                            <text id="SAVE-LIVES" fontSize={platitudeBottomFontSize} textAnchor="middle">
                                 <tspan x="9.188" y="345">
-                                    {platitudeBottom}
+                                    { platitudeBottom.toUpperCase() }
                                 </tspan>
                             </text>
-                            <text id="CONTROL" fontSize="72" textAnchor="middle">
+                            <text id="CONTROL" fontSize={platitudeMiddleAFontSize} textAnchor="middle">
                                 <tspan x="15.092" y="178">
-                                    {platitudeMiddleA}
+                                    { platitudeMiddleA.toUpperCase() }
                                 </tspan>
                             </text>
-                            <text id="THE-VIRUS" fontSize="68" textAnchor="middle">
+                            <text id="THE-VIRUS" fontSize={platitudeMiddleBFontSize} textAnchor="middle">
                                 <tspan x="11.878" y="244">
-                                    {platitudeMiddleB}
+                                    { platitudeMiddleB.toUpperCase() }
                                 </tspan>
                             </text>
                         </g>

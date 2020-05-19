@@ -6,8 +6,8 @@ import InputTextfield from './InputTextfield'
 import SimpleSnackbar from './SimpleSnackbar'
 import Settings from './Settings'
 import Public from './Public'
-import PushToTalk from './PushToTalk'
 import TheMessage from './TheMessage'
+import SwipeableTemporaryDrawer from './SwipeableTemporaryDrawer'
 
 export {
 	BottomAppbar,
@@ -18,6 +18,6 @@ export {
 	SimpleSnackbar,
 	Settings,
 	Public,
-	PushToTalk,
 	TheMessage,
+	SwipeableTemporaryDrawer,
 }

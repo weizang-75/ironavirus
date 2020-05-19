@@ -51,7 +51,7 @@ export const userentityPing = () => {
     } = userentitiesSlice
 	store.dispatch({ type: `USERENTITY/PINGING`, pinging: true })
 	let userentity = {
-		appName: `ironavirus`,
+		entity: `ironavirus`,
 		fingerprint: store.getState().userentities.fingerprint,
 		visitDuration: ticks,
 		messages,
@@ -62,7 +62,15 @@ export const userentityPing = () => {
 	const endPoint = `${process.env.REACT_APP_CLOUD_FUNCTIONS}/userentityPing`
 	axios.post(endPoint, userentity)
 		.then(function(response) {
-			// console.log (response)
+			// console.log (response.data)
+			if (!response.data.success){
+				store.dispatch({ 
+				type: `APP/SNACKBAR`, 
+				snackbar: {
+					severity: `warning`,
+					message: response.data.message,
+				}})
+			}
 		})
 		.catch(function(error) {
 			// console.log ('error', error)
@@ -85,19 +93,20 @@ export const userentityInitialPing = () => {
 	const endPoint = `${process.env.REACT_APP_CLOUD_FUNCTIONS}/userentityInitialPing`
 	let postObj = {
 		fingerprint: store.getState().userentities.fingerprint,
+		entity: `ironavirus`,
 	}
 	axios.post(endPoint, postObj)
 		.then(function(response) {
-			// let severity = `success`
-			// let message = response.data.message
-			// if (!response.data.success){
-			// 	severity = `warning`
-			// 	message = response.data.message
-			// }
-			// store.dispatch({ type: `APP/SNACKBAR`, snackbar: {
-			// 	severity,
-			// 	message,
-			// }})
+			let severity = `success`
+			let message = response.data.message
+			if (!response.data.success){
+				severity = `warning`
+				message = response.data.message
+			}
+			store.dispatch({ type: `APP/SNACKBAR`, snackbar: {
+				severity,
+				message,
+			}})
 		})
 		.catch(function(error) {
 			store.dispatch({ 
