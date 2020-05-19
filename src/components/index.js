@@ -7,7 +7,7 @@ import SimpleSnackbar from './SimpleSnackbar'
 import Settings from './Settings'
 import Public from './Public'
 import PushToTalk from './PushToTalk'
-
+import TheMessage from './TheMessage'
 
 export {
 	BottomAppbar,
@@ -19,4 +19,5 @@ export {
 	Settings,
 	Public,
 	PushToTalk,
+	TheMessage,
 }

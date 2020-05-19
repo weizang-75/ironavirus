@@ -1,6 +1,7 @@
 import pJSON from '../package.json'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import WebFont from 'webfontloader';
 import firebase from '@firebase/app'
 import '@firebase/firestore'
 import {
@@ -21,7 +22,13 @@ import {
 import * as serviceWorker from './serviceWorker'
 
 console.log(`${pJSON.name} ${pJSON.version} (${process.env.REACT_APP_ENV})`)
-// document.title = `listingslab ${process.env.REACT_APP_ENV === 'DEV' ? `DEV` : ``} ${pJSON.version}`
+// document.title = `${document.title} ${process.env.REACT_APP_ENV === 'DEV' ? `DEV` : ``} ${pJSON.version}`
+
+WebFont.load({
+  google: {
+    families: ['Hind:700', 'sans-serif']
+  }
+});
 
 const fireConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
@@ -56,17 +63,11 @@ let app = (
       { store.getState().app.snackbar ? null : <SimpleSnackbar /> }
       <Clockwork />
       <Settings />
-      
       <Switch>
-        <Route exact path='/' render={ props => {
-            return (<Public />)
-        }} />
-        <Route exact path='/push-to-talk' render={ props => {
-            return (<Public mode={'push-to-talk'} />)
-        }} />
+        <Route exact path='/' render={ props => { return <Public /> }} />
+        <Route exact path='/push-to-talk' render={ props => { return <Public mode={'push-to-talk'} />}} />
         <Route component={ Public } />
       </Switch>
-
       <BottomAppbar />
     </Router>
   </MuiThemeProvider>

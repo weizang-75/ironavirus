@@ -12,8 +12,12 @@ import {
 } from '../redux/userentities/actions'
 import { 
     Ironavirus,
-    WarningElements,
 } from '../graphics'
+
+import { 
+    TheMessage,
+} from '../components'
+
 import { fade } from '../animation'
 
 const useStyles = makeStyles(theme => ({
@@ -29,6 +33,19 @@ const useStyles = makeStyles(theme => ({
         width: 256,
         height: 256,
     },
+    theMessage:{
+        position: 'relative',
+    },
+    theMessageGrid: {
+        zIndex: 10,
+        position: 'absolute',
+        border: '1px solid red',
+    },
+    warningElements: {
+        zIndex: 5,
+        position: 'absolute',
+        border: '1px solid pink',
+    }
 }))
 
 export default function Public(props) {
@@ -66,7 +83,7 @@ export default function Public(props) {
                     dispatch({type:`ANIMATION/LOGOFADED`, logoFaded: true})
                     dispatch({type:`ANIMATION/LOGOFADING`, logoFading: false})
                 })
-            }, 1000)
+            }, 333)
         }
 
     }, [ dispatch, fingerprint, fingerprinted, fingerprinting, 
@@ -83,5 +100,20 @@ export default function Public(props) {
                 </div>
     }
 
-    return  <WarningElements />
+    return  <TheMessage />
 }
+
+/*
+
+<div className={classes.warningElements}>
+                        <WarningElements />
+                    </div>
+<div className={classes.screen}>
+                <div className={classes.theMessage}>
+                    The. Message
+                </div>
+                <div className={classes.warningElements}>
+                    
+                </div>
+            </div>
+*/
