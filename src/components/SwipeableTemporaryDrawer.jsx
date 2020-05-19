@@ -84,3 +84,69 @@ export default function SwipeableTemporaryDrawer() {
     </div>
   );
 }
+
+
+/*
+<Dialog
+        fullScreen={fullScreen}
+        open={true}
+        onClose={() => {
+          dispatch({type: `APP/SETTING`, settings: false})
+        }}
+        aria-labelledby={`dialog-title`}>
+
+        <DialogTitle id={`dialog-title`}>
+          <div className={classes.title}>
+            <div className={classes.titleIcon}>
+              <Icon icon={`settings`} color={`inherit`} />
+            </div>
+            <div className={classes.titleText}>
+              Settings
+            </div>
+          </div>
+        </DialogTitle>
+
+        <DialogContent className={classes.dialogContent}>
+
+          <Button 
+            
+            variant={`text`}
+            color={`default`}
+            onClick={(e) => {
+              e.preventDefault()
+              window.open(`https://console.firebase.google.com/u/0/project/listingslab-production/storage`, `_blank`)
+            }}>
+            <Icon icon={`link`} color={`inherit`} />
+            <span className={classes.btnText}>Firebase</span>
+          </Button>
+
+
+          <Button 
+            variant={`text`}
+            color={`default`}
+            onClick={(e) => {
+              e.preventDefault()
+              signout()
+              dispatch({type: `APP/SETTINGS`, settings: false})
+            }}>
+            <Icon icon={`logout`} color={`inherit`} />
+            <span className={classes.btnText}>Sign Out</span>
+          </Button>
+
+
+        </DialogContent>
+
+        <DialogActions>
+          <Button 
+            variant={`text`}
+            color={`default`}
+            onClick={() => {
+              dispatch({type: `APP/SETTINGS`, settings: false})
+            }}>
+            <Icon icon={`close`} color={`inherit`} />
+            <span className={classes.btnText}>Cancel</span>
+          </Button>
+        </DialogActions>
+      </Dialog>
+*/
+

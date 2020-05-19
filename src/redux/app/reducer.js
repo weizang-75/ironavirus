@@ -16,14 +16,12 @@ import {
   menuOpen,
   snackbar,
   settings,
+  uiOpen,
 } from "./actions"
 
 export const appSlice = {
   pJSON,
-  settings: false,
-  settingsValues: {
-    value1: 123
-  },
+  uiOpen: false,
   snackbar: null,
   user: false,
   isDark: true,
@@ -50,6 +48,11 @@ export const appSlice = {
 }
 
 const appReducer = createReducer(appSlice, {
+
+  [uiOpen]: (state, action) => {
+    state.uiOpen = action.uiOpen
+    return state
+  },
 
   [settings]: (state, action) => {
     state.settings = action.settings

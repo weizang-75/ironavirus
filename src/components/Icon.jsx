@@ -47,6 +47,7 @@ import IconNewContent from '@material-ui/icons/NoteAdd'
 import IconNav from '@material-ui/icons/Navigation'
 import IconSettings from '@material-ui/icons/Settings'
 import IconPushToTalk from '@material-ui/icons/TouchApp'
+import IconUI from '@material-ui/icons/TouchApp'
 
 
 import {
@@ -76,6 +77,10 @@ class Icon extends Component {
             iconColor = color
         }
         switch (icon) {
+
+            
+            case `ui`:
+                return (<IconUI color={iconColor} />)
 
             case `navigation`:
                 return (<IconNav color={iconColor} />)

@@ -15,7 +15,8 @@ import {
 } from '../graphics'
 
 import { 
-    TheMessage,
+    // TheMessage,
+    UI,
 } from '../components'
 
 import { fade } from '../animation'
@@ -100,7 +101,7 @@ export default function Public(props) {
                 </div>
     }
 
-    return  <TheMessage />
+    return  <UI />
 }
 
 /*

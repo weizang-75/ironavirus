@@ -18,6 +18,7 @@ export const user = createAction(`APP/USER`)
 export const menuOpen = createAction(`APP/MENU_OPEN`)
 export const snackbar = createAction(`APP/SNACKBAR`)
 export const settings = createAction(`APP/SETTINGS`)
+export const uiOpen = createAction(`APP/UI_OPEN`)
 
 export const sendEmail = (to, message) => {
 	const store = getStore()

@@ -15,9 +15,7 @@ import { createBrowserHistory } from 'history'
 import Clockwork from './Clockwork'
 import { 
   Public,
-  BottomAppbar,
   SimpleSnackbar,
-  Settings,
 } from './components'
 import * as serviceWorker from './serviceWorker'
 
@@ -62,13 +60,10 @@ let app = (
     <Router>
       { store.getState().app.snackbar ? null : <SimpleSnackbar /> }
       <Clockwork />
-      <Settings />
       <Switch>
         <Route exact path='/' render={ props => { return <Public /> }} />
-        <Route exact path='/push-to-talk' render={ props => { return <Public mode={'push-to-talk'} />}} />
         <Route component={ Public } />
       </Switch>
-      <BottomAppbar />
     </Router>
   </MuiThemeProvider>
 )
