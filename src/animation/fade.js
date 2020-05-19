@@ -3,6 +3,17 @@ import { gsap } from "gsap"
 // use a generic animation duration set in redux
 const duration = 1;
 
+const fadeOutSpin = (div, callback) => {
+     gsap.to(div, {
+        duration: 0.5 * duration,
+        opacity: 0,
+        scale: 0.75,
+        rotation: 180,
+        onComplete: callback,
+    });
+}
+
+
 const fadeIn = (div, callback) => {
      gsap.to(div, {
         duration: 1 * duration,
@@ -19,15 +30,7 @@ const fadeOut = (div, callback) => {
     });
 }
 
-const fadeOutSpin = (div, callback) => {
-     gsap.to(div, {
-        duration: 1.75 * duration,
-        opacity: 0,
-        scale: 0.75,
-        rotation: 360,
-        onComplete: callback,
-    });
-}
+
 
 export const fade = (animation, div, callback) => {
     switch (animation) {

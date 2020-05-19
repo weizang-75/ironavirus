@@ -1,14 +1,36 @@
-import React from "react"
-const WarningElements = props => {
+import React from 'react'
+// import {
+//     makeStyles,
+// } from '@material-ui/core/'
+
+// const useStyles = makeStyles(theme => ({
+//     platitudeTop:{
+//         border: '1px solid red',
+//     },
+// }))
+
+export default function TheMessage(props) {
+
+    // const classes = useStyles()
+
     let c = {}
     c.background = `#fef600`
     c.elements = `#01a43b`
+
+    let platitudeTop = `stay alert`.toUpperCase()
+    let platitudeMiddleA = `control`.toUpperCase()
+    let platitudeMiddleB = `the virus`.toUpperCase()
+    let platitudeBottom = `save lives`.toUpperCase()
+
     return (
         <React.Fragment>
-            <svg {...props} viewBox="0 0 385 385" >
+            <svg {...props} viewBox="0 0 385 384" >
                 <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
-                        <g fill={c.elements} >
-                            <rect id="Rectangle" fill={c.background} x="0" y="0" width="385" height="385"></rect>
+                    <g transform="translate(-0.000000, -0.887697)">
+                        <g transform="translate(0.000000, 0.887697)" fill={c.background}>
+                            <rect x="0" y="0" width="384" height="384"></rect>
+                        </g>
+                        <g id="elements" fill={c.elements}>
                             <polygon transform="translate(188.500000, 104.387697) scale(1, -1) translate(-188.500000, -104.387697) " points="188.5 91.8876972 218 116.887697 159 116.887697"></polygon>
                             <polygon points="188.5 0.887697219 206.070283 16.700118 171.739182 16.700118"></polygon>
                             <polygon points="188.5 367.887697 206.070283 383.700118 171.739182 383.700118"></polygon>
@@ -32,9 +54,37 @@ const WarningElements = props => {
                             <polygon transform="translate(123.312729, 9.387389) scale(-1, 1) rotate(90.000000) translate(-123.312729, -9.387389) " points="130.625458 -17 130.625458 21.1953342 116.414871 35.7747786 116 -2.72774915"></polygon>
                             <polygon transform="translate(47.312729, 9.387389) scale(-1, 1) rotate(90.000000) translate(-47.312729, -9.387389) " points="54.6254575 -17 54.6254575 21.1953342 40.4148706 35.7747786 40 -2.72774915"></polygon>
                         </g>
+                        <g 
+                            transform="translate(178, 9.887697)" 
+                            fill="#000000" 
+                            fontFamily="Hind-Bold, Hind" 
+                            fontWeight="bold"
+                        >
+                            <text id="STAY-ALERT" fontSize="58" textAnchor="middle">
+                                <tspan x="14.391" y="61">
+                                    { platitudeTop }
+                                </tspan>
+                            </text>
+                            <text id="SAVE-LIVES" fontSize="64" textAnchor="middle">
+                                <tspan x="9.188" y="345">
+                                    {platitudeBottom}
+                                </tspan>
+                            </text>
+                            <text id="CONTROL" fontSize="72" textAnchor="middle">
+                                <tspan x="15.092" y="178">
+                                    {platitudeMiddleA}
+                                </tspan>
+                            </text>
+                            <text id="THE-VIRUS" fontSize="68" textAnchor="middle">
+                                <tspan x="11.878" y="244">
+                                    {platitudeMiddleB}
+                                </tspan>
+                            </text>
+                        </g>
                     </g>
+                </g>
             </svg>
         </React.Fragment>
     )
 }
-export default WarningElements
+

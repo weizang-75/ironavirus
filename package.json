@@ -1,7 +1,7 @@
 {
   "name": "ironavirus",
   "description": "在这些困难和不寻常的时刻",
-  "version": "0.0.4",
+  "version": "0.0.7",
   "author": {
     "name": "weizang75",
     "email": "weizang75@gmail.com"
@@ -44,7 +44,8 @@
     "react-with-firebase-auth": "^1.3.0",
     "recompose": "^0.30.0",
     "redux": "^4.0.5",
-    "ua-parser-js": "^0.7.21"
+    "ua-parser-js": "^0.7.21",
+    "webfontloader": "^1.6.28"
   },
   "eslintConfig": {
     "extends": "react-app"
