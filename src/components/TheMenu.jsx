@@ -3,6 +3,7 @@ import {
     useSelector, 
     useDispatch, 
 } from 'react-redux'
+import { saveMessage } from '../redux/theMessage/actions'
 import {
     makeStyles,
     Button,
@@ -18,6 +19,10 @@ import {
 const useStyles = makeStyles(theme => ({
     menuWrap:{
         width: 300,
+    },
+    platitude:{
+        marginTop: theme.spacing(),
+        marginBottom: theme.spacing(),
     },
     actionBtns:{
         margin: theme.spacing()
@@ -45,28 +50,31 @@ export default function TheMenu(props) {
         platitudeBottom,
     } = theMessageSlice
 
+    const severity = `info`
+
     return (
         <div className={classes.menuWrap}>
-
-            <React.Fragment>
-
-                <CardContent>
-                    <Alert variant={`outlined`} severity="success">
-                        {`变更讯息`}
-                    </Alert>
-                </CardContent>
-
-
-                <CardContent>
-                    
+            <CardContent>
+                <Alert 
+                    severity={severity}
+                    variant={`filled`}>
+                    {`Control the message`}
+                </Alert>
+            </CardContent>
+            <CardContent>
+                <div className={classes.platitude}>
                     <InputTextfield field={{
+                        autoFocus: true,
                         label: `First Platitude`,
                         id: `platitudeTop`,
                         defaultValue: platitudeTop.toUpperCase(),
                         onChange: (value) => {
+                            document.getElementById(`field-platitudeTop`).value = value.toUpperCase()
                             dispatch({type:`THEMESSAGE/PLAT-TOP`, platitudeTop: value.toUpperCase()})
                         },
                     }}/>
+                </div>
+                <div className={classes.platitude}>
                     <InputTextfield field={{
                         label: `Second Platitude`,
                         id: `platitudeMiddleA`,
@@ -82,7 +90,8 @@ export default function TheMenu(props) {
                         dispatch({type:`THEMESSAGE/PLAT-MID-B`, platitudeMiddleB: value.toUpperCase()})
                       },
                     }}/>
-
+                </div>
+                <div className={classes.platitude}>
                     <InputTextfield field={{
                         label: `Third Platitude`,
                         id: `platitudeBottom`,
@@ -91,77 +100,37 @@ export default function TheMenu(props) {
                             dispatch({type:`THEMESSAGE/PLAT-BOTTOM`, platitudeBottom: value.toUpperCase()})
                         },
                     }}/>
-                </CardContent>
-                
-                <CardActions className={classes.actionBtns}>
-                    <Button
-                        variant={`contained`}
-                        color={`secondary`}
-                        onClick={(e) => {
-                            e.preventDefault()
-                            dispatch({ type: `APP/UI_OPEN`, uiOpen: false })
-                        }}>
-                        <span className={classes.btnTxt}>
-                            Done
-                        </span>
-                        <Icon icon={`tick`} color={`inherit`} />
-                    </Button>
-                </CardActions>
-
-            </React.Fragment>
+                </div>
+            </CardContent>
+            <CardActions className={classes.actionBtns}>
+                <Button
+                    fullWidth
+                    variant={`contained`}
+                    color={`secondary`}
+                    onClick={(e) => {
+                        e.preventDefault()
+                        // dispatch({ type: `APP/UI_OPEN`, uiOpen: false })
+                        saveMessage()
+                    }}>
+                    <span className={classes.btnTxt}>
+                        Save
+                    </span>
+                    <Icon icon={`save`} color={`inherit`} />
+                </Button>
+                <Button
+                    fullWidth
+                    variant={`text`}
+                    color={`default`}
+                    onClick={(e) => {
+                        e.preventDefault()
+                        dispatch({ type: `APP/UI_OPEN`, uiOpen: false })
+                    }}>
+                    <span className={classes.btnTxt}>
+                        Cancel
+                    </span>
+                    <Icon icon={`close`} color={`inherit`} />
+                </Button>
+            </CardActions>
         </div>
     )
 }
-
-
-/*
-
-
-<Typography 
-    gutterBottom
-    className={classes.title}
-    variant={`h5`}>
-    The Message
-</Typography>
-
-
-<Button
-    variant={`text`}
-    color={`default`}
-    onClick={(e) => {
-        e.preventDefault()
-        dispatch({ type: `APP/UI_OPEN`, uiOpen: false })
-    }}>
-    <span className={classes.btnTxt}>
-        Close
-    </span>
-    <Icon icon={`close`} color={`inherit`} />
-</Button>
-
-
-
-<div className={classes.grow} />
-
-
-
-// const validate = () => {
-//     console.log (theMenu)
-//     return true
-// }
-
-// let isValid = true
-// const email = document.getElementById(`email`).value
-// const password = document.getElementById(`password`).value
-// if (email === ``){
-//     isValid = false
-// }
-// if (password === ``){
-//     isValid = false
-// }
-// let result = {
-//     isValid,
-//     email,
-//     password,
-// }
-// setCreds({ email, password })
-*/

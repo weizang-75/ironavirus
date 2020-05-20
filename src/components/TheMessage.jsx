@@ -2,19 +2,12 @@ import React from 'react'
 import { 
     useSelector,
 } from 'react-redux'
-// import {
-//     makeStyles,
-// } from '@material-ui/core/'
-
-// const useStyles = makeStyles(theme => ({
-//     platitudeTop:{
-//         border: '1px solid red',
-//     },
-// }))
 
 export default function TheMessage(props) {
 
-    // const classes = useStyles()
+    let c = {}
+    c.background = `#fef600`
+    c.elements = `#01a43b`
 
     const theMessageSlice = useSelector(state => state.theMessage)
     const {
@@ -23,12 +16,6 @@ export default function TheMessage(props) {
           platitudeMiddleB,
           platitudeBottom,
     } = theMessageSlice
-
-
-
-    let c = {}
-    c.background = `#fef600`
-    c.elements = `#01a43b`
 
     let platitudeTopFontSize = 58
     let platitudeMiddleAFontSize = 72
@@ -100,4 +87,3 @@ export default function TheMessage(props) {
         </React.Fragment>
     )
 }
-

@@ -1,5 +1,6 @@
 /*
   Yellow: #fef600
+  Orange: #fed100
   Green: #01a43b
   Red: #eb1c24
   Black: #211b1f
@@ -15,7 +16,7 @@ const muiTheme = {
       main: '#01a43b',
     },
     success: {main: '#01a43b'},
-    info: {main: '#fef600'},
+    info: {main: '#211b1f'},
     warning: {main: '#eb1c24'},
     error: {main: '#eb1c24'},
   }
