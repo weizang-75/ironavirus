@@ -1,26 +1,32 @@
 import pJSON from '../package.json'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import WebFont from 'webfontloader';
-import firebase from '@firebase/app'
-import '@firebase/firestore'
 import {
   BrowserRouter as Router, Switch, Route
 } from 'react-router-dom'
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles'
+import { createBrowserHistory } from 'history'
+import WebFont from 'webfontloader'
+import firebase from '@firebase/app'
+import '@firebase/firestore'
+import { 
+  MuiThemeProvider, 
+  createMuiTheme 
+} from '@material-ui/core/styles'
 import { muiTheme } from './utils/mui.js'
 import { Provider } from 'react-redux'
 import reduxStore from './redux'
-import { createBrowserHistory } from 'history'
-import Clockwork from './Clockwork'
 import { 
   Public,
   SimpleSnackbar,
 } from './components'
+import { 
+  PushToTalk 
+} from './PushToTalk'
+
 import * as serviceWorker from './serviceWorker'
 
 console.log(`${pJSON.name} ${pJSON.version} (${process.env.REACT_APP_ENV})`)
-// document.title = `${document.title} ${process.env.REACT_APP_ENV === 'DEV' ? `DEV` : ``} ${pJSON.version}`
+document.title = `${document.title} ${process.env.REACT_APP_ENV === 'DEV' ? `DEV` : `PROD`} ${pJSON.version}`
 
 WebFont.load({
   google: {
@@ -59,7 +65,7 @@ let app = (
   <MuiThemeProvider theme={createMuiTheme(muiTheme)}>
     <Router>
       { store.getState().app.snackbar ? null : <SimpleSnackbar /> }
-      <Clockwork />
+      <PushToTalk />
       <Switch>
         <Route exact path='/' render={ props => { return <Public /> }} />
         <Route component={ Public } />

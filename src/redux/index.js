@@ -2,26 +2,23 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import { combineReducers } from 'redux'
 import { reduxBatch } from '@manaflair/redux-batch'
 import { appReducer, appSlice } from './app/reducer'
-import { userentitiesReducer, userentitiesSlice } from './userentities/reducer'
-import { clockworkReducer, clockworkSlice } from './clockwork/reducer'
 import { theMessageReducer, theMessageSlice } from './theMessage/reducer'
 import { animationReducer, animationSlice } from './animation/reducer'
+import { pushToTalkReducer, pushToTalkSlice } from '../PushToTalk/reducer'
 
 const reduxStore = () => {
   const reducer = combineReducers({
     app: appReducer,
-    userentities: userentitiesReducer,
-    clockwork: clockworkReducer,
     theMessage: theMessageReducer,
     animation: animationReducer,
+    pushToTalk: pushToTalkReducer,
   })
 
   const preloadedState = {
     app: appSlice,
-    userentities: userentitiesSlice,
-    clockwork: clockworkSlice,
     theMessage: theMessageSlice,
     animation: animationSlice,
+    pushToTalk: pushToTalkSlice,
   }
   
   const middleware = [

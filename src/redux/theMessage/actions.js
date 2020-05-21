@@ -17,9 +17,7 @@ export const saveMessage = (theMessage) => {
 }
 
 export const saveMessage_ = (theMessage) => {
-
 	let endPoint = `${process.env.REACT_APP_CLOUD_FUNCTIONS}/ironavirus`
-
 	const store = getStore()
 	store.dispatch({ type: `THEMESSAGE/SENDING`, sending: true })
 	
@@ -31,13 +29,9 @@ export const saveMessage_ = (theMessage) => {
 			platitudeBottom: `THIRD PLATITUDE`,
 		}
 	}
-    
     axios.post(endPoint, postObj)
-
     	.then (function(res) {
-
     		console.log (res.data)
-
 	    	store.dispatch({type: `THEMESSAGE/SENT`, sent: true })
 	    	store.dispatch({ 
 				type: `APP/SNACKBAR`, 
