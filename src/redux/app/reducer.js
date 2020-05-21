@@ -21,12 +21,7 @@ import {
 
 export const appSlice = {
   pJSON,
-  theMenu: {
-    entity: `ironavirus`,
-    author: `weizang`,
-    etc: 123,
-  },
-  uiOpen: true,
+  uiOpen: false,
   snackbar: null,
   user: false,
   isDark: true,

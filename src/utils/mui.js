@@ -7,6 +7,11 @@
 */
 
 const muiTheme = {
+  typography: {
+    fontFamily: [
+      'Hind',
+    ].join(','),
+  },
   palette: {
     type: 'dark',
     primary: {

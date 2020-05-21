@@ -31,6 +31,17 @@ export const subscribing = createAction(`USERENTITY/SUBSCRIBING`)
 export const subscription = createAction(`USERENTITY/SUBSCRIPTION`)
 export const selectedEntity = createAction(`USERENTITY/SELECT`)
 
+
+export const makeFingerprint = () => {
+	const showFP = true
+	const store = getStore()
+	store.dispatch({ type: `USERENTITY/FINGERPRINTED`, fingerprinted: false })
+	store.dispatch({ type: `USERENTITY/FINGERPRINTING`, fingerprinting: true })
+  	
+}
+
+
+
 export const userentityPing = () => {
 	const parser = new UAParser()
 	const ua = parser.getResult()
@@ -122,22 +133,7 @@ export const userentityInitialPing = () => {
 }
 
 
-export const makeFingerprint = () => {
-	const showFP = false
-	const store = getStore()
-	store.dispatch({ type: `USERENTITY/FINGERPRINTED`, fingerprinted: false })
-	store.dispatch({ type: `USERENTITY/FINGERPRINTING`, fingerprinting: true })
-  	Fingerprint2.getPromise().then(function(components) {
-	    const values = components.map(function(component) {
-	      return component.value
-	    })
-	    const fingerprint = Fingerprint2.x64hash128(values.join(""), 31)
-	    if (showFP) console.log ('fingerprint', fingerprint)
-	    store.dispatch({ type: `USERENTITY/FINGERPRINT`, fingerprint })
-	    store.dispatch({ type: `USERENTITY/FINGERPRINTED`, fingerprinted: true })
-	    store.dispatch({ type: `USERENTITY/FINGERPRINTING`, fingerprinting: false })
-	 })
-}
+
 
 export const fetchIpgeo = () => {
 	const endPoint = `https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.REACT_APP_IPGEO}`
