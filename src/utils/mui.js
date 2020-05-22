@@ -8,6 +8,7 @@
 
 const muiTheme = {
   typography: {
+    fontSize: 16,
     fontFamily: [
       'Hind',
     ].join(','),

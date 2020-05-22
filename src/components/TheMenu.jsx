@@ -49,6 +49,9 @@ const useStyles = makeStyles(theme => ({
     btnTxt:{
         marginRight: theme.spacing()
     },
+    btnTxtL:{
+        marginLeft: theme.spacing()
+    },
     link:{
         cursor: 'pointer',
     },
@@ -144,18 +147,18 @@ export default function TheMenu(props) {
             </CardContent>
             <CardActions className={classes.actionBtns}>
                 <Button
-                    fullWidth
                     variant={`contained`}
-                    color={`secondary`}
+                    color={`primary`}
                     onClick={(e) => {
                         e.preventDefault()
                         // dispatch({ type: `APP/UI_OPEN`, uiOpen: false })
                         saveMessage()
                     }}>
-                    <span className={classes.btnTxt}>
+                    
+                    <Icon icon={`save`} color={`inherit`} />
+                    <span className={classes.btnTxtL}>
                         Save
                     </span>
-                    <Icon icon={`save`} color={`inherit`} />
                 </Button>
             </CardActions>
         </div>
