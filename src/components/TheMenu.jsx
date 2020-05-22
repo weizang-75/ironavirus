@@ -7,18 +7,37 @@ import { saveMessage } from '../redux/theMessage/actions'
 import {
     makeStyles,
     Button,
+    IconButton,
     CardContent,
     CardActions,
+    Grid,
+    Typography,
 } from '@material-ui/core/'
-import { Alert } from '@material-ui/lab/'
 import { 
     Icon,
     InputTextfield,
 } from './'
+import {
+    Ironavirus
+} from '../graphics'
 
 const useStyles = makeStyles(theme => ({
     menuWrap:{
         width: 300,
+    },
+    menuHeader:{
+        display: 'flex',
+        margin: theme.spacing(),
+        padding: theme.spacing(),
+    },
+    menuHeaderTitle:{
+        marginLeft: theme.spacing(2),
+        marginTop: theme.spacing(),
+        fontSize: '1.5rem',
+    },
+    logoDiv:{
+        width: 50,
+        height: 50,
     },
     platitude:{
         marginTop: theme.spacing(),
@@ -50,19 +69,40 @@ export default function TheMenu(props) {
         platitudeBottom,
     } = theMessageSlice
 
-    const severity = `info`
+    
 
     return (
         <div className={classes.menuWrap}>
+            <div className={classes.menuHeader}>
+                <Grid container>
+                    <Grid item>
+                        <div className={classes.logoDiv}>
+                            <Ironavirus />
+                        </div>
+                    </Grid>
+                    <Grid item className={classes.grow}>
+                        <Typography variant={`h6`} className={classes.menuHeaderTitle}>
+                            {`IRONAVIRUS`}
+                        </Typography>
+                    </Grid>
+                    <Grid item>
+                        <IconButton
+                            color={`default`}
+                            onClick={(e) => {
+                                e.preventDefault()
+                                dispatch({ type: `APP/UI_OPEN`, uiOpen: false })
+                            }}>
+                            
+                            <Icon icon={`close`} color={`inherit`} />
+                        </IconButton>
+                    </Grid>
+
+                </Grid>
+            </div>
+
+            
             <CardContent>
-                <Alert 
-                    severity={severity}
-                    variant={`filled`}>
-                    {`Control the message`}
-                </Alert>
-            </CardContent>
-            <CardContent>
-                <div className={classes.platitude}>
+                <div>
                     <InputTextfield field={{
                         autoFocus: true,
                         label: `First Platitude`,
@@ -117,20 +157,24 @@ export default function TheMenu(props) {
                     </span>
                     <Icon icon={`save`} color={`inherit`} />
                 </Button>
-                <Button
-                    fullWidth
-                    variant={`text`}
-                    color={`default`}
-                    onClick={(e) => {
-                        e.preventDefault()
-                        dispatch({ type: `APP/UI_OPEN`, uiOpen: false })
-                    }}>
-                    <span className={classes.btnTxt}>
-                        Cancel
-                    </span>
-                    <Icon icon={`close`} color={`inherit`} />
-                </Button>
             </CardActions>
         </div>
     )
 }
+
+
+
+
+
+
+/*
+<CardContent>
+    <Alert 
+        severity={severity}
+        variant={`filled`}>
+        {`Control the message`}
+    </Alert>
+</CardContent>
+import { Alert } from '@material-ui/lab/'
+const severity = `info`
+*/

@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { getStore } from '../'
 import { 
     initFingerprint,
-    firstTing,
+    // firstTing,
     // ting,
     Info,
 } from './'
@@ -28,24 +28,13 @@ class PushToTalk extends Component {
             initFingerprint()
         }
         if (fingerprint && !tinging && !firstTingResult){
-            firstTing()
+            // firstTing()
         }
-        
-        
-        // const { 
-        //     readyToPing, 
-        //     doneFirstPing,
-        // } = this.props.userentities
-        // if (readyToPing && !doneFirstPing ){
-        //     store.dispatch({ type: `USERENTITY/DONE_FIRST_PING`, doneFirstPing: true })
-        //     // userentityInitialPing ()
-        // }
-        // if (ticks === 4 && doneFirstPing) {
-        //     // userentityPing ()
-        // }
-        // if (ticks % 10 === 0 && doneFirstPing) {
-        //     // userentityPing ()
-        // }
+        if (firstTingResult && !tinging){
+            if (ticks % 10 === 0){
+                // ting()
+            }
+        }
     }
 
     startTimer = () => {

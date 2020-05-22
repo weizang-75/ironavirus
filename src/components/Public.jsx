@@ -4,22 +4,16 @@ import {
 } from '@material-ui/core'
 import { 
     useSelector, 
-    // useDispatch 
+    useDispatch 
 } from 'react-redux'
-// import {
-//     makeFingerprint,
-//     fetchIpgeo,
-// } from '../redux/userentities/actions'
 import { 
     Ironavirus,
 } from '../graphics'
-
 import { 
     // TheMessage,
     UI,
 } from '../components'
-
-// import { fade } from '../animation'
+import { fade } from '../animation'
 
 const useStyles = makeStyles(theme => ({
     screen:{
@@ -39,39 +33,24 @@ const useStyles = makeStyles(theme => ({
 export default function Public(props) {
 
     const classes = useStyles()
-    // const dispatch = useDispatch()
-    // const userentitiesSlice = useSelector(state => state.userentities)
-    // const {
-    //     saved,
-    //     saving,
-    //     ipgeoFetched,
-    //     ipgeoFetching,
-    //     fingerprinted,
-    //     fingerprint,
-    //     fingerprinting,
-    // } = userentitiesSlice
+    const dispatch = useDispatch()
     const animationSlice = useSelector(state => state.animation)
     const {
         logoFaded,
-        // logoFading,
+        logoFading,
     } = animationSlice
 
     useEffect(() => {
-        // if (!fingerprinted && !fingerprinting) makeFingerprint()
-        // if (!saving && !saved){
-        //     if (!ipgeoFetching && !ipgeoFetched) fetchIpgeo()
-        // }
-        // if (!logoFaded && !logoFading){
-        //     setTimeout(() => {
-        //         dispatch({type:`ANIMATION/LOGOFADING`, logoFading: true})
-        //         fade(`fadeOutSpin`, `#logo`, () => {
-        //             dispatch({type:`ANIMATION/LOGOFADED`, logoFaded: true})
-        //             dispatch({type:`ANIMATION/LOGOFADING`, logoFading: false})
-        //         })
-        //     }, 333)
-        // }
-
-    }, [ ])
+        if (!logoFaded && !logoFading){
+            setTimeout(() => {
+                dispatch({type:`ANIMATION/LOGOFADING`, logoFading: true})
+                fade(`fadeOutSpin`, `#logo`, () => {
+                    dispatch({type:`ANIMATION/LOGOFADED`, logoFaded: true})
+                    dispatch({type:`ANIMATION/LOGOFADING`, logoFading: false})
+                })
+            }, 333)
+        }
+    }, [dispatch, logoFaded, logoFading])
 
     if (!logoFaded){
         return <div className={classes.screen}>

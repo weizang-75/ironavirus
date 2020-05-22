@@ -6,13 +6,9 @@ import {
 import clsx from 'clsx'
 import { 
   makeStyles,
-  Badge,
-  Fab,
-  Tooltip,
   SwipeableDrawer,
 } from '@material-ui/core'
-import { 
-  Icon,
+import {
   TheMessage, 
   TheMenu,
 } from './'
@@ -24,12 +20,6 @@ const useStyles = makeStyles(theme => ({
     bottom: theme.spacing(2),
     right: theme.spacing(2),
     margin: '0 auto',
-  },
-  list: {
-    // width: 250,
-  },
-  fullList: {
-    // width: 'auto',
   },
 }))
 
@@ -43,14 +33,10 @@ export default function UI() {
       uiOpen
   } = appSlice
 
-  // console.log('uiOpen', uiOpen)
-
-
   const toggleDrawer = (anchor, open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return
     }
-    // dispatch({ type: `APP/UI_OPEN`, uiOpen: false })
   }
 
   const list = (anchor) => (
@@ -62,15 +48,18 @@ export default function UI() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-
       <TheMenu />
     </div>
   )
 
   return  <React.Fragment>
-
-            <TheMessage />
-
+            <TheMessage onClick={(e) => {
+              e.preventDefault()
+              if (!uiOpen){
+                dispatch({ type: `APP/UI_OPEN`, uiOpen: true })
+                // console.log ('mssage click', e)
+              }
+            }}/>
             <SwipeableDrawer
               anchor={`right`}
               open={uiOpen}
@@ -78,22 +67,26 @@ export default function UI() {
               onOpen={toggleDrawer(`right`, true)}>
               {list(`right`)}
             </SwipeableDrawer>
-
-            <Tooltip title={`点击这里`}>
-              <Fab 
-                color={`primary`} 
-                aria-label={`点击这里`}
-                className={classes.fabButton}
-                onClick={(e) => {
-                  e.preventDefault()
-                  dispatch({ type: `APP/UI_OPEN`, uiOpen: true })
-                }}>
-                  <Badge badgeContent={0} color={`primary`}>
-                    <Icon icon={`ui`} color={`inherit`} />
-                  </Badge> 
-              </Fab>
-            </Tooltip>
-
           </React.Fragment>
 }
 
+
+/*
+    <Tooltip title={`点击这里`}>
+      <Fab 
+        color={`primary`} 
+        aria-label={`点击这里`}
+        className={classes.fabButton}
+        onClick={(e) => {
+          e.preventDefault()
+          dispatch({ type: `APP/UI_OPEN`, uiOpen: true })
+        }}>
+          <Badge badgeContent={0} color={`primary`}>
+            <Icon icon={`ui`} color={`inherit`} />
+          </Badge> 
+      </Fab>
+    </Tooltip>
+    Badge,
+    Fab,
+    Tooltip,
+*/
