@@ -27,6 +27,7 @@ export const firstTing = () => {
 		entity,
 		fingerprint,
 	}
+ 	axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*'
 	axios.post(process.env.REACT_APP_PUSH_TO_TALK, ting)
 		.then(function(response) {
 			console.log (response.data.ting)
