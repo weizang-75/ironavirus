@@ -30,7 +30,7 @@ export default function InputTextfield(props) {
   
   return (
     <React.Fragment>
-          <FormControl fullWidth>
+          <FormControl>
             <InputLabel htmlFor={`field-${id}`}>
               {label}
             </InputLabel>

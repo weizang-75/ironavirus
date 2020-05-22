@@ -6,6 +6,7 @@ import {
 import { saveMessage } from '../redux/theMessage/actions'
 import {
     makeStyles,
+    // useTheme,
     Button,
     IconButton,
     CardContent,
@@ -40,8 +41,8 @@ const useStyles = makeStyles(theme => ({
         height: 50,
     },
     platitude:{
-        marginTop: theme.spacing(),
-        marginBottom: theme.spacing(),
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2),
     },
     actionBtns:{
         margin: theme.spacing()
@@ -72,7 +73,8 @@ export default function TheMenu(props) {
         platitudeBottom,
     } = theMessageSlice
 
-    
+    // const theme = useTheme()
+    // console.log (theme)
 
     return (
         <div className={classes.menuWrap}>
@@ -108,7 +110,7 @@ export default function TheMenu(props) {
                 <div>
                     <InputTextfield field={{
                         autoFocus: true,
-                        label: `First Platitude`,
+                        // label: `First Platitude`,
                         id: `platitudeTop`,
                         defaultValue: platitudeTop.toUpperCase(),
                         onChange: (value) => {
@@ -119,7 +121,7 @@ export default function TheMenu(props) {
                 </div>
                 <div className={classes.platitude}>
                     <InputTextfield field={{
-                        label: `Second Platitude`,
+                        // label: `Second Platitude`,
                         id: `platitudeMiddleA`,
                         defaultValue: platitudeMiddleA.toUpperCase(),
                         onChange: (value) => {
@@ -136,7 +138,7 @@ export default function TheMenu(props) {
                 </div>
                 <div className={classes.platitude}>
                     <InputTextfield field={{
-                        label: `Third Platitude`,
+                        // label: `Third Platitude`,
                         id: `platitudeBottom`,
                         defaultValue: platitudeBottom.toUpperCase(),
                         onChange: (value) => {
