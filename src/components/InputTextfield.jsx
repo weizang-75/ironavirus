@@ -17,7 +17,7 @@ export default function InputTextfield(props) {
     autoFocus,
     id,
     disabled,
-    defaultValue,
+    // defaultValue,
     error,
     required,
     value,
@@ -38,7 +38,7 @@ export default function InputTextfield(props) {
               autoComplete={`off`}
               id={`field-${id}`}
               disabled={disabled ? disabled : false}
-              defaultValue={defaultValue ? defaultValue : false}
+              // defaultValue={defaultValue ? defaultValue : ``}
               autoFocus={autoFocus ? autoFocus : false}
               required={required}
               error={error}

@@ -21,7 +21,7 @@ import {
 
 export const appSlice = {
   pJSON,
-  uiOpen: true,
+  uiOpen: false,
   snackbar: null,
   user: false,
   isDark: true,

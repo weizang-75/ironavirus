@@ -1,20 +1,77 @@
 import axios from 'axios'
 import { createAction } from '@reduxjs/toolkit'
 import { getStore } from '../../'
-
+import { slugify } from '../../utils/slugify'
 
 export const reset = createAction(`THEMESSAGE/RESET`)
+export const error = createAction(`THEMESSAGE/ERROR`)
 export const platitudeTop = createAction(`THEMESSAGE/PLAT-TOP`)
 export const platitudeMiddleA = createAction(`THEMESSAGE/PLAT-MID-A`)
 export const platitudeMiddleB = createAction(`THEMESSAGE/PLAT-MID-B`)
 export const platitudeBottom = createAction(`THEMESSAGE/PLAT-BOTTOM`)
-
 export const sending = createAction(`THEMESSAGE/SENDING`)
 export const sent = createAction(`THEMESSAGE/SENT`)
+export const threat = createAction(`THEMESSAGE/THREAT`)
+export const initted = createAction(`THEMESSAGE/INITTED`)
+export const publishing = createAction(`THEMESSAGE/PUBLISHING`)
 
-export const saveMessage = (theMessage) => {
-	console.log ('saveMessage', theMessage)
+export const publish = () => {
+	const store = getStore()
+
+	const theMessageSlice = store.getState().theMessage
+	let p1 = theMessageSlice.platitudeTop
+	let p2 = theMessageSlice.platitudeMiddleA
+	let p3 = theMessageSlice.platitudeMiddleB
+	let p4 = theMessageSlice.platitudeBottom
+	let l = theMessageSlice.threat
+	let slug = slugify(`${p1} ${p2} ${p3} ${p4}`)
+	const pushToTalkSlice = store.getState().pushToTalk
+	const {
+		fingerprint,
+	} = pushToTalkSlice
+
+	let ironavirus = {
+		action: `publish`,
+		fingerprint,
+		slug,
+		platitudeTop: p1,
+		platitudeMiddleA: p2,
+		platitudeMiddleB: p3,
+		platitudeBottom: p4,
+		threat: l,
+	}
+	store.dispatch({ type: `THEMESSAGE/PUBLISHING`, publishing: true })
+	axios.post(process.env.REACT_APP_IRONAVIRUS, ironavirus)
+		.then (function(res) {
+			console.log (res.data)
+			store.dispatch({ type: `THEMESSAGE/PUBLISHING`, publishing: false })
+		})
+		.catch (function(error) {
+			console.log (error.toString())
+			store.dispatch({ type: `THEMESSAGE/ERROR`, error: error.toString() })
+			store.dispatch({ type: `THEMESSAGE/PUBLISHING`, publishing: false })
+		})
 }
+
+export const init = () => {
+	const store = getStore()
+	store.dispatch({ type: `THEMESSAGE/PLAT-TOP`, platitudeTop: `` })
+	store.dispatch({ type: `THEMESSAGE/PLAT-MID-A`, platitudeMiddleA: `` })
+	store.dispatch({ type: `THEMESSAGE/PLAT-MID-B`, platitudeMiddleB: `` })
+	store.dispatch({ type: `THEMESSAGE/PLAT-BOTTOM`, platitudeBottom: `` })	
+	store.dispatch({ type: `THEMESSAGE/INITTED`, initted: true })
+}
+
+export const defaultMessage = () => {
+	const store = getStore()
+	store.dispatch({ type: `THEMESSAGE/PLAT-TOP`, platitudeTop: `STAY ALERT` })
+	store.dispatch({ type: `THEMESSAGE/PLAT-MID-A`, platitudeMiddleA: `CONTROL` })
+	store.dispatch({ type: `THEMESSAGE/PLAT-MID-B`, platitudeMiddleB: `THE VIRUS` })
+	store.dispatch({ type: `THEMESSAGE/PLAT-BOTTOM`, platitudeBottom: `SAVE LIVES` })
+}
+
+
+
 
 export const saveMessage_ = (theMessage) => {
 	let endPoint = `${process.env.REACT_APP_CLOUD_FUNCTIONS}/ironavirus`

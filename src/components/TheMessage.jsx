@@ -5,22 +5,32 @@ import {
 
 export default function TheMessage(props) {
 
-    let c = {}
-    c.background = `#fef600`
-    c.elements = `#01a43b`
-
     const theMessageSlice = useSelector(state => state.theMessage)
     const {
           platitudeTop,
           platitudeMiddleA,
           platitudeMiddleB,
           platitudeBottom,
+          threat,
     } = theMessageSlice
+    let c = {
+        background: `#fef600`,
+        elements: threat,
+    }
 
     let platitudeTopFontSize = 58
+    if (platitudeTop.length > 10) platitudeTopFontSize = 52
+
     let platitudeMiddleAFontSize = 72
+    if (platitudeMiddleA.length > 7) platitudeMiddleAFontSize = 64
+    if (platitudeMiddleA.length > 10) platitudeMiddleAFontSize = 50
+
     let platitudeMiddleBFontSize = 68
+    if (platitudeMiddleB.length > 7) platitudeMiddleAFontSize = 62
+    if (platitudeMiddleB.length > 10) platitudeMiddleAFontSize = 48
+
     let platitudeBottomFontSize = 64
+    if (platitudeBottom.length > 10) platitudeBottomFontSize = 52
 
     return (
         <React.Fragment>

@@ -12,26 +12,36 @@ import {
   TheMessage, 
   TheMenu,
 } from './'
+import { init } from '../redux/theMessage/actions'
 
 const useStyles = makeStyles(theme => ({
-  fabButton: {
-    position: 'absolute',
-    zIndex: 1,
-    bottom: theme.spacing(2),
-    right: theme.spacing(2),
-    margin: '0 auto',
+  theMessageOff:{
+    width: '100vh',
   },
+  theMessageOn:{
+    width: '100vh',
+    position: 'absolute',
+    left: 0,
+  },
+
+
 }))
 
 export default function UI() {
   
   const classes = useStyles()
   const dispatch = useDispatch()
-
   const appSlice = useSelector(state => state.app)
   const {
       uiOpen
   } = appSlice
+
+  const theMessageSlice = useSelector(state => state.theMessage)
+  const {
+      initted
+  } = theMessageSlice
+
+
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -44,22 +54,25 @@ export default function UI() {
       className={clsx(classes.list, {
         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
       })}
-      role="presentation"
+      role={`presentation`}
       onClick={toggleDrawer(anchor, false)}
-      onKeyDown={toggleDrawer(anchor, false)}
-    >
+      onKeyDown={toggleDrawer(anchor, false)}>
       <TheMenu />
     </div>
   )
 
   return  <React.Fragment>
-            <TheMessage onClick={(e) => {
-              e.preventDefault()
-              if (!uiOpen){
-                dispatch({ type: `APP/UI_OPEN`, uiOpen: true })
-                // console.log ('mssage click', e)
-              }
-            }}/>
+            <div className={!uiOpen ? classes.theMessageOff : classes.theMessageOn }>
+              <TheMessage onClick={(e) => {
+                e.preventDefault()
+                if (!uiOpen){
+                  dispatch({ type: `APP/UI_OPEN`, uiOpen: true })
+                  if (!initted){
+                    init()
+                  }
+                }
+              }}/>  
+          </div>
             <SwipeableDrawer
               anchor={`right`}
               open={uiOpen}
@@ -71,7 +84,27 @@ export default function UI() {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*
+
+
     <Tooltip title={`点击这里`}>
       <Fab 
         color={`primary`} 
@@ -86,7 +119,21 @@ export default function UI() {
           </Badge> 
       </Fab>
     </Tooltip>
+
+
     Badge,
     Fab,
     Tooltip,
+
+
+      fabButton: {
+        position: 'absolute',
+        zIndex: 1,
+        bottom: theme.spacing(2),
+        right: theme.spacing(2),
+        margin: '0 auto',
+      },
+
+
+
 */

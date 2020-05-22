@@ -3,16 +3,21 @@ import {
     useSelector, 
     useDispatch, 
 } from 'react-redux'
-import { saveMessage } from '../redux/theMessage/actions'
+import { 
+    publish,
+    defaultMessage,
+} from '../redux/theMessage/actions'
 import {
     makeStyles,
-    // useTheme,
     Button,
     IconButton,
     CardContent,
     CardActions,
     Grid,
     Typography,
+    FormControl,
+    Select,
+    MenuItem,
 } from '@material-ui/core/'
 import { 
     Icon,
@@ -25,6 +30,9 @@ import {
 const useStyles = makeStyles(theme => ({
     menuWrap:{
         width: 300,
+    },
+    formControl:{
+        margin: theme.spacing(),
     },
     menuHeader:{
         display: 'flex',
@@ -40,12 +48,12 @@ const useStyles = makeStyles(theme => ({
         width: 50,
         height: 50,
     },
+    firstPlatitude:{
+        // marginTop: theme.spacing(2),
+    },
     platitude:{
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(2),
-    },
-    actionBtns:{
-        margin: theme.spacing()
     },
     btnTxt:{
         marginRight: theme.spacing()
@@ -71,10 +79,8 @@ export default function TheMenu(props) {
         platitudeMiddleA,
         platitudeMiddleB,
         platitudeBottom,
+        threat,
     } = theMessageSlice
-
-    // const theme = useTheme()
-    // console.log (theme)
 
     return (
         <div className={classes.menuWrap}>
@@ -96,23 +102,20 @@ export default function TheMenu(props) {
                             onClick={(e) => {
                                 e.preventDefault()
                                 dispatch({ type: `APP/UI_OPEN`, uiOpen: false })
-                            }}>
-                            
+                            }}> 
                             <Icon icon={`close`} color={`inherit`} />
                         </IconButton>
                     </Grid>
-
                 </Grid>
             </div>
 
-            
             <CardContent>
-                <div>
+
+                <div className={classes.firstPlatitude}>
                     <InputTextfield field={{
                         autoFocus: true,
-                        // label: `First Platitude`,
                         id: `platitudeTop`,
-                        defaultValue: platitudeTop.toUpperCase(),
+                        value: platitudeTop.toUpperCase(),
                         onChange: (value) => {
                             document.getElementById(`field-platitudeTop`).value = value.toUpperCase()
                             dispatch({type:`THEMESSAGE/PLAT-TOP`, platitudeTop: value.toUpperCase()})
@@ -121,65 +124,71 @@ export default function TheMenu(props) {
                 </div>
                 <div className={classes.platitude}>
                     <InputTextfield field={{
-                        // label: `Second Platitude`,
                         id: `platitudeMiddleA`,
-                        defaultValue: platitudeMiddleA.toUpperCase(),
+                        value: platitudeMiddleA.toUpperCase(),
                         onChange: (value) => {
                             dispatch({type:`THEMESSAGE/PLAT-MID-A`, platitudeMiddleA: value.toUpperCase()})
                         },
                     }}/>
                     <InputTextfield field={{
                       id: `platitudeMiddleB`,
-                      defaultValue: platitudeMiddleB.toUpperCase(),
+                      value: platitudeMiddleB.toUpperCase(),
                       onChange: (value) => {
                         dispatch({type:`THEMESSAGE/PLAT-MID-B`, platitudeMiddleB: value.toUpperCase()})
                       },
                     }}/>
                 </div>
-                <div className={classes.platitude}>
+                <div className={classes.platitudeLast}>
                     <InputTextfield field={{
-                        // label: `Third Platitude`,
                         id: `platitudeBottom`,
-                        defaultValue: platitudeBottom.toUpperCase(),
+                        value: platitudeBottom.toUpperCase(),
                         onChange: (value) => {
                             dispatch({type:`THEMESSAGE/PLAT-BOTTOM`, platitudeBottom: value.toUpperCase()})
                         },
                     }}/>
                 </div>
+
             </CardContent>
-            <CardActions className={classes.actionBtns}>
-                <Button
-                    variant={`contained`}
-                    color={`primary`}
+            <CardActions>
+
+                <IconButton
                     onClick={(e) => {
                         e.preventDefault()
-                        // dispatch({ type: `APP/UI_OPEN`, uiOpen: false })
-                        saveMessage()
+                        defaultMessage()
                     }}>
-                    
-                    <Icon icon={`save`} color={`inherit`} />
-                    <span className={classes.btnTxtL}>
-                        Save
+                    <Icon icon={`refresh`} color={`inherit`} />
+                </IconButton>
+
+
+                <FormControl className={classes.formControl}>
+                    <Select
+                        id={`threat`}
+                        value={threat}
+                        onChange={(e) => {
+                            dispatch({type: `THEMESSAGE/THREAT`, threat: e.target.value})
+                        }}>
+                      <MenuItem value={`#eb1c24`}>
+                        <div style={{width: 24, height: 24, background: '#eb1c24'}} />                      
+                      </MenuItem>
+                      <MenuItem value={`#01a43b`}>
+                        <div style={{width: 24, height: 24, background: '#01a43b'}} />    
+                      </MenuItem>
+                    </Select>
+                </FormControl>
+                
+                <Button
+                    variant={`text`}
+                    // color={`secondary`}
+                    onClick={(e) => {
+                        e.preventDefault()
+                        publish()
+                    }}>
+                    <span className={classes.btnTxt}>
+                        Publish
                     </span>
+                    <Icon icon={`play`} color={`inherit`} />
                 </Button>
             </CardActions>
         </div>
     )
 }
-
-
-
-
-
-
-/*
-<CardContent>
-    <Alert 
-        severity={severity}
-        variant={`filled`}>
-        {`Control the message`}
-    </Alert>
-</CardContent>
-import { Alert } from '@material-ui/lab/'
-const severity = `info`
-*/

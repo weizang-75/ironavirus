@@ -6,17 +6,44 @@ import {
   platitudeMiddleA,
   platitudeMiddleB,
   platitudeBottom,
+  threat,
+  initted,
+  error,
+  publishing,
 } from "./actions"
 
 export const theMessageSlice = {
-  sending: false,
-  platitudeTop: `stay alert`,
-  platitudeMiddleA: `control`,
-  platitudeMiddleB: `the virus`,
-  platitudeBottom: `save lives`,
+  error: null,
+  publishing: false,
+  platitudeTop: `STAY ALERT`,
+  platitudeMiddleA: `CONTROL`,
+  platitudeMiddleB: `THE VIRUS`,
+  platitudeBottom: `SAVE LIVES`,
+  threat: `#01a43b`,
+  initted: false,
 }
 
 const theMessageReducer = createReducer(theMessageSlice, {
+
+  [publishing]: (state, action) => {
+    state.publishing = action.publishing
+    return state
+  },
+
+  [error]: (state, action) => {
+    state.error = action.error
+    return state
+  },
+
+  [initted]: (state, action) => {
+    state.initted = action.initted
+    return state
+  },
+
+  [threat]: (state, action) => {
+    state.threat = action.threat
+    return state
+  },
 
   [platitudeTop]: (state, action) => {
     state.platitudeTop = action.platitudeTop
