@@ -7,6 +7,8 @@ import clsx from 'clsx'
 import { 
   makeStyles,
   SwipeableDrawer,
+  Backdrop,
+  CircularProgress,
 } from '@material-ui/core'
 import {
   TheMessage, 
@@ -23,8 +25,10 @@ const useStyles = makeStyles(theme => ({
     position: 'absolute',
     left: 0,
   },
-
-
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    color: '#fff',
+  },
 }))
 
 export default function UI() {
@@ -38,7 +42,8 @@ export default function UI() {
 
   const theMessageSlice = useSelector(state => state.theMessage)
   const {
-      initted
+      initted,
+      publishing,
   } = theMessageSlice
 
 
@@ -62,6 +67,12 @@ export default function UI() {
   )
 
   return  <React.Fragment>
+            
+            { publishing ? <Backdrop className={classes.backdrop} open={true}>
+              <CircularProgress color="inherit" />
+            </Backdrop> : null }
+            
+
             <div className={!uiOpen ? classes.theMessageOff : classes.theMessageOn }>
               <TheMessage onClick={(e) => {
                 e.preventDefault()

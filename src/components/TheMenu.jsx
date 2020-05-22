@@ -80,8 +80,10 @@ export default function TheMenu(props) {
         platitudeMiddleB,
         platitudeBottom,
         threat,
+        publishing,
     } = theMessageSlice
-
+    // console.log ('publishing', publishing)
+    if (publishing) return null
     return (
         <div className={classes.menuWrap}>
             <div className={classes.menuHeader}>

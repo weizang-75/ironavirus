@@ -20,6 +20,17 @@ export const snackbar = createAction(`APP/SNACKBAR`)
 export const settings = createAction(`APP/SETTINGS`)
 export const uiOpen = createAction(`APP/UI_OPEN`)
 
+export const onPublish = (response) => {
+	const store = getStore()
+	const history = getHistory()
+	// console.log (`onPublish => depending on the response  history push slug and reset`, response)
+	if (response.success){
+		// console.log (`history push slug`, response.slug)
+		history.push(response.slug)	
+		store.dispatch({ type: `APP/UI_OPEN`, uiOpen: false })
+	}
+}
+
 export const sendEmail = (to, message) => {
 	const store = getStore()
 	store.dispatch({ type: `APP/SENDING`, sending: true })
@@ -39,7 +50,7 @@ export const sendEmail = (to, message) => {
     axios.post(endPoint, mailObj)
     	.then (function(res) {
 	    	store.dispatch({type: `APP/SENT`, sent: true })
-	    	console.log (res.data.message)
+	    	// console.log (res.data.message)
 	    	store.dispatch({ 
 				type: `APP/SNACKBAR`, 
 				snackbar: {

@@ -2,6 +2,7 @@ import axios from 'axios'
 import { createAction } from '@reduxjs/toolkit'
 import { getStore } from '../../'
 import { slugify } from '../../utils/slugify'
+import { onPublish } from '../app/actions'
 
 export const reset = createAction(`THEMESSAGE/RESET`)
 export const error = createAction(`THEMESSAGE/ERROR`)
@@ -17,14 +18,15 @@ export const publishing = createAction(`THEMESSAGE/PUBLISHING`)
 
 export const publish = () => {
 	const store = getStore()
-
 	const theMessageSlice = store.getState().theMessage
 	let p1 = theMessageSlice.platitudeTop
 	let p2 = theMessageSlice.platitudeMiddleA
 	let p3 = theMessageSlice.platitudeMiddleB
 	let p4 = theMessageSlice.platitudeBottom
 	let l = theMessageSlice.threat
-	let slug = slugify(`${p1} ${p2} ${p3} ${p4}`)
+	let alertLevel = `alert-`
+	if (l === `#01a43b`) alertLevel = `warning-`
+	let slug = slugify(`${alertLevel} ${p1} ${p2} ${p3} ${p4}`)
 	const pushToTalkSlice = store.getState().pushToTalk
 	const {
 		fingerprint,
@@ -32,22 +34,23 @@ export const publish = () => {
 
 	let ironavirus = {
 		action: `publish`,
-		fingerprint,
 		slug,
 		platitudeTop: p1,
 		platitudeMiddleA: p2,
 		platitudeMiddleB: p3,
 		platitudeBottom: p4,
 		threat: l,
+		fingerprint,
+		country: `Global`,
 	}
 	store.dispatch({ type: `THEMESSAGE/PUBLISHING`, publishing: true })
 	axios.post(process.env.REACT_APP_IRONAVIRUS, ironavirus)
 		.then (function(res) {
-			console.log (res.data)
 			store.dispatch({ type: `THEMESSAGE/PUBLISHING`, publishing: false })
+			onPublish(res.data)
 		})
 		.catch (function(error) {
-			console.log (error.toString())
+			// console.log (error.toString())
 			store.dispatch({ type: `THEMESSAGE/ERROR`, error: error.toString() })
 			store.dispatch({ type: `THEMESSAGE/PUBLISHING`, publishing: false })
 		})
