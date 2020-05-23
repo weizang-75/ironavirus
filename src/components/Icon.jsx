@@ -49,6 +49,7 @@ import IconSettings from '@material-ui/icons/Settings'
 import IconPushToTalk from '@material-ui/icons/TouchApp'
 import IconUI from '@material-ui/icons/TouchApp'
 import IconTick from '@material-ui/icons/DoneOutline'
+import IconShare from '@material-ui/icons/Share'
 
 import {
     Github,
@@ -253,10 +254,13 @@ class Icon extends Component {
                 return (<IconNewContent color={iconColor} />)  
 
             case `message`:
-                return (<IconMessage color={iconColor} />)                 
+                return (<IconMessage color={iconColor} />)   
+
+            case `share`:
+                return (<IconShare color={iconColor} />)                     
                 
             default: {
-                // return (<IconDefault color={iconColor} />)
+                // return (<IconMessage color={iconColor} />)
                 return null
             }
         }

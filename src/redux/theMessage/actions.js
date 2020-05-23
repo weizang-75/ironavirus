@@ -43,6 +43,36 @@ export const publish = () => {
 		fingerprint,
 		country: `Global`,
 	}
+	console.log ('ironavirus', ironavirus)
+}
+
+export const publish_ = () => {
+	const store = getStore()
+	const theMessageSlice = store.getState().theMessage
+	let p1 = theMessageSlice.platitudeTop
+	let p2 = theMessageSlice.platitudeMiddleA
+	let p3 = theMessageSlice.platitudeMiddleB
+	let p4 = theMessageSlice.platitudeBottom
+	let l = theMessageSlice.threat
+	let alertLevel = `alert-`
+	if (l === `#01a43b`) alertLevel = `warning-`
+	let slug = slugify(`${alertLevel} ${p1} ${p2} ${p3} ${p4}`)
+	const pushToTalkSlice = store.getState().pushToTalk
+	const {
+		fingerprint,
+	} = pushToTalkSlice
+
+	let ironavirus = {
+		action: `publish`,
+		slug,
+		platitudeTop: p1,
+		platitudeMiddleA: p2,
+		platitudeMiddleB: p3,
+		platitudeBottom: p4,
+		threat: l,
+		fingerprint,
+		country: `Global`,
+	}
 	store.dispatch({ type: `THEMESSAGE/PUBLISHING`, publishing: true })
 	axios.post(process.env.REACT_APP_IRONAVIRUS, ironavirus)
 		.then (function(res) {

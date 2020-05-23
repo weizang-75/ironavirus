@@ -12,6 +12,9 @@ import {
   tinging,
   error,
   ua,
+  fetchingIpgeo,
+  fetchedIpgeo,
+  ipgeo,
 } from "./actions"
 
 export const pushToTalkSlice = {
@@ -27,9 +30,27 @@ export const pushToTalkSlice = {
   lastTingResult: null,
   tinging: null,
   ua: null,
+  fetchingIpgeo: false,
+  fetchedIpgeo: false,
+  ipgeo: null,
 }
 
 const pushToTalkReducer = createReducer(pushToTalkSlice, {
+
+  [ipgeo]: (state, action) => {
+    state.ipgeo = action.ipgeo
+    return state
+  },
+  
+  [fetchingIpgeo]: (state, action) => {
+    state.fetchingIpgeo = action.fetchingIpgeo
+    return state
+  },
+
+  [fetchedIpgeo]: (state, action) => {
+    state.fetchedIpgeo = action.fetchedIpgeo
+    return state
+  },
 
   [ua]: (state, action) => {
     state.ua = action.ua

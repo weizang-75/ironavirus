@@ -17,6 +17,28 @@ export const firstTingResult = createAction(`PUSHTOTALK/TING/FIRST_RESULT`)
 export const lastTingResult = createAction(`PUSHTOTALK/TING/LAST_RESULT`)
 export const tinging = createAction(`PUSHTOTALK/TINGING`)
 export const ua = createAction(`PUSHTOTALK/UA`)
+export const fetchingIpgeo = createAction(`PUSHTOTALK/FETCHING`)
+export const fetchedIpgeo = createAction(`PUSHTOTALK/FETCHED`)
+export const ipgeo = createAction(`PUSHTOTALK/IPGEO`)
+
+export const fetchIpgeo = () => {
+	const store = getStore()
+	store.dispatch({ type: `PUSHTOTALK/FETCHING`, fetchingIpgeo: true })
+	const endPoint = `https://api.ipgeolocation.io/ipgeo?apiKey=${process.env.REACT_APP_IPGEO}`
+	axios
+		.get(endPoint)
+		.then(function(response) {
+			console.log (response.data)
+			store.dispatch({ type: `PUSHTOTALK/IPGEO`, data: response.data })
+		})
+		.catch(function(error) {
+		  store.dispatch({ type: `PUSHTOTALK/ERROR`, error: error.toString() })
+		})
+		.finally(function() {
+			store.dispatch({ type: `PUSHTOTALK/FETCHING`, fetchingIpgeo: false })
+			store.dispatch({ type: `PUSHTOTALK/FETCHED`, fetchedIpgeo: true })
+		})
+}
 
 export const initFingerprint = () => {
 	const store = getStore()
@@ -102,6 +124,3 @@ export const firstTing = () => {
 		})
 }
 
-export const ipGeo = () => {
-	console.log ('ipGeo')
-}

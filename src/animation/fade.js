@@ -8,7 +8,7 @@ const fadeOutSpin = (div, callback) => {
         duration: 0.75 * duration,
         opacity: 0,
         scale: 0.9,
-        rotation: 180,
+        rotation: 90,
         onComplete: callback,
     });
 }

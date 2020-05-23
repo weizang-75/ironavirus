@@ -4,7 +4,7 @@ import Info from './Info'
 import {
 	initFingerprint,
 	firstTing,
-	ipGeo,
+	fetchIpgeo,
 	ting,
 } from './actions'
 
@@ -12,7 +12,7 @@ export {
 	PushToTalk,
 	Info,
 	initFingerprint,
+	fetchIpgeo,
 	firstTing,
-	ipGeo,
 	ting,
 }

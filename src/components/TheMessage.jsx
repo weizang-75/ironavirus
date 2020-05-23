@@ -19,18 +19,23 @@ export default function TheMessage(props) {
     }
 
     let platitudeTopFontSize = 58
-    if (platitudeTop.length > 10) platitudeTopFontSize = 52
+    if (platitudeTop.length > 10) platitudeTopFontSize = 48
+    if (platitudeTop.length > 12) platitudeTopFontSize = 28
 
     let platitudeMiddleAFontSize = 72
-    if (platitudeMiddleA.length > 7) platitudeMiddleAFontSize = 64
-    if (platitudeMiddleA.length > 10) platitudeMiddleAFontSize = 50
+    if (platitudeMiddleA.length > 8) platitudeMiddleAFontSize = 62
+    if (platitudeMiddleA.length > 10) platitudeMiddleAFontSize = 42
+    if (platitudeMiddleA.length > 12) platitudeMiddleAFontSize = 32
 
     let platitudeMiddleBFontSize = 68
-    if (platitudeMiddleB.length > 7) platitudeMiddleAFontSize = 62
-    if (platitudeMiddleB.length > 10) platitudeMiddleAFontSize = 48
+    if (platitudeMiddleB.length > 8) platitudeMiddleBFontSize = 58
+    if (platitudeMiddleB.length > 10) platitudeMiddleBFontSize = 38
+    if (platitudeMiddleB.length > 12) platitudeMiddleBFontSize = 28
 
     let platitudeBottomFontSize = 64
-    if (platitudeBottom.length > 10) platitudeBottomFontSize = 52
+    if (platitudeBottom.length > 6) platitudeBottomFontSize = 54
+    if (platitudeBottom.length > 9) platitudeBottomFontSize = 44
+    if (platitudeBottom.length > 12) platitudeBottomFontSize = 34
 
     return (
         <React.Fragment>

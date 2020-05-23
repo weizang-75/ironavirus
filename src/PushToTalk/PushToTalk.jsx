@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { getStore } from '../'
 import { 
     initFingerprint,
+    fetchIpgeo,
     // firstTing,
     // ting,
     Info,
@@ -17,16 +18,25 @@ class PushToTalk extends Component {
     tick = () => {
         const store = getStore()
         store.dispatch({ type: `PUSHTOTALK/TICK` }) 
+        
         const { 
             ticks,
             fingerprint,
             fingerprinting,
+            fetchingIpgeo,
+            fetchedIpgeo,
             tinging,
             firstTingResult,
         } = this.props.pushToTalk
+
         if (ticks > 1 && !fingerprinting && !fingerprint) {
             initFingerprint()
         }
+
+        if (ticks > 1 && !fetchingIpgeo && !fetchedIpgeo) {
+            fetchIpgeo()
+        }
+
         if (fingerprint && !tinging && !firstTingResult){
             // firstTing()
         }

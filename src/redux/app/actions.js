@@ -1,8 +1,8 @@
 import axios from 'axios'
 import { createAction } from '@reduxjs/toolkit'
+import { getStore, getHistory } from '../../'
 import firebase from '@firebase/app'
 import '@firebase/auth'
-import { getStore, getHistory } from '../../'
 
 export const reset = createAction(`APP/RESET`)
 export const connecting = createAction(`APP/CONNECTING`)
@@ -21,53 +21,16 @@ export const settings = createAction(`APP/SETTINGS`)
 export const uiOpen = createAction(`APP/UI_OPEN`)
 
 export const onPublish = (response) => {
+	console.log ('onPublish', response)
 	const store = getStore()
 	const history = getHistory()
-	// console.log (`onPublish => depending on the response  history push slug and reset`, response)
 	if (response.success){
 		// console.log (`history push slug`, response.slug)
 		history.push(response.slug)	
 		store.dispatch({ type: `APP/UI_OPEN`, uiOpen: false })
+	} else {
+		store.dispatch({ type: `THEMESSAGE/ERROR`, error: response.message })
 	}
-}
-
-export const sendEmail = (to, message) => {
-	const store = getStore()
-	store.dispatch({ type: `APP/SENDING`, sending: true })
-	let mailObj = {
-		subject: `${message.substring(0,50)}...`,
-		message,
-	}
-	let endPoint = `${process.env.REACT_APP_CLOUD_FUNCTIONS}/`
-	switch (to) {   
-        case `chris`:
-        	endPoint += `emailChris`
-        	break
-        default: {
-            return false
-        }
-    }   
-    axios.post(endPoint, mailObj)
-    	.then (function(res) {
-	    	store.dispatch({type: `APP/SENT`, sent: true })
-	    	// console.log (res.data.message)
-	    	store.dispatch({ 
-				type: `APP/SNACKBAR`, 
-				snackbar: {
-					severity: `info`,
-					message: `res.data.message`
-				}})
-
-
-	    })
-	    .catch (function(error) {
-	    	store.dispatch({type: `APP/SENT`, sent: true })
-	    })
-	    .finally (function() {
-	    	// console.log ('message sent')
-	    	store.dispatch({type: `APP/SENDING`, sending: false })
-
-	    })
 }
 
 export const signin = creds => {

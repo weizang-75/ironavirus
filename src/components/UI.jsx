@@ -14,16 +14,18 @@ import {
   TheMessage, 
   TheMenu,
 } from './'
-import { init } from '../redux/theMessage/actions'
+
 
 const useStyles = makeStyles(theme => ({
   theMessageOff:{
     width: '100vh',
+    maxWidth: '100vw',
   },
   theMessageOn:{
     width: '100vh',
+    maxWidth: '100vw',
     position: 'absolute',
-    left: 0,
+    right: 270,
   },
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
@@ -42,7 +44,7 @@ export default function UI() {
 
   const theMessageSlice = useSelector(state => state.theMessage)
   const {
-      initted,
+      // initted,
       publishing,
   } = theMessageSlice
 
@@ -78,9 +80,9 @@ export default function UI() {
                 e.preventDefault()
                 if (!uiOpen){
                   dispatch({ type: `APP/UI_OPEN`, uiOpen: true })
-                  if (!initted){
-                    init()
-                  }
+                  // if (!initted){
+                  //   init()
+                  // }
                 }
               }}/>  
           </div>
