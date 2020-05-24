@@ -5,8 +5,8 @@ import {
     useDispatch, 
 } from 'react-redux'
 import { showInfo } from '../redux/app/actions'
-import { 
-    init,
+import {
+    newVirus,
     publish,
     defaultMessage,
 } from '../redux/theMessage/actions'
@@ -35,6 +35,11 @@ import {
 const useStyles = makeStyles(theme => ({
     menuWrap: {
         width: 265,
+    },
+    publishBtn: {
+        width: '100%',
+        marginTop: theme.spacing(2),
+        marginLeft: theme.spacing(),
     },
     iconBtn:{
         marginRight: theme.spacing(),
@@ -150,6 +155,31 @@ export default function Editor(props) {
                 
             </div>
 
+            { error ? <div className={classes.alertPad}><Alert severity={`error`}>
+                        {error}
+            </Alert></div> : null }
+            
+            { !isPristine && validate() ? <CardActions>
+                <div className={classes.publishBtn}>
+                    <Button
+                        fullWidth
+                        disabled={publishing}
+                        variant={`contained`}
+                        color={`secondary`}
+                        onClick={(e) => {
+                            e.preventDefault()
+                            if (validate()){
+                                publish()
+                            }
+                        }}>
+                        <span className={classes.btnTxt}>
+                            Publish
+                        </span>
+                        <Icon icon={`play`} color={`inherit`} />
+                    </Button>
+                </div>
+            </CardActions> : null }
+
             <CardContent>
 
                 <div className={classes.firstPlatitude}>
@@ -223,30 +253,10 @@ export default function Editor(props) {
                     </FormControl>
                 </div>
             </CardContent>
-
-
-            { !isPristine && validate() ? <CardActions>
-                <Button
-                    disabled={publishing}
-                    variant={`contained`}
-                    color={`secondary`}
-                    onClick={(e) => {
-                        e.preventDefault()
-                        if (validate()){
-                            publish()
-                        }
-                    }}>
-                    <span className={classes.btnTxt}>
-                        Publish
-                    </span>
-                    <Icon icon={`play`} color={`inherit`} />
-                </Button>
-            </CardActions> : null }
             
 
-            { error ? <div className={classes.alertPad}><Alert severity={`error`}>
-                        {error}
-            </Alert></div> : null }
+            
+
             <CardActions>
 
                     <IconButton
@@ -267,7 +277,7 @@ export default function Editor(props) {
                             e.preventDefault()
                             defaultMessage()
                         }}>
-                        <Icon icon={`waiting`} color={`inherit`} />
+                        <Icon icon={`refresh`} color={`inherit`} />
                     </IconButton>
 
                     <IconButton
@@ -275,9 +285,9 @@ export default function Editor(props) {
                         disabled={publishing}
                         onClick={(e) => {
                             e.preventDefault()
-                            init()
+                            newVirus()
                         }}>
-                        <Icon icon={`refresh`} color={`inherit`} />
+                        <Icon icon={`close`} color={`inherit`} />
                     </IconButton>
 
             </CardActions>

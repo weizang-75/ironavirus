@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { createAction } from '@reduxjs/toolkit'
 import { getStore } from '../../'
-import { slugify } from '../../utils/slugify'
+// import { slugify } from '../../utils/slugify'
 import { onPublish } from '../app/actions'
 
 export const reset = createAction(`THEMESSAGE/RESET`)
@@ -17,6 +17,17 @@ export const initted = createAction(`THEMESSAGE/INITTED`)
 export const publishing = createAction(`THEMESSAGE/PUBLISHING`)
 export const isPristine = createAction(`THEMESSAGE/PRISTINE`)
 
+
+export const newVirus = () => {
+	const store = getStore()
+	store.dispatch({ type: `THEMESSAGE/PLAT-TOP`, platitudeTop: `` })
+	store.dispatch({ type: `THEMESSAGE/PLAT-MID-A`, platitudeMiddleA: `` })
+	store.dispatch({ type: `THEMESSAGE/PLAT-MID-B`, platitudeMiddleB: `` })
+	store.dispatch({ type: `THEMESSAGE/PLAT-BOTTOM`, platitudeBottom: `` })	
+	store.dispatch({ type: `THEMESSAGE/INITTED`, initted: true })
+}
+
+
 export const publish = () => {
 	const store = getStore()
 	const theMessageSlice = store.getState().theMessage
@@ -24,83 +35,44 @@ export const publish = () => {
 	let p2 = theMessageSlice.platitudeMiddleA
 	let p3 = theMessageSlice.platitudeMiddleB
 	let p4 = theMessageSlice.platitudeBottom
-	let l = theMessageSlice.threat
-	let alertLevel = `alert-`
-	if (l === `#01a43b`) alertLevel = `warning-`
-	let slug = slugify(`${alertLevel} ${p1} ${p2} ${p3} ${p4}`)
+	let threatLevel = `alert`
+	if (theMessageSlice.threat === `#01a43b`){
+		threatLevel = `warning`
+	}
 	const pushToTalkSlice = store.getState().pushToTalk
 	const {
 		fingerprint,
 		ipgeo,
 	} = pushToTalkSlice
-	let ironavirus = {
-		action: `publish`,
-		slug,
+	let virus = {
 		platitudeTop: p1,
 		platitudeMiddleA: p2,
 		platitudeMiddleB: p3,
 		platitudeBottom: p4,
-		threat: l,
-		fingerprint,
+		threatLevel,
 	}
 	if (ipgeo){
-		ironavirus.ip = ipgeo.ip
-		ironavirus.city = ipgeo.city
-		ironavirus.countryName = ipgeo.country_name
-		ironavirus.countryCode = ipgeo.country_code2
-		ironavirus.lat = ipgeo.latitude
-		ironavirus.lon = ipgeo.longitude		
-	}
-	console.log ('ironavirus', ironavirus)
-}
-
-export const publish_ = () => {
-	const store = getStore()
-	const theMessageSlice = store.getState().theMessage
-	let p1 = theMessageSlice.platitudeTop
-	let p2 = theMessageSlice.platitudeMiddleA
-	let p3 = theMessageSlice.platitudeMiddleB
-	let p4 = theMessageSlice.platitudeBottom
-	let l = theMessageSlice.threat
-	let alertLevel = `alert-`
-	if (l === `#01a43b`) alertLevel = `warning-`
-	let slug = slugify(`${alertLevel} ${p1} ${p2} ${p3} ${p4}`)
-	const pushToTalkSlice = store.getState().pushToTalk
-	const {
-		fingerprint,
-	} = pushToTalkSlice
-
-	let ironavirus = {
-		action: `publish`,
-		slug,
-		platitudeTop: p1,
-		platitudeMiddleA: p2,
-		platitudeMiddleB: p3,
-		platitudeBottom: p4,
-		threat: l,
-		fingerprint,
-		country: `Global`,
+		virus.fingerprint = fingerprint
+		virus.ip = ipgeo.ip
+		virus.city = ipgeo.city
+		virus.countryName = ipgeo.country_name
+		virus.countryCode = ipgeo.country_code2
+		virus.lat = ipgeo.latitude
+		virus.lon = ipgeo.longitude		
 	}
 	store.dispatch({ type: `THEMESSAGE/PUBLISHING`, publishing: true })
-	axios.post(process.env.REACT_APP_IRONAVIRUS, ironavirus)
+	axios.post(process.env.REACT_APP_IRONAVIRUS, {
+		action: `publish`,
+		virus
+	})
 		.then (function(res) {
 			store.dispatch({ type: `THEMESSAGE/PUBLISHING`, publishing: false })
 			onPublish(res.data)
 		})
 		.catch (function(error) {
-			// console.log (error.toString())
 			store.dispatch({ type: `THEMESSAGE/ERROR`, error: error.toString() })
 			store.dispatch({ type: `THEMESSAGE/PUBLISHING`, publishing: false })
 		})
-}
-
-export const init = () => {
-	const store = getStore()
-	store.dispatch({ type: `THEMESSAGE/PLAT-TOP`, platitudeTop: `` })
-	store.dispatch({ type: `THEMESSAGE/PLAT-MID-A`, platitudeMiddleA: `` })
-	store.dispatch({ type: `THEMESSAGE/PLAT-MID-B`, platitudeMiddleB: `` })
-	store.dispatch({ type: `THEMESSAGE/PLAT-BOTTOM`, platitudeBottom: `` })	
-	store.dispatch({ type: `THEMESSAGE/INITTED`, initted: true })
 }
 
 export const defaultMessage = () => {

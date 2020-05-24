@@ -13,7 +13,7 @@ import {
 import {
   TheMessage, 
   Editor,
-  Info,
+  MainMenu,
 } from './'
 
 const useStyles = makeStyles(theme => ({
@@ -48,6 +48,7 @@ export default function UI() {
   } = theMessageSlice
 
   const toggleDrawer = (anchor, open) => (event) => {
+    // dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: false })
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return
     }
@@ -68,8 +69,7 @@ export default function UI() {
   )
 
   return  <React.Fragment>
-
-            <Info />
+            <MainMenu />
             
             { publishing ? <Backdrop className={classes.backdrop} open={true}>
               <CircularProgress color="inherit" />
@@ -82,7 +82,8 @@ export default function UI() {
                   dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: true })
                 }
               }}/>  
-          </div>
+            </div>
+
             <SwipeableDrawer
               anchor={`right`}
               open={editorOpen}

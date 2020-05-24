@@ -29,9 +29,13 @@ export const showInfo = () => {
 }
 
 export const onPublish = (response) => {
-	console.log ('onPublish', response)
+	
 	const store = getStore()
 	const history = getHistory()
+
+	console.log ('onPublish .success', response.success)
+
+
 	if (response.success){
 		history.push(response.slug)	
 		store.dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: false })

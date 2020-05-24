@@ -10,7 +10,7 @@ const muiTheme = {
   palette: {
     type: 'dark',
     primary: {
-      main: '#211b1f',
+      main: '#eb1c24',
     },
     secondary: {
       main: '#01a43b',
@@ -28,7 +28,7 @@ const muiTheme = {
       main: '#eb1c24'
     },
     text: {
-      disabled: `#fed100`,
+      disabled: `#01a43b`,
       hint: `#fed100`,
       primary: `#FFF`,
       secondary: `#fef600`,

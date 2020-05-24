@@ -1,11 +1,11 @@
 
 ## Ironavirus
 
+厌倦了相同的旧信息？ 自己做
+
 Based on an Open Source Progressive Web App from [listingslab](https://listingslab.com/pwa)
 
-### Credits
-
-在这些困难和不寻常的时刻
+### Created by
 
 - https://wei-zang.com
 - weizang75@gmail.com

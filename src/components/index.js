@@ -7,7 +7,10 @@ import TheMessage from './TheMessage'
 import SwipeableTemporaryDrawer from './SwipeableTemporaryDrawer'
 import UI from './UI'
 import Editor from './Editor'
-import Info from './Info'
+import MainMenu from './MainMenu'
+import Privacy from './Privacy'
+import Share from './Share'
+import OpenSource from './OpenSource'
 
 export {
 	Icon,
@@ -19,5 +22,8 @@ export {
 	SwipeableTemporaryDrawer,
 	UI,
 	Editor,
-	Info,
+	MainMenu,
+	Privacy,
+	Share,
+	OpenSource,
 }

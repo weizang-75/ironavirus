@@ -9,7 +9,7 @@ import IconAffiliate from '@material-ui/icons/HowToReg'
 import IconSeeds from '@material-ui/icons/Visibility'
 import IconRefresh from '@material-ui/icons/Refresh'
 import IconLinks from '@material-ui/icons/Link'
-import IconAdd from '@material-ui/icons/Add'
+import IconAdd from '@material-ui/icons/AddCircle'
 import IconDelete from '@material-ui/icons/DeleteOutlineOutlined'
 import IconSave from '@material-ui/icons/Save'
 import IconCancel from '@material-ui/icons/Close'
@@ -50,10 +50,12 @@ import IconUI from '@material-ui/icons/TouchApp'
 import IconTick from '@material-ui/icons/DoneOutline'
 import IconShare from '@material-ui/icons/Share'
 import IconInfo from '@material-ui/icons/ContactSupport'
+import IconListingslab from '@material-ui/icons/EmojiPeople'
 
 
 import {
     Github,
+    Ironavirus,
 } from '../graphics/'
 
 const styles = theme => ({
@@ -80,6 +82,9 @@ class Icon extends Component {
         }
         switch (icon) {
 
+            case `listingslab`:
+                return (<IconListingslab color={iconColor} />)
+
             case `tick`:
                 return (<IconTick color={iconColor} />)
 
@@ -94,6 +99,9 @@ class Icon extends Component {
 
             case `settings`:
                 return (<IconSettings color={iconColor} />)
+
+            case `ironavirus`:
+                return (<Ironavirus className={classes.iconButton} color={iconColor} />)
 
             case `github`:
                 return (<Github className={classes.iconButton} color={iconColor} />)

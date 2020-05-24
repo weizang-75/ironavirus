@@ -18,15 +18,19 @@ import reduxStore from './redux'
 import { 
   Public,
   SimpleSnackbar,
+  Privacy,
+  Share,
+  OpenSource,
 } from './components'
 import { 
-  PushToTalk 
+  PushToTalk ,
 } from './PushToTalk'
 
 import * as serviceWorker from './serviceWorker'
 
 console.log(`${pJSON.name} ${pJSON.version} (${process.env.REACT_APP_ENV})`)
-document.title = `${document.title} ${process.env.REACT_APP_ENV === 'DEV' ? `DEV` : `PROD`} ${pJSON.version}`
+
+// document.title = `${document.title} ${process.env.REACT_APP_ENV === 'DEV' ? `DEV` : `PROD`} ${pJSON.version}`
 
 WebFont.load({
   google: {
@@ -68,6 +72,13 @@ let app = (
       <PushToTalk />
       <Switch>
         <Route exact path='/' render={ props => { return <Public /> }} />
+        <Route path='/virus/:slug' render={ props => { return <Public /> }} />
+        
+
+        <Route exact path='/share' render={ props => { return <Share /> }} />
+        <Route exact path='/privacy' render={ props => { return <Privacy /> }} />
+        <Route exact path='/open-source' render={ props => { return <OpenSource /> }} />
+        
         <Route component={ Public } />
       </Switch>
     </Router>
