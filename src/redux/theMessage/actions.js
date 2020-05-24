@@ -15,6 +15,7 @@ export const sent = createAction(`THEMESSAGE/SENT`)
 export const threat = createAction(`THEMESSAGE/THREAT`)
 export const initted = createAction(`THEMESSAGE/INITTED`)
 export const publishing = createAction(`THEMESSAGE/PUBLISHING`)
+export const isPristine = createAction(`THEMESSAGE/PRISTINE`)
 
 export const publish = () => {
 	const store = getStore()
@@ -30,8 +31,8 @@ export const publish = () => {
 	const pushToTalkSlice = store.getState().pushToTalk
 	const {
 		fingerprint,
+		ipgeo,
 	} = pushToTalkSlice
-
 	let ironavirus = {
 		action: `publish`,
 		slug,
@@ -41,7 +42,14 @@ export const publish = () => {
 		platitudeBottom: p4,
 		threat: l,
 		fingerprint,
-		country: `Global`,
+	}
+	if (ipgeo){
+		ironavirus.ip = ipgeo.ip
+		ironavirus.city = ipgeo.city
+		ironavirus.countryName = ipgeo.country_name
+		ironavirus.countryCode = ipgeo.country_code2
+		ironavirus.lat = ipgeo.latitude
+		ironavirus.lon = ipgeo.longitude		
 	}
 	console.log ('ironavirus', ironavirus)
 }

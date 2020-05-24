@@ -19,8 +19,15 @@ export default function TheMessage(props) {
     }
 
     let platitudeTopFontSize = 58
-    if (platitudeTop.length > 10) platitudeTopFontSize = 48
-    if (platitudeTop.length > 12) platitudeTopFontSize = 28
+    let platitudeTopYpos = 61
+    if (platitudeTop.length > 10) {
+        platitudeTopFontSize = 48
+        platitudeTopYpos = 60
+    }
+    if (platitudeTop.length > 12) {
+        platitudeTopFontSize = 28
+        platitudeTopYpos = 59
+    }
 
     let platitudeMiddleAFontSize = 72
     if (platitudeMiddleA.length > 8) platitudeMiddleAFontSize = 62
@@ -36,7 +43,9 @@ export default function TheMessage(props) {
     if (platitudeBottom.length > 6) platitudeBottomFontSize = 54
     if (platitudeBottom.length > 9) platitudeBottomFontSize = 44
     if (platitudeBottom.length > 12) platitudeBottomFontSize = 34
+    
 
+    
     return (
         <React.Fragment>
             <svg {...props} viewBox="0 0 385 384" >
@@ -76,7 +85,7 @@ export default function TheMessage(props) {
                             fontWeight="bold"
                         >
                             <text id="STAY-ALERT" fontSize={platitudeTopFontSize} textAnchor="middle">
-                                <tspan x="14.391" y="61">
+                                <tspan x="14.391" y={platitudeTopYpos}>
                                     { platitudeTop.toUpperCase() }
                                 </tspan>
                             </text>

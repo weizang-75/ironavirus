@@ -4,13 +4,16 @@ import {
     useSelector, 
     useDispatch, 
 } from 'react-redux'
+import { showInfo } from '../redux/app/actions'
 import { 
     init,
     publish,
+    defaultMessage,
 } from '../redux/theMessage/actions'
 import {
     makeStyles,
     Button,
+    ButtonBase,
     IconButton,
     CardContent,
     CardActions,
@@ -33,9 +36,12 @@ const useStyles = makeStyles(theme => ({
     menuWrap: {
         width: 265,
     },
+    iconBtn:{
+        marginRight: theme.spacing(),
+    },
     menuHeader:{
         display: 'flex',
-        //margin: theme.spacing(),
+        marginTop: theme.spacing(),
         paddingLeft: theme.spacing(2),
     },
     iconMenu:{
@@ -43,7 +49,7 @@ const useStyles = makeStyles(theme => ({
     },
     menuHeaderTitle: {
         marginLeft: theme.spacing(),
-        marginTop: theme.spacing(),
+        marginTop: theme.spacing(1.5),
         fontSize: '1.4rem',
     },
     logoDiv: {
@@ -53,7 +59,6 @@ const useStyles = makeStyles(theme => ({
     },
     actionsMachine: {
         flexGrow: 1,
-        marginLeft: theme.spacing(2),
         marginRight: theme.spacing(5),
     },
     boSelecta: {
@@ -86,12 +91,11 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
-export default function TheMenu(props) {
+export default function Editor(props) {
     
     const dispatch = useDispatch()
     const classes = useStyles()
     const theMessageSlice = useSelector(state => state.theMessage)
-    // const [anchorEl, setAnchorEl] = React.useState(null)
     const {
         error,
         platitudeTop,
@@ -100,67 +104,53 @@ export default function TheMenu(props) {
         platitudeBottom,
         threat,
         publishing,
+        isPristine,
     } = theMessageSlice
 
-    // const openShareMenu = (event) => {
-    //     setAnchorEl(event.currentTarget)
-    // }
-
-    // const closeShareMenu = () => {
-    //     setAnchorEl(null)
-    // }
+    const validate = () => {
+        let isValid = true
+        if (platitudeTop === `STAY ALERT` && platitudeMiddleA === `CONTROL` && platitudeMiddleB === `THE VIRUS` && platitudeBottom === `SAVE LIVES`) isValid = false
+        // console.log ('validate isValid', isValid)
+        return isValid
+    }
 
     return (
         <div className={classes.menuWrap}>
             <div className={classes.menuHeader}>
-                <Grid container>
-                    <Grid item>
-                        <div className={classes.logoDiv}>
-                            <Ironavirus />
-                        </div>
-                    </Grid>
-                    <Grid item className={classes.grow}>
-                        <Typography variant={`h6`} className={classes.menuHeaderTitle}>
-                            {`IRONAVIRUS`}
-                        </Typography>
-                    </Grid>
-                    <Grid item>
-                        <IconButton
-                            disabled={publishing}
-                            color={`default`}
+                    <Grid container>
+                        <ButtonBase
                             onClick={(e) => {
                                 e.preventDefault()
-                                dispatch({ type: `APP/UI_OPEN`, uiOpen: false })
-                            }}> 
-                            <Icon icon={`close`} color={`inherit`} />
-                        </IconButton>
+                                showInfo()
+                            }}>
+                            <Grid item>
+                                <div className={classes.logoDiv}>
+                                    <Ironavirus />
+                                </div>
+                            </Grid>
+                            <Grid item>
+                                <Typography variant={`h6`} className={classes.menuHeaderTitle}>
+                                    {`IRONAVIRUS`}
+                                </Typography>
+                            </Grid>
+                        </ButtonBase>
+                        <Grid item className={classes.grow} />
+                        <Grid item>
+                            <IconButton
+                                disabled={publishing}
+                                color={`default`}
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: false })
+                                }}> 
+                                <Icon icon={`close`} color={`inherit`} />
+                            </IconButton>
+                        </Grid>
                     </Grid>
-                </Grid>
+                
             </div>
 
             <CardContent>
-
-                <div className={classes.iconMenu}>
-                
-                    <IconButton
-                        disabled={publishing}
-                        onClick={(e) => {
-                            e.preventDefault()
-                            // defaultMessage()
-                        }}>
-                        <Icon icon={`info`} color={`inherit`} />
-                    </IconButton>
-
-                    <IconButton
-                        disabled={publishing}
-                        onClick={(e) => {
-                            e.preventDefault()
-                            init()
-                        }}>
-                        <Icon icon={`refresh`} color={`inherit`} />
-                    </IconButton>
-                    
-                </div>
 
                 <div className={classes.firstPlatitude}>
                     <InputTextfield field={{
@@ -169,6 +159,8 @@ export default function TheMenu(props) {
                         id: `platitudeTop`,
                         value: platitudeTop.toUpperCase(),
                         onChange: (value) => {
+                            validate()
+                            dispatch({ type: `THEMESSAGE/PRISTINE`, isPristine: false })
                             document.getElementById(`field-platitudeTop`).value = value.toUpperCase()
                             dispatch({type:`THEMESSAGE/PLAT-TOP`, platitudeTop: value.toUpperCase()})
                         },
@@ -180,6 +172,9 @@ export default function TheMenu(props) {
                         id: `platitudeMiddleA`,
                         value: platitudeMiddleA.toUpperCase(),
                         onChange: (value) => {
+                            validate()
+                            dispatch({ type: `THEMESSAGE/PRISTINE`, isPristine: false })
+                            document.getElementById(`field-platitudeMiddleA`).value = value.toUpperCase()
                             dispatch({type:`THEMESSAGE/PLAT-MID-A`, platitudeMiddleA: value.toUpperCase()})
                         },
                     }}/>
@@ -188,6 +183,9 @@ export default function TheMenu(props) {
                       id: `platitudeMiddleB`,
                       value: platitudeMiddleB.toUpperCase(),
                       onChange: (value) => {
+                        validate()
+                        dispatch({ type: `THEMESSAGE/PRISTINE`, isPristine: false })
+                        document.getElementById(`field-platitudeMiddleB`).value = value.toUpperCase()
                         dispatch({type:`THEMESSAGE/PLAT-MID-B`, platitudeMiddleB: value.toUpperCase()})
                       },
                     }}/>
@@ -198,6 +196,9 @@ export default function TheMenu(props) {
                         id: `platitudeBottom`,
                         value: platitudeBottom.toUpperCase(),
                         onChange: (value) => {
+                            validate()
+                            dispatch({ type: `THEMESSAGE/PRISTINE`, isPristine: false })
+                            document.getElementById(`field-platitudeBottom`).value = value.toUpperCase()
                             dispatch({type:`THEMESSAGE/PLAT-BOTTOM`, platitudeBottom: value.toUpperCase()})
                         },
                     }}/>
@@ -209,6 +210,7 @@ export default function TheMenu(props) {
                             id={`threat`}
                             value={threat}
                             onChange={(e) => {
+                                validate()
                                 dispatch({type: `THEMESSAGE/THREAT`, threat: e.target.value})
                             }}>
                           <MenuItem value={`#eb1c24`}>
@@ -221,73 +223,64 @@ export default function TheMenu(props) {
                     </FormControl>
                 </div>
             </CardContent>
-            <CardActions>
-                <div className={classes.actionsMachine}>
-                    <Button
-                        fullWidth
-                        disabled={publishing}
-                        variant={`contained`}
-                        color={`secondary`}
-                        onClick={(e) => {
-                            e.preventDefault()
+
+
+            { !isPristine && validate() ? <CardActions>
+                <Button
+                    disabled={publishing}
+                    variant={`contained`}
+                    color={`secondary`}
+                    onClick={(e) => {
+                        e.preventDefault()
+                        if (validate()){
                             publish()
-                        }}>
-                        <span className={classes.btnTxt}>
-                            Publish
-                        </span>
-                        <Icon icon={`play`} color={`inherit`} />
-                    </Button>
-                </div>
-            </CardActions>
+                        }
+                    }}>
+                    <span className={classes.btnTxt}>
+                        Publish
+                    </span>
+                    <Icon icon={`play`} color={`inherit`} />
+                </Button>
+            </CardActions> : null }
+            
 
             { error ? <div className={classes.alertPad}><Alert severity={`error`}>
                         {error}
             </Alert></div> : null }
+            <CardActions>
 
-            
-        </div>
-    )
-}
-
-/*
-
-                    <FacebookButton 
-                        url={`https://ironavirus.web.app/`} 
-                        appId={`566945017574013`}>
-                        Facebook
-                    </FacebookButton>
-
+                    <IconButton
+                        className={classes.iconBtn}
+                        disabled={publishing}
+                        onClick={(e) => {
+                            e.preventDefault()
+                            showInfo()
+                        }}>
+                        <Icon icon={`info`} color={`inherit`} />
+                    </IconButton>
 
 
                     <IconButton
+                        className={classes.iconBtn}
                         disabled={publishing}
-                        onClick={openShareMenu}>
-                        <Icon icon={`share`} color={`inherit`} />
+                        onClick={(e) => {
+                            e.preventDefault()
+                            defaultMessage()
+                        }}>
+                        <Icon icon={`waiting`} color={`inherit`} />
                     </IconButton>
-                    <Menu
-                        id="simple-menu"
-                        anchorEl={anchorEl}
-                        keepMounted
-                        open={Boolean(anchorEl)}
-                        onClose={closeShareMenu}>
-                        menu
-                    </Menu>
 
+                    <IconButton
+                        className={classes.iconBtn}
+                        disabled={publishing}
+                        onClick={(e) => {
+                            e.preventDefault()
+                            init()
+                        }}>
+                        <Icon icon={`refresh`} color={`inherit`} />
+                    </IconButton>
 
-onClick={closeShareMenu}
-                        <MenuItem></MenuItem>
-                        <MenuItem >Facebook</MenuItem>
-                        <MenuItem onClick={closeShareMenu}>Twitter</MenuItem>
-                        <MenuItem onClick={closeShareMenu}>Linkedin</MenuItem>
-
-                        <EmailShareButton />
-
-                        <WhatsappShareButton />
-                        <FacebookShareButton />
-                        <LinkedinShareButton />
-
-                          WhatsappShareButton,
-    EmailShareButton,
-  FacebookShareButton,
-  LinkedinShareButton,
-*/
+            </CardActions>
+        </div>
+    )
+}

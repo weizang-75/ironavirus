@@ -10,6 +10,7 @@ import {
   initted,
   error,
   publishing,
+  isPristine,
 } from "./actions"
 
 export const theMessageSlice = {
@@ -21,10 +22,16 @@ export const theMessageSlice = {
   platitudeBottom: `SAVE LIVES`,
   threat: `#01a43b`,
   initted: false,
+  isPristine: true,
 }
 
 const theMessageReducer = createReducer(theMessageSlice, {
 
+  [isPristine]: (state, action) => {
+    state.isPristine = action.isPristine
+    return state
+  },
+  
   [publishing]: (state, action) => {
     state.publishing = action.publishing
     return state

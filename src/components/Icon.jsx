@@ -30,7 +30,6 @@ import IconUserentity from '@material-ui/icons/ContactMail'
 import IconBuy from '@material-ui/icons/AddShoppingCart'
 import IconMenu from '@material-ui/icons/Menu'
 import IconQueue from '@material-ui/icons/PlaylistAdd'
-import IconInfo from '@material-ui/icons/Info'
 import IconEdit from '@material-ui/icons/Edit'
 import IconPlay from '@material-ui/icons/Forward'
 import IconAccount from '@material-ui/icons/AccountCircle'
@@ -50,6 +49,8 @@ import IconPushToTalk from '@material-ui/icons/TouchApp'
 import IconUI from '@material-ui/icons/TouchApp'
 import IconTick from '@material-ui/icons/DoneOutline'
 import IconShare from '@material-ui/icons/Share'
+import IconInfo from '@material-ui/icons/ContactSupport'
+
 
 import {
     Github,
@@ -142,6 +143,9 @@ class Icon extends Component {
             case `question`:
                 return (<IconQuestion color={iconColor} />)
 
+            case `info`:
+                return (<IconInfo color={iconColor} />)
+
             case `link`:
                 return (<IconLinks color={iconColor} />)
 
@@ -219,9 +223,6 @@ class Icon extends Component {
             
             case `queue`:
                 return (<IconQueue color={iconColor} />)
-
-            case `info`:
-                return (<IconInfo color={iconColor} />)
 
             case `edit`:
                 return (<IconEdit color={iconColor} />)

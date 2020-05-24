@@ -6,7 +6,9 @@ import Public from './Public'
 import TheMessage from './TheMessage'
 import SwipeableTemporaryDrawer from './SwipeableTemporaryDrawer'
 import UI from './UI'
-import TheMenu from './TheMenu'
+import Editor from './Editor'
+import Info from './Info'
+
 export {
 	Icon,
 	Login,
@@ -16,5 +18,6 @@ export {
 	TheMessage,
 	SwipeableTemporaryDrawer,
 	UI,
-	TheMenu,
+	Editor,
+	Info,
 }

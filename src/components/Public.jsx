@@ -4,13 +4,12 @@ import {
 } from '@material-ui/core'
 import { 
     useSelector, 
-    useDispatch 
+    useDispatch, 
 } from 'react-redux'
 import { 
     Ironavirus,
 } from '../graphics'
-import { 
-    // TheMessage,
+import {
     UI,
 } from '../components'
 import { fade } from '../animation'
@@ -34,19 +33,19 @@ export default function Public(props) {
 
     const classes = useStyles()
     const dispatch = useDispatch()
-    const animationSlice = useSelector(state => state.animation)
+    const appSlice = useSelector(state => state.app)
     const {
         logoFaded,
         logoFading,
-    } = animationSlice
+    } = appSlice
 
     useEffect(() => {
         if (!logoFaded && !logoFading){
             setTimeout(() => {
-                dispatch({type:`ANIMATION/LOGOFADING`, logoFading: true})
+                dispatch({type:`APP/LOGOFADING`, logoFading: true})
                 fade(`fadeOutSpin`, `#logo`, () => {
-                    dispatch({type:`ANIMATION/LOGOFADED`, logoFaded: true})
-                    dispatch({type:`ANIMATION/LOGOFADING`, logoFading: false})
+                    dispatch({type:`APP/LOGOFADED`, logoFaded: true})
+                    dispatch({type:`APP/LOGOFADING`, logoFading: false})
                 })
             }, 333)
         }
@@ -61,13 +60,3 @@ export default function Public(props) {
     }
     return  <UI />
 }
-
-
-/*
-
-dispatch, fingerprint, fingerprinted, fingerprinting, 
-            ipgeoFetched, ipgeoFetching, saving, saved, 
-            logoFaded, logoFading
-
-            
-*/

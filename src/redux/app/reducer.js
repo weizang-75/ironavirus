@@ -5,23 +5,24 @@ import {
   reset,
   connecting,
   isDark,
-  identPlayed,
-  identPlaying,
+  logoFading,
+  logoFaded,
   toggleMessages,
   loginContact,
   authing,
   authDone,
   authError,
   user,
-  menuOpen,
   snackbar,
   settings,
-  uiOpen,
+  editorOpen,
+  infoOpen,
 } from "./actions"
 
 export const appSlice = {
   pJSON,
-  uiOpen: false,
+  infoOpen: false,
+  editorOpen: false,
   snackbar: null,
   user: false,
   isDark: true,
@@ -29,28 +30,32 @@ export const appSlice = {
   loginContact: false,
   errors: null,
   feedbackSnackbar: false,
-  identPlayed: false,
-  identPlaying: false,
   authing: false,
   authDone: false,
   authError: false,
-  menuOpen: false,
-  messagesOpen: false,
-  messages: [
-    {
-      id: `firebaseId_lidubfweuifl`,
-      seen: false,
-      primary: `Hello!`,
-      secondary: `Start a conversation by sending us a message`,
-      avatar: `/logo192.png`,
-    },
-  ],
+  logoFaded: false,
+  logoFading: false,
 }
 
 const appReducer = createReducer(appSlice, {
 
-  [uiOpen]: (state, action) => {
-    state.uiOpen = action.uiOpen
+  [infoOpen]: (state, action) => {
+    state.infoOpen = action.infoOpen
+    return state
+  },
+
+  [logoFading]: (state, action) => {
+    state.logoFading = action.logoFading
+    return state
+  },
+
+  [logoFaded]: (state, action) => {
+    state.logoFaded = action.logoFaded
+    return state
+  },
+
+  [editorOpen]: (state, action) => {
+    state.editorOpen = action.editorOpen
     return state
   },
 
@@ -61,11 +66,6 @@ const appReducer = createReducer(appSlice, {
 
   [snackbar]: (state, action) => {
     state.snackbar = action.snackbar
-    return state
-  },
-
-  [menuOpen]: (state, action) => {
-    state.menuOpen = action.menuOpen
     return state
   },
 
@@ -98,17 +98,6 @@ const appReducer = createReducer(appSlice, {
     state.messagesOpen = action.messagesOpen
     return state
   },
-
-  [identPlayed]: (state, action) => {
-    state.identPlayed = action.identPlayed
-    return state
-  },
-
-  [identPlaying]: (state, action) => {
-    state.identPlaying = action.identPlaying
-    return state
-  },
-
 
   [isDark]: (state, action) => {
     state.isDark = action.isDark

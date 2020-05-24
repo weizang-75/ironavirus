@@ -28,8 +28,8 @@ export const fetchIpgeo = () => {
 	axios
 		.get(endPoint)
 		.then(function(response) {
-			console.log (response.data)
-			store.dispatch({ type: `PUSHTOTALK/IPGEO`, data: response.data })
+			// console.log (response.data)
+			store.dispatch({ type: `PUSHTOTALK/IPGEO`, ipgeo: response.data })
 		})
 		.catch(function(error) {
 		  store.dispatch({ type: `PUSHTOTALK/ERROR`, error: error.toString() })

@@ -1,4 +1,3 @@
-import axios from 'axios'
 import { createAction } from '@reduxjs/toolkit'
 import { getStore, getHistory } from '../../'
 import firebase from '@firebase/app'
@@ -18,16 +17,24 @@ export const user = createAction(`APP/USER`)
 export const menuOpen = createAction(`APP/MENU_OPEN`)
 export const snackbar = createAction(`APP/SNACKBAR`)
 export const settings = createAction(`APP/SETTINGS`)
-export const uiOpen = createAction(`APP/UI_OPEN`)
+export const editorOpen = createAction(`APP/EDITOR_OPEN`)
+export const logoFaded = createAction(`APP/LOGOFADED`)
+export const logoFading = createAction(`APP/LOGOFADING`)
+export const infoOpen = createAction(`APP/INFO_OPEN`)
+
+export const showInfo = () => {
+	const store = getStore()
+	store.dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: false })
+	store.dispatch({ type: `APP/INFO_OPEN`, infoOpen: true })
+}
 
 export const onPublish = (response) => {
 	console.log ('onPublish', response)
 	const store = getStore()
 	const history = getHistory()
 	if (response.success){
-		// console.log (`history push slug`, response.slug)
 		history.push(response.slug)	
-		store.dispatch({ type: `APP/UI_OPEN`, uiOpen: false })
+		store.dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: false })
 	} else {
 		store.dispatch({ type: `THEMESSAGE/ERROR`, error: response.message })
 	}
