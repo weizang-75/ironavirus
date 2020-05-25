@@ -4,7 +4,7 @@ import {
     useSelector, 
     useDispatch, 
 } from 'react-redux'
-import { showInfo } from '../redux/app/actions'
+import { showMainMenu } from '../redux/app/actions'
 import {
     newVirus,
     publish,
@@ -13,12 +13,10 @@ import {
 import {
     makeStyles,
     Button,
-    ButtonBase,
     IconButton,
     CardContent,
     CardActions,
     Grid,
-    Typography,
     FormControl,
     Select,
     MenuItem,
@@ -28,9 +26,6 @@ import {
     Icon,
     InputTextfield,
 } from './'
-import {
-    Ironavirus
-} from '../graphics'
 
 const useStyles = makeStyles(theme => ({
     menuWrap: {
@@ -123,24 +118,39 @@ export default function Editor(props) {
         <div className={classes.menuWrap}>
             <div className={classes.menuHeader}>
                     <Grid container>
-                        <ButtonBase
-                            onClick={(e) => {
-                                e.preventDefault()
-                                showInfo()
-                            }}>
-                            <Grid item>
-                                <div className={classes.logoDiv}>
-                                    <Ironavirus />
-                                </div>
-                            </Grid>
-                            <Grid item>
-                                <Typography variant={`h6`} className={classes.menuHeaderTitle}>
-                                    {`IRONAVIRUS`}
-                                </Typography>
-                            </Grid>
-                        </ButtonBase>
-                        <Grid item className={classes.grow} />
                         <Grid item>
+
+                            <IconButton
+                                className={classes.iconBtn}
+                                disabled={publishing}
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    showMainMenu()
+                                }}>
+                                <Icon icon={`menu`} color={`inherit`} />
+                            </IconButton>
+
+
+                            <IconButton
+                                className={classes.iconBtn}
+                                disabled={publishing}
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    defaultMessage()
+                                }}>
+                                <Icon icon={`refresh`} color={`inherit`} />
+                            </IconButton>
+
+                            <IconButton
+                                className={classes.iconBtn}
+                                disabled={publishing}
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    newVirus()
+                                }}>
+                                <Icon icon={`start`} color={`inherit`} />
+                            </IconButton>
+
                             <IconButton
                                 disabled={publishing}
                                 color={`default`}
@@ -148,8 +158,9 @@ export default function Editor(props) {
                                     e.preventDefault()
                                     dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: false })
                                 }}> 
-                                <Icon icon={`close`} color={`inherit`} />
+                                <Icon icon={`home`} color={`inherit`} />
                             </IconButton>
+
                         </Grid>
                     </Grid>
                 
@@ -178,7 +189,9 @@ export default function Editor(props) {
                         <Icon icon={`play`} color={`inherit`} />
                     </Button>
                 </div>
-            </CardActions> : null }
+            </CardActions> : <div className={classes.alertPad}><Alert severity={`success`}>
+                    Create Virus
+            </Alert></div> }
 
             <CardContent>
 
@@ -259,36 +272,7 @@ export default function Editor(props) {
 
             <CardActions>
 
-                    <IconButton
-                        className={classes.iconBtn}
-                        disabled={publishing}
-                        onClick={(e) => {
-                            e.preventDefault()
-                            showInfo()
-                        }}>
-                        <Icon icon={`info`} color={`inherit`} />
-                    </IconButton>
-
-
-                    <IconButton
-                        className={classes.iconBtn}
-                        disabled={publishing}
-                        onClick={(e) => {
-                            e.preventDefault()
-                            defaultMessage()
-                        }}>
-                        <Icon icon={`refresh`} color={`inherit`} />
-                    </IconButton>
-
-                    <IconButton
-                        className={classes.iconBtn}
-                        disabled={publishing}
-                        onClick={(e) => {
-                            e.preventDefault()
-                            newVirus()
-                        }}>
-                        <Icon icon={`close`} color={`inherit`} />
-                    </IconButton>
+                    
 
             </CardActions>
         </div>

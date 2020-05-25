@@ -11,6 +11,7 @@ import MainMenu from './MainMenu'
 import Privacy from './Privacy'
 import Share from './Share'
 import OpenSource from './OpenSource'
+import Virus from './Virus'
 
 export {
 	Icon,
@@ -26,4 +27,5 @@ export {
 	Privacy,
 	Share,
 	OpenSource,
+	Virus,
 }

@@ -21,6 +21,7 @@ import {
   Privacy,
   Share,
   OpenSource,
+  Virus,
 } from './components'
 import { 
   PushToTalk ,
@@ -72,7 +73,7 @@ let app = (
       <PushToTalk />
       <Switch>
         <Route exact path='/' render={ props => { return <Public /> }} />
-        <Route path='/virus/:slug' render={ props => { return <Public /> }} />
+        <Route path='/virus/:slug' render={ props => { return <Virus /> }} />
         
 
         <Route exact path='/share' render={ props => { return <Share /> }} />

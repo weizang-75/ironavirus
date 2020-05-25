@@ -18,6 +18,8 @@ export const publishing = createAction(`THEMESSAGE/PUBLISHING`)
 export const isPristine = createAction(`THEMESSAGE/PRISTINE`)
 
 
+// loadVirus
+
 export const newVirus = () => {
 	const store = getStore()
 	store.dispatch({ type: `THEMESSAGE/PLAT-TOP`, platitudeTop: `` })
@@ -58,7 +60,8 @@ export const publish = () => {
 		virus.countryName = ipgeo.country_name
 		virus.countryCode = ipgeo.country_code2
 		virus.lat = ipgeo.latitude
-		virus.lon = ipgeo.longitude		
+		virus.lon = ipgeo.longitude
+		virus.rated = false		
 	}
 	store.dispatch({ type: `THEMESSAGE/PUBLISHING`, publishing: true })
 	axios.post(process.env.REACT_APP_IRONAVIRUS, {

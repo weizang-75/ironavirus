@@ -10,13 +10,13 @@ const muiTheme = {
   palette: {
     type: 'dark',
     primary: {
-      main: '#eb1c24',
+      main: '#fef600',
     },
     secondary: {
-      main: '#01a43b',
+      main: '#fef600',
     },
-    success: {
-      main: '#01a43b'
+    default: {
+      main: '#211b1f'
     },
     info: {
       main: '#211b1f'

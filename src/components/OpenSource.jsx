@@ -8,7 +8,7 @@ import {
     Typography,
     IconButton,
 } from '@material-ui/core/'
-// import { showInfo } from '../redux/app/actions'
+// import { showMainMenu } from '../redux/app/actions'
 import { 
     Icon,
     MainMenu,

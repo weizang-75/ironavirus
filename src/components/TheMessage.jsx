@@ -21,11 +21,11 @@ export default function TheMessage(props) {
     let platitudeTopFontSize = 58
     let platitudeTopYpos = 61
     if (platitudeTop.length > 10) {
-        platitudeTopFontSize = 48
+        platitudeTopFontSize = 46
         platitudeTopYpos = 60
     }
     if (platitudeTop.length > 12) {
-        platitudeTopFontSize = 28
+        platitudeTopFontSize = 26
         platitudeTopYpos = 59
     }
 

@@ -22,22 +22,17 @@ export const logoFaded = createAction(`APP/LOGOFADED`)
 export const logoFading = createAction(`APP/LOGOFADING`)
 export const infoOpen = createAction(`APP/INFO_OPEN`)
 
-export const showInfo = () => {
+export const showMainMenu = () => {
 	const store = getStore()
 	store.dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: false })
 	store.dispatch({ type: `APP/INFO_OPEN`, infoOpen: true })
 }
 
 export const onPublish = (response) => {
-	
 	const store = getStore()
 	const history = getHistory()
-
-	console.log ('onPublish .success', response.success)
-
-
 	if (response.success){
-		history.push(response.slug)	
+		history.push(`/virus/${response.id}`)	
 		store.dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: false })
 	} else {
 		store.dispatch({ type: `THEMESSAGE/ERROR`, error: response.message })

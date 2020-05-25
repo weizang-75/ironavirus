@@ -20,7 +20,7 @@ import {
     ListItemIcon,
 } from '@material-ui/core/'
 import { 
-  showInfo,
+  showMainMenu,
 } from '../redux/app/actions'
 import { 
   newVirus,
@@ -88,12 +88,12 @@ export default function MainMenu() {
       { !infoOpen ? <AppBar position={`fixed`} className={classes.appBar}>
         <Toolbar>
           <Fab 
-            color={`primary`}
+            color={`secondary`}
             aria-label={`Main Menu`}
             className={classes.fabButton}
             onClick={(e) => {
               e.preventDefault()
-              showInfo()
+              showMainMenu()
             }}>
             <Icon icon={`ironavirus`} color={`inherit`} />
           </Fab>
