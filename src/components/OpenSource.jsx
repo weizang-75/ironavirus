@@ -2,6 +2,7 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import {
     makeStyles,
+    Button,
     Card,
     CardHeader,
     CardContent,
@@ -19,9 +20,10 @@ const useStyles = makeStyles(theme => ({
     width: '100vh',
     maxWidth: '100vw',
   },
+  btnTxt:{
+    marginLeft: theme.spacing(),
+  },
 }))
-
-// window.open(`https://github.com/weizang-75/ironavirus`, `_blank`)
 
 export default function OpenSource() {
 
@@ -31,8 +33,8 @@ export default function OpenSource() {
   return <Card className={classes.card} >
   <MainMenu />
             <CardHeader 
-            	title={`Open Source`}
-            	subheader={`Source code free on Github`}
+            	title={`Free Source code`}
+            	subheader={`Explore this app and build your own`}
             	avatar={<Icon icon={`github`} color={`white`} />}
             	action={<IconButton
             			onClick={(e) => {
@@ -44,11 +46,23 @@ export default function OpenSource() {
             	</IconButton>}
             />
             <CardContent>
-            <Typography variant={`body2`}>
-              The term "open source" refers to something people can modify and share because its design is publicly accessible.
 
-The term originated in the context of software development to designate a specific approach to creating computer programs. Today, hoopensource.comver, "open source" designates a broader set of values—what opensource.com call "the open source way." Open source projects, products, or initiatives embrace and celebrate principles of open exchange, collaborative participation, rapid prototyping, transparency, meritocracy, and community-oriented development.
-            </Typography>
+              <Typography variant={`body2`} gutterBottom>
+                Based on an Open Source Progressive Web App from listingslab
+              </Typography>
+              <Button
+                variant={`contained`}
+                color={`secondary`}
+                onClick={(e) => {
+                  e.preventDefault()
+                  window.open(`https://github.com/weizang-75/ironavirus`, `_blank`)
+                }}>
+                <Icon icon={`github`} color={`black`} />
+                <span className={classes.btnTxt}>
+                View on GitHub
+                </span>
+              </Button>
+            
             </CardContent>
           </Card>
 }

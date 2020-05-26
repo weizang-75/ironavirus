@@ -22,6 +22,7 @@ export const isPristine = createAction(`THEMESSAGE/PRISTINE`)
 
 export const newVirus = () => {
 	const store = getStore()
+	store.dispatch({ type: `THEMESSAGE/ERROR`, error: false })
 	store.dispatch({ type: `THEMESSAGE/PLAT-TOP`, platitudeTop: `` })
 	store.dispatch({ type: `THEMESSAGE/PLAT-MID-A`, platitudeMiddleA: `` })
 	store.dispatch({ type: `THEMESSAGE/PLAT-MID-B`, platitudeMiddleB: `` })
@@ -80,14 +81,12 @@ export const publish = () => {
 
 export const defaultMessage = () => {
 	const store = getStore()
+	store.dispatch({ type: `THEMESSAGE/ERROR`, error: false })
 	store.dispatch({ type: `THEMESSAGE/PLAT-TOP`, platitudeTop: `STAY ALERT` })
 	store.dispatch({ type: `THEMESSAGE/PLAT-MID-A`, platitudeMiddleA: `CONTROL` })
 	store.dispatch({ type: `THEMESSAGE/PLAT-MID-B`, platitudeMiddleB: `THE VIRUS` })
 	store.dispatch({ type: `THEMESSAGE/PLAT-BOTTOM`, platitudeBottom: `SAVE LIVES` })
 }
-
-
-
 
 export const saveMessage_ = (theMessage) => {
 	let endPoint = `${process.env.REACT_APP_CLOUD_FUNCTIONS}/ironavirus`

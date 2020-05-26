@@ -155,7 +155,7 @@ export default function MainMenu() {
                     <Icon icon={`github`} color={`white`} />
                   </ListItemIcon>
                   <ListItemText 
-                    primary={`Open Source`}
+                    primary={`Developer`}
                   />
                 </ListItem>
 
