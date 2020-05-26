@@ -51,7 +51,7 @@ import IconTick from '@material-ui/icons/DoneOutline'
 import IconShare from '@material-ui/icons/Share'
 import IconInfo from '@material-ui/icons/ContactSupport'
 import IconListingslab from '@material-ui/icons/EmojiPeople'
-
+import IconDefaultMessage from '@material-ui/icons/VerticalSplit'
 
 import {
     Github,
@@ -93,6 +93,11 @@ class Icon extends Component {
 
             case `navigation`:
                 return (<IconNav color={iconColor} />)
+
+
+            case `default-message`:
+                return (<IconDefaultMessage color={iconColor} />)
+
 
             case `pushToTalk`:
                 return (<IconPushToTalk color={iconColor} />)
