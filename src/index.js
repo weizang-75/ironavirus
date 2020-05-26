@@ -30,7 +30,6 @@ import {
 import * as serviceWorker from './serviceWorker'
 
 console.log(`${pJSON.name} ${pJSON.version} (${process.env.REACT_APP_ENV})`)
-
 // document.title = `${document.title} ${process.env.REACT_APP_ENV === 'DEV' ? `DEV` : `PROD`} ${pJSON.version}`
 
 WebFont.load({
@@ -73,13 +72,10 @@ let app = (
       <PushToTalk />
       <Switch>
         <Route exact path='/' render={ props => { return <Public /> }} />
-        <Route path='/virus/:slug' render={ props => { return <Virus /> }} />
-        
-
+        <Route exact path='/virus/:slug' render={ props => { return <Virus /> }} />
         <Route exact path='/share' render={ props => { return <Share /> }} />
         <Route exact path='/privacy' render={ props => { return <Privacy /> }} />
         <Route exact path='/open-source' render={ props => { return <OpenSource /> }} />
-        
         <Route component={ Public } />
       </Switch>
     </Router>

@@ -20,17 +20,6 @@ export const isPristine = createAction(`THEMESSAGE/PRISTINE`)
 
 // loadVirus
 
-export const newVirus = () => {
-	const store = getStore()
-	store.dispatch({ type: `THEMESSAGE/ERROR`, error: false })
-	store.dispatch({ type: `THEMESSAGE/PLAT-TOP`, platitudeTop: `` })
-	store.dispatch({ type: `THEMESSAGE/PLAT-MID-A`, platitudeMiddleA: `` })
-	store.dispatch({ type: `THEMESSAGE/PLAT-MID-B`, platitudeMiddleB: `` })
-	store.dispatch({ type: `THEMESSAGE/PLAT-BOTTOM`, platitudeBottom: `` })	
-	store.dispatch({ type: `THEMESSAGE/INITTED`, initted: true })
-}
-
-
 export const publish = () => {
 	const store = getStore()
 	const theMessageSlice = store.getState().theMessage
@@ -88,40 +77,12 @@ export const defaultMessage = () => {
 	store.dispatch({ type: `THEMESSAGE/PLAT-BOTTOM`, platitudeBottom: `SAVE LIVES` })
 }
 
-export const saveMessage_ = (theMessage) => {
-	let endPoint = `${process.env.REACT_APP_CLOUD_FUNCTIONS}/ironavirus`
+export const newVirus = () => {
 	const store = getStore()
-	store.dispatch({ type: `THEMESSAGE/SENDING`, sending: true })
-	
-	let postObj = {
-		theMessage: {
-			platitudeTop: `FIRST PLATITUDE`,
-			platitudeMiddleA: `SECOND`,
-			platitudeMiddleB: `PLATITUDE`,
-			platitudeBottom: `THIRD PLATITUDE`,
-		}
-	}
-    axios.post(endPoint, postObj)
-    	.then (function(res) {
-    		console.log (res.data)
-	    	store.dispatch({type: `THEMESSAGE/SENT`, sent: true })
-	    	store.dispatch({ 
-				type: `APP/SNACKBAR`, 
-				snackbar: {
-					severity: `info`,
-					message: res.data.message
-				}})
-	    })
-	    .catch (function(error) {
-	    	store.dispatch({type: `THEMESSAGE/SENT`, sent: true })
-    		store.dispatch({ 
-			type: `APP/SNACKBAR`, 
-			snackbar: {
-				severity: `error`,
-				message: error.string(),
-			}})
-	    })
-	    .finally (function() {
-	    	store.dispatch({type: `THEMESSAGE/SENDING`, sending: false })
-	    })
+	store.dispatch({ type: `THEMESSAGE/ERROR`, error: false })
+	store.dispatch({ type: `THEMESSAGE/PLAT-TOP`, platitudeTop: `` })
+	store.dispatch({ type: `THEMESSAGE/PLAT-MID-A`, platitudeMiddleA: `` })
+	store.dispatch({ type: `THEMESSAGE/PLAT-MID-B`, platitudeMiddleB: `` })
+	store.dispatch({ type: `THEMESSAGE/PLAT-BOTTOM`, platitudeBottom: `` })	
+	store.dispatch({ type: `THEMESSAGE/INITTED`, initted: true })
 }

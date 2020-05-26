@@ -34,6 +34,7 @@ const useStyles = makeStyles(theme => ({
     publishBtn: {
         width: '100%',
         marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(),
         marginLeft: theme.spacing(),
     },
     iconBtn:{
@@ -138,7 +139,7 @@ export default function Editor(props) {
                                     e.preventDefault()
                                     defaultMessage()
                                 }}>
-                                <Icon icon={`refresh`} color={`inherit`} />
+                                <Icon icon={`default-message`} color={`inherit`} />
                             </IconButton>
 
                             <IconButton
@@ -148,7 +149,7 @@ export default function Editor(props) {
                                     e.preventDefault()
                                     newVirus()
                                 }}>
-                                <Icon icon={`start`} color={`inherit`} />
+                                <Icon icon={`refresh`} color={`inherit`} />
                             </IconButton>
 
                             <IconButton
@@ -158,7 +159,7 @@ export default function Editor(props) {
                                     e.preventDefault()
                                     dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: false })
                                 }}> 
-                                <Icon icon={`home`} color={`inherit`} />
+                                <Icon icon={`tick`} color={`inherit`} />
                             </IconButton>
 
                         </Grid>
