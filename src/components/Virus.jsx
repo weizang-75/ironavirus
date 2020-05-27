@@ -9,6 +9,7 @@ import {
   Backdrop,
   CircularProgress,
   IconButton,
+  Grid,
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab/'
 import { 
@@ -24,6 +25,10 @@ const useStyles = makeStyles(theme => ({
   },
   alertText:{
     paddingTop: theme.spacing(),
+  },
+  spread:{
+    padding: theme.spacing(2),
+    background: 'white',
   }
 }))
 
@@ -56,7 +61,7 @@ export default function Virus() {
   if (!virus && virusLoaded) {
     return <div className={classes.none}>
             <Alert 
-              variant={`outlined`}
+              variant={`filled`}
               severity={`error`}
               action={<IconButton
                         onClick={(e) => {
@@ -64,15 +69,14 @@ export default function Virus() {
                           window.location.assign(`/`)
                         }}>
                   <Icon icon={`home`} color={`inherit`} />
-                </IconButton>}
-            >
+                </IconButton>}>
               <div className={classes.alertText}>
                 {error}
               </div>
-                
             </Alert>
           </div>
   }
+
   if (virus){
     const {
       platitudeTop,
@@ -85,8 +89,19 @@ export default function Virus() {
     ${platitudeMiddleB} ${platitudeBottom}`
   }
   
-  
   return  <div className={classes.virus}>
-            {virus ? <TheMessage virus={virus} /> : null}
+            <Grid container>
+              <Grid item xs={12} md={6}>
+              <div className={classes.spread}>
+              Spread This Virus
+            </div>
+              </Grid>
+              <Grid item xs={12} md={6}>
+              {virus ? <TheMessage virus={virus} /> : null}
+              </Grid>
+            </Grid>
+            
+            
+            
           </div>
 }
