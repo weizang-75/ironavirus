@@ -23,6 +23,9 @@ const useStyles = makeStyles(theme => ({
   btnTxt:{
     marginLeft: theme.spacing(),
   },
+  btn:{
+    marginTop: theme.spacing(),
+  }
 }))
 
 export default function OpenSource() {
@@ -50,7 +53,9 @@ export default function OpenSource() {
               <Typography variant={`body2`} gutterBottom>
                 Based on an Open Source Progressive Web App from listingslab
               </Typography>
+
               <Button
+                className={classes.btn}
                 variant={`contained`}
                 color={`secondary`}
                 onClick={(e) => {

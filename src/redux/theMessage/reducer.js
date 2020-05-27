@@ -11,6 +11,9 @@ import {
   error,
   publishing,
   isPristine,
+  virus,
+  virusLoading,
+  virusLoaded,
 } from "./actions"
 
 export const theMessageSlice = {
@@ -20,12 +23,30 @@ export const theMessageSlice = {
   platitudeMiddleA: `CONTROL`,
   platitudeMiddleB: `THE VIRUS`,
   platitudeBottom: `SAVE LIVES`,
-  threat: `#01a43b`,
+  threatLevel: `warning`,
   initted: false,
   isPristine: true,
+  virus: null,
+  virusLoading: false,
+  virusLoaded: false,
 }
 
 const theMessageReducer = createReducer(theMessageSlice, {
+
+  [virusLoaded]: (state, action) => {
+    state.virusLoaded = action.virusLoaded
+    return state
+  },
+  
+  [virus]: (state, action) => {
+    state.virus = action.virus
+    return state
+  },
+  
+  [virusLoading]: (state, action) => {
+    state.virusLoading = action.virusLoading
+    return state
+  },
 
   [isPristine]: (state, action) => {
     state.isPristine = action.isPristine

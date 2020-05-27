@@ -2,22 +2,32 @@ import React from 'react'
 import { 
     useSelector,
 } from 'react-redux'
+/*
+  Yellow: #fef600
+  Green: #01a43b
+  Red: #eb1c24
+*/
 
 export default function TheMessage(props) {
-
+    let platitudeTop, platitudeMiddleA, platitudeMiddleB, platitudeBottom, threatLevel
     const theMessageSlice = useSelector(state => state.theMessage)
-    const {
-          platitudeTop,
-          platitudeMiddleA,
-          platitudeMiddleB,
-          platitudeBottom,
-          threat,
-    } = theMessageSlice
+    if (props.mode === `ui`){
+          platitudeTop = theMessageSlice.platitudeTop
+          platitudeMiddleA = theMessageSlice.platitudeMiddleA
+          platitudeMiddleB = theMessageSlice.platitudeMiddleB
+          platitudeBottom = theMessageSlice.platitudeBottom
+          threatLevel = theMessageSlice.threatLevel
+    } else {
+          platitudeTop = props.virus.platitudeTop
+          platitudeMiddleA = props.virus.platitudeMiddleA
+          platitudeMiddleB = props.virus.platitudeMiddleB
+          platitudeBottom = props.virus.platitudeBottom
+          threatLevel = props.virus.threatLevel
+    }
     let c = {
         background: `#fef600`,
-        elements: threat,
+        elements: threatLevel === `warning` ? `#01a43b` : `#eb1c24`,
     }
-
     let platitudeTopFontSize = 58
     let platitudeTopYpos = 61
     if (platitudeTop.length > 10) {

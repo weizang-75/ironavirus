@@ -16,9 +16,33 @@ export const threat = createAction(`THEMESSAGE/THREAT`)
 export const initted = createAction(`THEMESSAGE/INITTED`)
 export const publishing = createAction(`THEMESSAGE/PUBLISHING`)
 export const isPristine = createAction(`THEMESSAGE/PRISTINE`)
+export const virus = createAction(`THEMESSAGE/VIRUS`)
+export const virusLoading = createAction(`THEMESSAGE/VIRUS_LOADING`)
+export const virusLoaded = createAction(`THEMESSAGE/VIRUS_LOADED`)
 
-
-// loadVirus
+export const loadVirus = id => {
+	const store = getStore()
+	store.dispatch({ type: `THEMESSAGE/VIRUS_LOADING`, virusLoading: true })
+	axios.post(process.env.REACT_APP_IRONAVIRUS, {
+		action: `load`,
+		id
+	})
+		.then (function(res) {
+			if (res.data.success){
+				store.dispatch({ type: `THEMESSAGE/VIRUS`, virus: res.data.virus })
+			} else {
+				store.dispatch({ type: `THEMESSAGE/ERROR`, error: res.data.message })
+			}
+			store.dispatch({ type: `THEMESSAGE/VIRUS_LOADING`, virusLoading: false })
+		})
+		.catch (function(error) {
+			store.dispatch({ type: `THEMESSAGE/ERROR`, error: error.toString() })
+			store.dispatch({ type: `THEMESSAGE/VIRUS_LOADING`, virusLoading: false })
+		})
+		.finally (function () {
+			store.dispatch({ type: `THEMESSAGE/VIRUS_LOADED`, virusLoaded: true })
+		})
+}
 
 export const publish = () => {
 	const store = getStore()
@@ -28,7 +52,7 @@ export const publish = () => {
 	let p3 = theMessageSlice.platitudeMiddleB
 	let p4 = theMessageSlice.platitudeBottom
 	let threatLevel = `alert`
-	if (theMessageSlice.threat === `#01a43b`){
+	if (theMessageSlice.threatLevel === `#01a43b`){
 		threatLevel = `warning`
 	}
 	const pushToTalkSlice = store.getState().pushToTalk

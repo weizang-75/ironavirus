@@ -103,7 +103,7 @@ export default function Editor(props) {
         platitudeMiddleA,
         platitudeMiddleB,
         platitudeBottom,
-        threat,
+        threatLevel,
         publishing,
         isPristine,
     } = theMessageSlice
@@ -196,6 +196,29 @@ export default function Editor(props) {
 
             <CardContent>
 
+                <div className={classes.boSelecta}>
+                    <FormControl fullWidth className={classes.formControl}>
+                        <Select
+                            disabled={publishing}
+                            id={`threatLevel`}
+                            value={threatLevel}
+                            onChange={(e) => {
+                                validate()
+                                dispatch({type: `THEMESSAGE/THREAT`, threatLevel: e.target.value})
+                            }}>
+                          <MenuItem value={`warning`}>
+                            <div style={{width: '100%', height: 24, background: '#eb1c24'}} /> 
+                            Warning                     
+                          </MenuItem>
+                          <MenuItem value={`alert`}>
+                            <div style={{width: '100%', height: 24, background: '#01a43b'}} /> 
+                            Alert
+                          </MenuItem>
+                        </Select>
+                    </FormControl>
+                </div>
+
+
                 <div className={classes.firstPlatitude}>
                     <InputTextfield field={{
                         disabled: publishing,
@@ -247,35 +270,8 @@ export default function Editor(props) {
                         },
                     }}/>
                 </div>
-                <div className={classes.boSelecta}>
-                    <FormControl fullWidth className={classes.formControl}>
-                        <Select
-                            disabled={publishing}
-                            id={`threat`}
-                            value={threat}
-                            onChange={(e) => {
-                                validate()
-                                dispatch({type: `THEMESSAGE/THREAT`, threat: e.target.value})
-                            }}>
-                          <MenuItem value={`#eb1c24`}>
-                            <div style={{width: '100%', height: 24, background: '#eb1c24'}} />                      
-                          </MenuItem>
-                          <MenuItem value={`#01a43b`}>
-                            <div style={{width: '100%', height: 24, background: '#01a43b'}} />    
-                          </MenuItem>
-                        </Select>
-                    </FormControl>
-                </div>
+                
             </CardContent>
-            
-
-            
-
-            <CardActions>
-
-                    
-
-            </CardActions>
         </div>
     )
 }

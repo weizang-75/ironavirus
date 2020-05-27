@@ -54,8 +54,6 @@ export default function UI() {
     }
   }
 
-
-
   const getEditor = anchor => (
     <div
       className={clsx(classes.list, {
@@ -76,12 +74,14 @@ export default function UI() {
             </Backdrop> : null }
             
             <div className={!editorOpen ? classes.theMessageOff : classes.theMessageOn }>
-              <TheMessage onClick={(e) => {
-                e.preventDefault()
-                if (!editorOpen){
-                  dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: true })
-                }
-              }}/>  
+              <TheMessage 
+                mode={`ui`}
+                onClick={(e) => {
+                  e.preventDefault()
+                  if (!editorOpen){
+                    dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: true })
+                  }
+                }}/>
             </div>
 
             <SwipeableDrawer

@@ -159,19 +159,7 @@ export default function MainMenu() {
                   />
                 </ListItem>
 
-                <ListItem button
-                  onClick={(e) => {
-                    e.preventDefault()
-                    history.push(`/share`)
-                    dispatch({type:`APP/INFO_OPEN`, infoOpen: false})
-                  }}>
-                  <ListItemIcon>
-                    <Icon icon={`share`} color={`inherit`} />
-                  </ListItemIcon>
-                  <ListItemText 
-                    primary={`Share`}
-                  />
-                </ListItem>
+                
 
                 <ListItem button
                   onClick={(e) => {
@@ -193,6 +181,22 @@ export default function MainMenu() {
 
 
 /*
+
+
+<ListItem button
+                  onClick={(e) => {
+                    e.preventDefault()
+                    history.push(`/share`)
+                    dispatch({type:`APP/INFO_OPEN`, infoOpen: false})
+                  }}>
+                  <ListItemIcon>
+                    <Icon icon={`share`} color={`inherit`} />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary={`Share`}
+                  />
+                </ListItem>
+                
 
 <DialogActions>
               <Button 
