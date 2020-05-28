@@ -18,18 +18,21 @@ import {
 
 const useStyles = makeStyles(theme => ({
   theMessageOff:{
-    width: '100vh',
-    maxWidth: '100vw',
+    width: '99vh',
+    maxWidth: '99vw',
   },
   theMessageOn:{
-    width: '100vh',
-    maxWidth: '100vw',
+    width: '99vh',
+    maxWidth: '99vw',
     position: 'absolute',
-    right: 270,
+    top: 0,
   },
   backdrop: {
     zIndex: theme.zIndex.drawer + 1,
     color: '#fff',
+  },
+  drawerDiv:{
+    border: '1px solid blue',
   },
 }))
 
@@ -85,7 +88,7 @@ export default function UI() {
             </div>
 
             <SwipeableDrawer
-              anchor={`right`}
+              anchor={`bottom`}
               open={editorOpen}
               onClose={toggleDrawer(`right`, false)}
               onOpen={toggleDrawer(`right`, true)}>

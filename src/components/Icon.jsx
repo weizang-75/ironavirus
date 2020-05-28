@@ -52,6 +52,7 @@ import IconShare from '@material-ui/icons/Share'
 import IconInfo from '@material-ui/icons/ContactSupport'
 import IconListingslab from '@material-ui/icons/EmojiPeople'
 import IconDefaultMessage from '@material-ui/icons/VerticalSplit'
+import IconCopy from '@material-ui/icons/FileCopy'
 
 import {
     Github,
@@ -90,6 +91,11 @@ class Icon extends Component {
 
             case `ui`:
                 return (<IconUI color={iconColor} />)
+
+            case `copy`:
+                return (<IconCopy color={iconColor} />)
+
+                
 
             case `navigation`:
                 return (<IconNav color={iconColor} />)

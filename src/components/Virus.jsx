@@ -6,30 +6,34 @@ import {
 } from 'react-redux'
 import { 
   makeStyles,
+  Button,
   Backdrop,
   CircularProgress,
-  IconButton,
   Grid,
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab/'
 import { 
   Icon,
-  TheMessage 
+  TheMessage,
+  Spread,
 } from './'
 
 
 const useStyles = makeStyles(theme => ({
   virus:{
-    width: '100vh',
-    maxWidth: '100vw',
+    width: '99vh',
+    maxWidth: '99vw',
+  },
+  newBtn:{
+    marginTop: theme.spacing(2),
   },
   alertText:{
     paddingTop: theme.spacing(),
   },
-  spread:{
-    padding: theme.spacing(2),
-    background: 'white',
-  }
+  btnTxt:{
+    marginLeft: theme.spacing(),
+    marginRight: theme.spacing(),
+  },
 }))
 
 export default function Virus() {
@@ -49,9 +53,6 @@ export default function Virus() {
     if (!virusLoaded && !virusLoading){
       loadVirus(id)
     }
-    if (virus){
-      // console.log (virus)
-    }
   }, [id, virus, virusLoaded, virusLoading])
 
   if (!virus && virusLoading) {
@@ -61,18 +62,27 @@ export default function Virus() {
   if (!virus && virusLoaded) {
     return <div className={classes.none}>
             <Alert 
-              variant={`filled`}
+              variant={`outlined`}
               severity={`error`}
-              action={<IconButton
-                        onClick={(e) => {
-                          e.preventDefault()
-                          window.location.assign(`/`)
-                        }}>
-                  <Icon icon={`home`} color={`inherit`} />
-                </IconButton>}>
+              action={null}>
               <div className={classes.alertText}>
                 {error}
               </div>
+              <div className={classes.newBtn}>
+                <Button
+                  variant={`contained`}
+                  color={`primary`}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    window.location.assign(`/`)
+                  }}>
+                  <Icon icon={`ironavirus`} color={`none`} />
+                  <span className={classes.btnTxt}>
+                    New Virus
+                  </span>
+                </Button>
+              </div>
+
             </Alert>
           </div>
   }
@@ -92,16 +102,11 @@ export default function Virus() {
   return  <div className={classes.virus}>
             <Grid container>
               <Grid item xs={12} md={6}>
-              <div className={classes.spread}>
-              Spread This Virus
-            </div>
+                <Spread id={id}/>
               </Grid>
               <Grid item xs={12} md={6}>
               {virus ? <TheMessage virus={virus} /> : null}
               </Grid>
             </Grid>
-            
-            
-            
           </div>
 }

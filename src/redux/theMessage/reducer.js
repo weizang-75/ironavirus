@@ -6,7 +6,7 @@ import {
   platitudeMiddleA,
   platitudeMiddleB,
   platitudeBottom,
-  threat,
+  threatLevel,
   initted,
   error,
   publishing,
@@ -68,8 +68,8 @@ const theMessageReducer = createReducer(theMessageSlice, {
     return state
   },
 
-  [threat]: (state, action) => {
-    state.threat = action.threat
+  [threatLevel]: (state, action) => {
+    state.threatLevel = action.threatLevel
     return state
   },
 

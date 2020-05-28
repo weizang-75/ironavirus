@@ -4,14 +4,14 @@ import InputTextfield from './InputTextfield'
 import SimpleSnackbar from './SimpleSnackbar'
 import Public from './Public'
 import TheMessage from './TheMessage'
-import SwipeableTemporaryDrawer from './SwipeableTemporaryDrawer'
 import UI from './UI'
 import Editor from './Editor'
 import MainMenu from './MainMenu'
 import Privacy from './Privacy'
-import Share from './Share'
 import OpenSource from './OpenSource'
 import Virus from './Virus'
+import Spread from './Spread'
+import CopyUrl from './CopyUrl'
 
 export {
 	Icon,
@@ -20,12 +20,12 @@ export {
 	SimpleSnackbar,
 	Public,
 	TheMessage,
-	SwipeableTemporaryDrawer,
 	UI,
 	Editor,
 	MainMenu,
 	Privacy,
-	Share,
 	OpenSource,
 	Virus,
+	Spread,
+	CopyUrl,
 }

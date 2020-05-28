@@ -175,69 +175,8 @@ export default function MainMenu() {
                   />
                 </ListItem>
               </List>            
+
           </Dialog>
+          
         </React.Fragment>
 }
-
-
-/*
-
-
-<ListItem button
-                  onClick={(e) => {
-                    e.preventDefault()
-                    history.push(`/share`)
-                    dispatch({type:`APP/INFO_OPEN`, infoOpen: false})
-                  }}>
-                  <ListItemIcon>
-                    <Icon icon={`share`} color={`inherit`} />
-                  </ListItemIcon>
-                  <ListItemText 
-                    primary={`Share`}
-                  />
-                </ListItem>
-                
-
-<DialogActions>
-              <Button 
-                variant={`contained`}
-                color={`primary`}
-                onClick={handleClose} >
-                Got it
-              </Button>
-            </DialogActions>
-
-              <Typography variant={`body2`}>
-                vs {pJSON.version}
-              </Typography>
-
-
-          <Fab 
-            color={`secondary`} 
-            aria-label={`Open Info`} 
-            className={classes.fabButton}>
-            <Icon icon={`ifon`} color={`inherit`} />
-          </Fab>
-
-
-                          <ListItem button
-                  onClick={(e) => {
-                    e.preventDefault()
-                    window.open(`https://listingslab.com/pwa`, `_blank`)
-                  }}
-                >
-                  <ListItemIcon>
-                    <Icon icon={`listingslab`} color={`inherit`} />
-                  </ListItemIcon>
-                  <ListItemText 
-                    primary={`Listingslab`}
-                    secondary={`Progressive Web Apps`}
-                  />
-                </ListItem>
-
-<Typography variant={`body2`}>
-                Tired of the same old message? Make your own 厌倦了相同的旧信息？ 自己做
-              </Typography>
-
-
-          */

@@ -25,10 +25,10 @@ const muiTheme = {
       main: '#eb1c24'
     },
     error: {
-      main: '#eb1c24'
+      main: '#ffffff'
     },
     text: {
-      disabled: `#01a43b`,
+      disabled: `rgba(255,255,255,0.5)`,
       hint: `#fed100`,
       primary: `#FFF`,
       secondary: `#fef600`,

@@ -18,8 +18,8 @@ import {
 
 const useStyles = makeStyles(theme => ({
   card: {
-    width: '100vh',
-    maxWidth: '100vw',
+    width: '99vh',
+    maxWidth: '99vw',
   },
   varHighlight: {
     color: '#01a43b',

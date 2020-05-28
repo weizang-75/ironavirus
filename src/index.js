@@ -19,7 +19,6 @@ import {
   Public,
   SimpleSnackbar,
   Privacy,
-  Share,
   OpenSource,
   Virus,
 } from './components'
@@ -73,7 +72,6 @@ let app = (
       <Switch>
         <Route exact path='/' render={ props => { return <Public /> }} />
         <Route exact path='/virus/:slug' render={ props => { return <Virus /> }} />
-        <Route exact path='/share' render={ props => { return <Share /> }} />
         <Route exact path='/privacy' render={ props => { return <Privacy /> }} />
         <Route exact path='/open-source' render={ props => { return <OpenSource /> }} />
         <Route component={ Public } />
