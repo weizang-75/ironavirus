@@ -1,10 +1,10 @@
 {
   "short_name": "Ironavirus",
   "name": "Ironavirus",
-  "description": "在这些困难和不寻常的时刻",
+  "description": "In these unusual and difficult times...",
   "start_url": ".",
-  "theme_color": "#211b1f",
-  "background_color": "#211b1f",
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
   "display": "standalone",
   "lang": "en-US",
   "icons": [

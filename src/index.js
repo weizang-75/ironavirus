@@ -1,6 +1,7 @@
 import pJSON from '../package.json'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { FacebookProvider } from 'react-facebook'
 import {
   BrowserRouter as Router, Switch, Route
 } from 'react-router-dom'
@@ -82,7 +83,9 @@ let app = (
 
 ReactDOM.render((
   <Provider store={store}>
-    {app}
+    <FacebookProvider appId="641660513053302">
+      {app}
+    </FacebookProvider>
   </Provider>
 ), document.getElementById('app'))
 

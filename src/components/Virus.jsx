@@ -87,6 +87,8 @@ export default function Virus() {
           </div>
   }
 
+  let virusTitle 
+
   if (virus){
     const {
       platitudeTop,
@@ -95,14 +97,16 @@ export default function Virus() {
       platitudeBottom,
       threatLevel,
     } = virus
-    document.title = `<${threatLevel.toUpperCase()}> ${platitudeTop} ${platitudeMiddleA} 
+
+    virusTitle = `${threatLevel.toUpperCase()}! ${platitudeTop} ${platitudeMiddleA} 
     ${platitudeMiddleB} ${platitudeBottom}`
+    document.title = virusTitle
   }
   
   return  <div className={classes.virus}>
             <Grid container>
               <Grid item xs={12} md={6}>
-                <Spread id={id}/>
+                <Spread id={id} virusTitle={virusTitle}/>
               </Grid>
               <Grid item xs={12} md={6}>
               {virus ? <TheMessage virus={virus} /> : null}

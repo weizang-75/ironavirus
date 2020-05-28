@@ -1,6 +1,6 @@
 import React from 'react'
 import IconButton from '@material-ui/core/IconButton'
-import Input from '@material-ui/core/OutlinedInput'
+import Input from '@material-ui/core/Input'
 import InputAdornment from '@material-ui/core/InputAdornment'
 import {
   useDispatch,
@@ -8,7 +8,6 @@ import {
 import { 
     Icon,
 } from './'
-
 
 export default function CopyUrl(props) {
   const dispatch = useDispatch()
@@ -46,6 +45,5 @@ export default function CopyUrl(props) {
                   <Icon icon={`copy`} color={`inherit`} />
                 </IconButton>
               </InputAdornment>
-            }
-          />
+            }/>
 }

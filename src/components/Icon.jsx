@@ -53,10 +53,12 @@ import IconInfo from '@material-ui/icons/ContactSupport'
 import IconListingslab from '@material-ui/icons/EmojiPeople'
 import IconDefaultMessage from '@material-ui/icons/VerticalSplit'
 import IconCopy from '@material-ui/icons/FileCopy'
+import IconCode from '@material-ui/icons/Code'
 
 import {
     Github,
     Ironavirus,
+    Facebook,
 } from '../graphics/'
 
 const styles = theme => ({
@@ -89,6 +91,10 @@ class Icon extends Component {
             case `tick`:
                 return (<IconTick color={iconColor} />)
 
+
+            case `code`:
+                return (<IconCode color={iconColor} />)
+                
             case `ui`:
                 return (<IconUI color={iconColor} />)
 
@@ -100,10 +106,8 @@ class Icon extends Component {
             case `navigation`:
                 return (<IconNav color={iconColor} />)
 
-
             case `default-message`:
                 return (<IconDefaultMessage color={iconColor} />)
-
 
             case `pushToTalk`:
                 return (<IconPushToTalk color={iconColor} />)
@@ -113,6 +117,9 @@ class Icon extends Component {
 
             case `ironavirus`:
                 return (<Ironavirus className={classes.iconButton} color={iconColor} />)
+
+            case `facebook`:
+                return (<Facebook className={classes.iconButton} color={iconColor} />)
 
             case `github`:
                 return (<Github className={classes.iconButton} color={iconColor} />)

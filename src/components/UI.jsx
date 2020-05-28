@@ -18,12 +18,12 @@ import {
 
 const useStyles = makeStyles(theme => ({
   theMessageOff:{
-    width: '99vh',
-    maxWidth: '99vw',
+    width: '80vh',
+    maxWidth: '80vw',
   },
   theMessageOn:{
-    width: '99vh',
-    maxWidth: '99vw',
+    width: '80vh',
+    maxWidth: '80vw',
     position: 'absolute',
     top: 0,
   },
@@ -50,8 +50,8 @@ export default function UI() {
       publishing,
   } = theMessageSlice
 
-  const toggleDrawer = (anchor, open) => (event) => {
-    // dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: false })
+  const toggleDrawer = (anchor, open) => (event, reason) => {
+    if (reason === `backdropClick`) dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: false })
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return
     }

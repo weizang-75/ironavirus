@@ -2,7 +2,6 @@ import React from 'react'
 import { useHistory } from 'react-router-dom'
 import {
     makeStyles,
-    Card,
     CardHeader,
     CardContent,
     IconButton,
@@ -22,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '99vw',
   },
   varHighlight: {
-    color: '#01a43b',
+    color: '#13883d',
   },
 }))
 
@@ -54,22 +53,21 @@ export default function Privacy() {
     country = ipgeo.countryName
   }
     
-  return <Card className={classes.card} >
+  return <div className={classes.card} >
             <CardHeader 
-            	title={`Privacy is important to us`}
-            	subheader={`We do not use cookies`}
-            	avatar={<Icon icon={`privacy`} color={`inherit`} />}
+            	title={`Privacy is important to everyone`}
+            	subheader={`We don't use cookies`}
+            	avatar={<Icon icon={`privacy`} color={`error`} />}
             	action={<IconButton
             			onClick={(e) => {
             				e.preventDefault()
             				history.push(`/`)
             			}}
             		>
-            		<Icon icon={`home`} color={`inherit`} />
+            		<Icon icon={`home`} color={`error`} />
             	</IconButton>}
             />
             <CardContent>
-
             <Typography variant={`body2`} gutterBottom>
               Your device's request for this app includes a userAgent string. 
               When we parse that with <Link style={{cursor: 'pointer'}} onClick={(e) => {
@@ -108,5 +106,5 @@ export default function Privacy() {
             </Typography>
   
             </CardContent>
-          </Card>
+          </div>
 }

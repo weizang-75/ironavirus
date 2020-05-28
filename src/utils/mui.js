@@ -8,35 +8,20 @@
 
 const muiTheme = {
   palette: {
-    type: 'dark',
+    type: 'light',
     primary: {
-      main: '#fef600',
+      main: '#01a43b',
     },
     secondary: {
-      main: '#fef600',
-    },
-    default: {
-      main: '#211b1f'
-    },
-    info: {
-      main: '#211b1f'
-    },
-    warning: {
-      main: '#eb1c24'
+      main: '#eb1c24',
     },
     error: {
-      main: '#ffffff'
-    },
-    text: {
-      disabled: `rgba(255,255,255,0.5)`,
-      hint: `#fed100`,
-      primary: `#FFF`,
-      secondary: `#fef600`,
+      main: '#01a43b'
     },
   },
 
   typography: {
-    fontSize: 16,
+    fontSize: 18,
     fontFamily: [
       'Hind',
     ].join(','),

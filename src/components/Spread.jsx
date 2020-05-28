@@ -1,11 +1,15 @@
 import React from 'react'
+import { Share } from 'react-facebook'
 import {
     makeStyles,
     Button,
-    Card,
     CardContent,
     CardHeader,
-    CardActions,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    Typography,
 } from '@material-ui/core/'
 import { 
     Icon,
@@ -19,49 +23,83 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(),
   },
   btnTxt:{
-    marginLeft: theme.spacing(),
-    marginRight: theme.spacing(),
+    marginLeft: theme.spacing(2),
+  },
+  copyUrl:{
+    margin: theme.spacing(2),
   },
 }))
 
 export default function Spread(props) {
   
   const classes = useStyles()
-  const {id} = props
+  const {
+    id,
+    virusTitle,
+  } = props
   // console.log (id)
   if (!id) return null
 
-  return  <Card className={classes.spreadCard}>
+  return  <div className={classes.spreadCard}>
             <CardHeader
               title={`Spread Ironavirus`}
-              subheader={`on facebook & stuff`}
               avatar={<Icon icon={`share`} color={`inherit`} />}
               action={null}/>
 
               <CardContent>
+
+
+                  <Share 
+                    href={`https://ironavirus.web.app/virus/${id}`}
+                    hashtag={`#ironavirus`}
+                    quote={virusTitle}
+                  >
+                    {({ handleClick, loading }) => (
+                      <Button type="button" onClick={handleClick}>
+                        <Icon icon={`facebook`} />
+                        <span className={classes.btnTxt}>
+                          Spread on Facebook
+                        </span>
+                      </Button>
+                    )}
+                  </Share>
+
                 
-                <CopyUrl id={id} />
+                <div className={classes.copyUrl}>
+                  <Typography variant={`body2`}>
+                    Copy url
+                  </Typography>
+                  <CopyUrl id={id} />
+                </div>
 
-              </CardContent>
+                <List dense>
+                  <ListItem button
+                    onClick={(e) => {
+                      e.preventDefault()
+                      window.location.assign(`/`)
+                    }}>
+                    <ListItemIcon>
+                      <Icon icon={`ironavirus`} />
+                    </ListItemIcon>
+                    <ListItemText 
+                      primary={`Create New Virus`}
+                      
+                    />
+                  </ListItem>
+                </List>
 
-              <CardActions>
-                <Button
-                  variant={`text`}
-                  color={`primary`}
-                  onClick={(e) => {
-                    e.preventDefault()
-                    window.location.assign(`/`)
-                  }}>
-                  <Icon icon={`ironavirus`} color={`none`} />
-                  <span className={classes.btnTxt}>
-                    Create New Virus
-                  </span>
-                </Button>
-
-              </CardActions>
-            
-      </Card>
+              </CardContent>            
+      </div>
 }
 /*
-
+                  <Share href={`https://ironavirus.web.app/virus/${id}`}>
+                    {({ handleClick, loading }) => (
+                      <Button type="button" onClick={handleClick}>
+                        <Icon icon={`facebook`} />
+                        <span className={classes.btnTxt}>
+                          Spread on Facebook
+                        </span>
+                      </Button>
+                    )}
+                  </Share>
 */

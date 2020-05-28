@@ -88,14 +88,14 @@ export default function MainMenu() {
       { !infoOpen ? <AppBar position={`fixed`} className={classes.appBar}>
         <Toolbar>
           <Fab 
-            color={`secondary`}
+            color={`primary`}
             aria-label={`Main Menu`}
             className={classes.fabButton}
             onClick={(e) => {
               e.preventDefault()
               showMainMenu()
             }}>
-            <Icon icon={`ironavirus`} color={`inherit`} />
+            <Icon icon={`menu`} color={`inherit`} />
           </Fab>
         </Toolbar>
       </AppBar> : null }
@@ -121,7 +121,7 @@ export default function MainMenu() {
                       dispatch({type:`APP/INFO_OPEN`, infoOpen: false})
                     }}>
                   <ListItemIcon>
-                    <Icon icon={`edit`} color={`inherit`} />
+                    <Icon icon={`edit`} color={`error`} />
                   </ListItemIcon>
                   <ListItemText 
                     primary={`Edit Virus`}
@@ -136,7 +136,7 @@ export default function MainMenu() {
                       dispatch({type:`APP/INFO_OPEN`, infoOpen: false})
                     }}>
                   <ListItemIcon>
-                    <Icon icon={`add`} color={`inherit`} />
+                    <Icon icon={`add`} color={`error`} />
                   </ListItemIcon>
                   <ListItemText 
                     primary={`New Virus`}
@@ -152,10 +152,10 @@ export default function MainMenu() {
                     dispatch({type:`APP/INFO_OPEN`, infoOpen: false})
                   }}>
                   <ListItemIcon>
-                    <Icon icon={`github`} color={`white`} />
+                    <Icon icon={`github`} color={`#01a43b`} />
                   </ListItemIcon>
                   <ListItemText 
-                    primary={`Developer`}
+                    primary={`Develop Virus`}
                   />
                 </ListItem>
 
@@ -168,7 +168,7 @@ export default function MainMenu() {
                     dispatch({type:`APP/INFO_OPEN`, infoOpen: false})
                   }}>
                   <ListItemIcon>
-                    <Icon icon={`privacy`} color={`inherit`} />
+                    <Icon icon={`privacy`} color={`error`} />
                   </ListItemIcon>
                   <ListItemText 
                     primary={`Privacy`}

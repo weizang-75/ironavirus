@@ -25,6 +25,12 @@ import {
 } from './'
 
 const useStyles = makeStyles(theme => ({
+    doneBtn:{
+        marginLeft: theme.spacing(),
+    },
+    actionsMargin:{
+        marginLeft: theme.spacing(),
+    },
     oneDivToRule: {
         display: 'block',
     },
@@ -131,7 +137,7 @@ export default function Editor(props) {
                                 if (e.target.value === `blank`) newVirus()
                               }}>
                               <MenuItem value={`choose`}>
-                                Virus preset
+                                Preset virus
                               </MenuItem>
                               <MenuItem value={`blank`}>Blank</MenuItem>
                               <MenuItem value={`ukgov`}>UK Government</MenuItem>
@@ -139,9 +145,7 @@ export default function Editor(props) {
                         </FormControl>
                     </div>
 
-                    { error ? <div className={classes.none}><Alert severity={`error`}>
-                                {error}
-                    </Alert></div> : null }
+                    
         
                     <div className={classes.none}>
                         <InputTextfield field={{
@@ -216,7 +220,7 @@ export default function Editor(props) {
                 </CardContent>
 
                 <CardActions>
-
+                    <div className={classes.actionsMargin}>
                         <Button
                             disabled={publishing}
                             variant={`contained`}
@@ -228,21 +232,31 @@ export default function Editor(props) {
                                 //}
                             }}>
                             <span className={classes.btnTxt}>
-                                Publish
+                                Next
                             </span>
                             <Icon icon={`play`} color={`inherit`} />
                         </Button>
+                        <span className={classes.doneBtn}>
+                            <IconButton
+                                disabled={publishing}
+                                color={`default`}
+                                onClick={(e) => {
+                                    e.preventDefault()
+                                    dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: false })
+                                }}> 
+                                <Icon icon={`tick`} color={`inherit`} />
+                            </IconButton>
+                        </span>
+                        </div>
 
-                        <IconButton
-                            disabled={publishing}
-                            color={`default`}
-                            onClick={(e) => {
-                                e.preventDefault()
-                                dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: false })
-                            }}> 
-                            <Icon icon={`tick`} color={`inherit`} />
-                        </IconButton>
+                        
+
                 </CardActions>
+                <CardActions>
+                { error ? <div className={classes.none}><Alert severity={`error`}>
+                                {error}
+                    </Alert></div> : null }
+                    </CardActions>
             </div>
         </div>
     )
