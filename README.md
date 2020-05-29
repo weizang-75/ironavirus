@@ -3,7 +3,7 @@
 
 厌倦了相同的旧信息？ 自己做
 
-Based on an Open Source Progressive Web App from [listingslab](https://listingslab.com/pwa)
+Based on an Open Source Progressive Web App from [listingslab](https://listingslab.com/whitelabel-pwa)
 
 ### Created by
 

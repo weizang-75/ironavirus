@@ -14,7 +14,7 @@ import {
 export const appSlice = {
   pJSON,
   error: null,
-  infoOpen: false,
+  infoOpen: true,
   editorOpen: false,
   snackbar: null,
   logoFaded: false,
