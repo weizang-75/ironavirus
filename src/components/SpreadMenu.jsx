@@ -1,15 +1,14 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
+import { Share } from 'react-facebook'
 import { 
     useSelector,
     useDispatch,
 } from 'react-redux'
 import {
     makeStyles,
-    // Button,
+    Button,
     Dialog,
-    // DialogActions,
-    // DialogContent,
     Slide,
     Fab,
     AppBar,
@@ -20,17 +19,21 @@ import {
     ListItemIcon,
 } from '@material-ui/core/'
 import { 
-  showMainMenu,
+  showSpreadMenu,
 } from '../redux/app/actions'
 import { 
-  newVirus,
-} from '../redux/theMessage/actions'
-import { 
     Icon,
+    // CopyUrl,
 } from './'
 
 const useStyles = makeStyles(theme => ({
   infoDialog: {
+  },
+  fbBtn:{
+    paddingLeft: theme.spacing(1.25),
+  },
+  fbBtnTxt:{
+    paddingLeft: theme.spacing(4),
   },
   appBar: {
     top: 'auto',
@@ -72,20 +75,24 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />
 })
 
-export default function MainMenu() {
+export default function SpreadMenu(props) {
 
   const classes = useStyles()
   const history = useHistory()
   const dispatch = useDispatch()
   const appSlice = useSelector(state => state.app)
   const {
-    infoOpen
+    spreadOpen
   } = appSlice
-
+  
+  const { 
+    id,
+    virusTitle,
+  } = props
 
   return <React.Fragment>
 
-      { !infoOpen ? <AppBar position={`fixed`} className={classes.appBar}>
+      { !spreadOpen ? <AppBar position={`fixed`} className={classes.appBar}>
         <Toolbar>
           <Fab 
             color={`primary`}
@@ -93,7 +100,7 @@ export default function MainMenu() {
             className={classes.fabButton}
             onClick={(e) => {
               e.preventDefault()
-              showMainMenu()
+              showSpreadMenu()
             }}>
             <Icon icon={`menu`} color={`inherit`} />
           </Fab>
@@ -102,11 +109,11 @@ export default function MainMenu() {
 
           <Dialog
             className={classes.infoDialog}
-            open={infoOpen}
+            open={spreadOpen}
             TransitionComponent={Transition}
             keepMounted
             onClose={() => {
-              dispatch({type:`APP/INFO_OPEN`, infoOpen: false})
+              dispatch({type:`APP/SPREAD_OPEN`, spreadOpen: false})
             }}
             aria-labelledby="info-title"
             aria-describedby="info-description">
@@ -123,69 +130,63 @@ export default function MainMenu() {
                   />
                 </ListItem>
 
-                <ListItem button
-                    onClick={(e) => {
-                      e.preventDefault()
-                      dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: true })
-                      dispatch({type:`APP/INFO_OPEN`, infoOpen: false})
-                    }}>
-                  <ListItemIcon>
-                    <Icon icon={`edit`} color={`error`} />
-                  </ListItemIcon>
-                  <ListItemText 
-                    primary={`Edit Virus`}
-                  />
-                </ListItem>
 
-                <ListItem button
+                <div className={classes.fbBtn}>
+                  <Share 
+                    href={ `https://ironavirus.web.app/virus/${id}` }
+                    hashtag={ `#ironavirus` }
+                    quote={ virusTitle }>
+                    {({ handleClick, loading }) => (
+                      <Button 
+
+                        type="button" 
+                        onClick={handleClick}>
+                        <Icon icon={`facebook`} color={`#01a43b`} />
+                        <span className={classes.fbBtnTxt}>
+                          Spread on Facebook
+                        </span>
+                      </Button>
+                    )}
+                  </Share>
+                </div>
+                
+                  <ListItem button
                     onClick={(e) => {
                       e.preventDefault()
-                      newVirus()
-                      dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: true })
-                      dispatch({type:`APP/INFO_OPEN`, infoOpen: false})
+                      history.push('/virus/new')
+                      dispatch({type: `APP/SPREAD_OPEN`, spreadOpen: false})
+                      window.location.assign('/virus/new', `_self`)
                     }}>
                   <ListItemIcon>
                     <Icon icon={`add`} color={`error`} />
                   </ListItemIcon>
                   <ListItemText 
-                    primary={`New Virus`}
+                    primary={`NEW VIRUS`}
                   />
                 </ListItem>
 
-                
-
-                <ListItem button
-                  onClick={(e) => {
-                    e.preventDefault()
-                    history.push(`/open-source`)
-                    dispatch({type:`APP/INFO_OPEN`, infoOpen: false})
-                  }}>
-                  <ListItemIcon>
-                    <Icon icon={`github`} color={`#01a43b`} />
-                  </ListItemIcon>
-                  <ListItemText 
-                    primary={`Develop Virus`}
-                  />
-                </ListItem>
-
-                
-
-                <ListItem button
-                  onClick={(e) => {
-                    e.preventDefault()
-                    history.push(`/privacy`)
-                    dispatch({type:`APP/INFO_OPEN`, infoOpen: false})
-                  }}>
-                  <ListItemIcon>
-                    <Icon icon={`privacy`} color={`error`} />
-                  </ListItemIcon>
-                  <ListItemText 
-                    primary={`Privacy`}
-                  />
-                </ListItem>
               </List>            
 
           </Dialog>
-          
         </React.Fragment>
 }
+
+/*
+
+<CopyUrl id={id} />
+
+  <ListItem button
+      onClick={(e) => {
+        e.preventDefault()
+        const url = `https://ironavirus.web.app/virus/${id}`
+        copyToClipboard(url)
+      }}>
+    <ListItemIcon>
+      <Icon icon={`copy`} color={`error`} />
+    </ListItemIcon>
+    <ListItemText 
+      primary={`Copy URL`}
+    />
+  </ListItem>
+
+*/

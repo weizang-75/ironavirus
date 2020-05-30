@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import { loadVirus } from '../redux/theMessage/actions'
+import { showSpreadMenu } from '../redux/app/actions'
 import { 
     useSelector,
 } from 'react-redux'
@@ -17,13 +18,17 @@ import { Alert } from '@material-ui/lab/'
 import { 
   Icon,
   TheMessage,
-  // Spread,
+  SpreadMenu,
 } from './'
 
 const useStyles = makeStyles(theme => ({
   virus:{
     width: '80vh',
     maxWidth: '80vw',
+  },
+  backdrop: {
+    zIndex: theme.zIndex.drawer + 1,
+    background: 'none',
   },
   appBar: {
     top: 'auto',
@@ -72,7 +77,7 @@ export default function Virus() {
   }, [id, virus, virusLoaded, virusLoading])
 
   if (!virus && virusLoading) {
-    return <Backdrop open><CircularProgress /></Backdrop>
+    return <Backdrop open  className={classes.backdrop}><CircularProgress /></Backdrop>
   }
 
   if (!virus && virusLoaded) {
@@ -117,23 +122,32 @@ export default function Virus() {
     document.title = virusTitle
   }
   
-  return  <div className={classes.virus}>
-            {virus ? <TheMessage virus={virus} /> : null}
-            <AppBar position={`fixed`} className={classes.appBar}>
-              <Toolbar>
-                <Fab 
-                  color={`primary`}
-                  aria-label={`Virus Menu`}
-                  className={classes.fabButton}
-                  onClick={(e) => {
+  return  <React.Fragment>
+            <SpreadMenu id={id} virusTitle={virusTitle} />
+            <div className={classes.virus}>
+              {virus ? <TheMessage 
+                virus={virus} 
+                onClick={(e) => {
                     e.preventDefault()
-                    // showVirusMenu()
-                  }}>
-                  <Icon icon={`menu`} color={`inherit`} />
-                </Fab>
-              </Toolbar>
-            </AppBar>
-          </div>
+                    showSpreadMenu()
+                  }}
+              /> : null}
+              <AppBar position={`fixed`} className={classes.appBar}>
+                <Toolbar>
+                  <Fab 
+                    color={`primary`}
+                    aria-label={`Virus Menu`}
+                    className={classes.fabButton}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      showSpreadMenu()
+                    }}>
+                    <Icon icon={`menu`} color={`inherit`} />
+                  </Fab>
+                </Toolbar>
+              </AppBar>
+            </div>
+          </React.Fragment>
 }
 
 
@@ -143,12 +157,12 @@ export default function Virus() {
 
 /*
 
-            <Grid container>
-              <Grid item xs={12} md={6}>
-                <Spread id={id} virusTitle={virusTitle}/>
-              </Grid>
-              <Grid item xs={12} md={6}>
-              
-              </Grid>
-            </Grid>
+    <Grid container>
+      <Grid item xs={12} md={6}>
+        <Spread id={id} virusTitle={virusTitle}/>
+      </Grid>
+      <Grid item xs={12} md={6}>
+      
+      </Grid>
+    </Grid>
 */

@@ -10,8 +10,8 @@ import MainMenu from './MainMenu'
 import Privacy from './Privacy'
 import OpenSource from './OpenSource'
 import Virus from './Virus'
-import Spread from './Spread'
 import CopyUrl from './CopyUrl'
+import SpreadMenu from './SpreadMenu'
 
 export {
 	Icon,
@@ -26,6 +26,6 @@ export {
 	Privacy,
 	OpenSource,
 	Virus,
-	Spread,
 	CopyUrl,
+	SpreadMenu,
 }

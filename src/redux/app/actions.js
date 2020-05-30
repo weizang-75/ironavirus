@@ -11,6 +11,18 @@ export const editorOpen = createAction(`APP/EDITOR_OPEN`)
 export const logoFaded = createAction(`APP/LOGOFADED`)
 export const logoFading = createAction(`APP/LOGOFADING`)
 export const infoOpen = createAction(`APP/INFO_OPEN`)
+export const spreadOpen = createAction(`APP/SPREAD_OPEN`)
+
+export const showSpreadMenu = () => {
+	const store = getStore()
+	store.dispatch({ type: `APP/SPREAD_OPEN`, spreadOpen: true })
+}
+
+export const showMainMenu = () => {
+	const store = getStore()
+	store.dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: false })
+	store.dispatch({ type: `APP/INFO_OPEN`, infoOpen: true })
+}
 
 export const onPublish = (response) => {
 	const store = getStore()
@@ -19,12 +31,6 @@ export const onPublish = (response) => {
 	} else {
 		store.dispatch({ type: `THEMESSAGE/ERROR`, error: response.message })
 	}	
-}
-
-export const showMainMenu = () => {
-	const store = getStore()
-	store.dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: false })
-	store.dispatch({ type: `APP/INFO_OPEN`, infoOpen: true })
 }
 
 export const signin = creds => {

@@ -1,9 +1,10 @@
-import React from "react";
+import React from 'react'
+
 const Facebook = props => {
-    const { color } = props;
-    let c = `#3C5A99`;
+    const { color } = props
+    let c = `#3C5A99`
     if (color) {
-        c = color;
+        c = color
     }
     return (
         <React.Fragment>
@@ -18,4 +19,4 @@ const Facebook = props => {
         </React.Fragment>
     )
 };
-export default Facebook;
+export default Facebook
