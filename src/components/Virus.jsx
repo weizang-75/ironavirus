@@ -9,20 +9,36 @@ import {
   Button,
   Backdrop,
   CircularProgress,
-  Grid,
+  Fab,
+  AppBar,
+  Toolbar,
 } from '@material-ui/core'
 import { Alert } from '@material-ui/lab/'
 import { 
   Icon,
   TheMessage,
-  Spread,
+  // Spread,
 } from './'
-
 
 const useStyles = makeStyles(theme => ({
   virus:{
-    width: '99vh',
-    maxWidth: '99vw',
+    width: '80vh',
+    maxWidth: '80vw',
+  },
+  appBar: {
+    top: 'auto',
+    bottom: 0,
+    background: 'none',
+    boxShadow: 'none',
+    border: 'none',
+  },
+  fabButton: {
+    position: 'absolute',
+    zIndex: 1,
+    left: 0,
+    right: 0,
+    bottom: theme.spacing(2),
+    margin: '0 auto',
   },
   newBtn:{
     marginTop: theme.spacing(2),
@@ -88,7 +104,6 @@ export default function Virus() {
   }
 
   let virusTitle 
-
   if (virus){
     const {
       platitudeTop,
@@ -97,20 +112,43 @@ export default function Virus() {
       platitudeBottom,
       threatLevel,
     } = virus
-
     virusTitle = `${threatLevel.toUpperCase()}! ${platitudeTop} ${platitudeMiddleA} 
     ${platitudeMiddleB} ${platitudeBottom}`
     document.title = virusTitle
   }
   
   return  <div className={classes.virus}>
+            {virus ? <TheMessage virus={virus} /> : null}
+            <AppBar position={`fixed`} className={classes.appBar}>
+              <Toolbar>
+                <Fab 
+                  color={`primary`}
+                  aria-label={`Virus Menu`}
+                  className={classes.fabButton}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    // showVirusMenu()
+                  }}>
+                  <Icon icon={`menu`} color={`inherit`} />
+                </Fab>
+              </Toolbar>
+            </AppBar>
+          </div>
+}
+
+
+
+
+
+
+/*
+
             <Grid container>
               <Grid item xs={12} md={6}>
                 <Spread id={id} virusTitle={virusTitle}/>
               </Grid>
               <Grid item xs={12} md={6}>
-              {virus ? <TheMessage virus={virus} /> : null}
+              
               </Grid>
             </Grid>
-          </div>
-}
+*/
