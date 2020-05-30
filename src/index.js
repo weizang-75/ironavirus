@@ -23,9 +23,6 @@ import {
   OpenSource,
   Virus,
 } from './components'
-import { 
-  PushToTalk ,
-} from './PushToTalk'
 
 import * as serviceWorker from './serviceWorker'
 
@@ -69,9 +66,10 @@ let app = (
   <MuiThemeProvider theme={createMuiTheme(muiTheme)}>
     <Router>
       { store.getState().app.snackbar ? null : <SimpleSnackbar /> }
-      <PushToTalk />
+      
       <Switch>
         <Route exact path='/' render={ props => { return <Public /> }} />
+        <Route exact path='/virus/new' render={ props => { return <Public mode={`new`}/> }} />
         <Route exact path='/virus/:slug' render={ props => { return <Virus /> }} />
         <Route exact path='/privacy' render={ props => { return <Privacy /> }} />
         <Route exact path='/open-source' render={ props => { return <OpenSource /> }} />

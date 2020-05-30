@@ -31,27 +31,12 @@ export const publish = () => {
 	if (theMessageSlice.threatLevel === `warning`){
 		threatLevel = `warning`
 	}
-	const pushToTalkSlice = store.getState().pushToTalk
-	const {
-		fingerprint,
-		ipgeo,
-	} = pushToTalkSlice
 	let virus = {
 		platitudeTop: p1,
 		platitudeMiddleA: p2,
 		platitudeMiddleB: p3,
 		platitudeBottom: p4,
 		threatLevel,
-	}
-	if (ipgeo){
-		virus.fingerprint = fingerprint
-		virus.ip = ipgeo.ip
-		virus.city = ipgeo.city
-		virus.countryName = ipgeo.country_name
-		virus.countryCode = ipgeo.country_code2
-		virus.lat = ipgeo.latitude
-		virus.lon = ipgeo.longitude
-		virus.rating = 0		
 	}
 	store.dispatch({ type: `THEMESSAGE/PUBLISHING`, publishing: true })
 	axios.post(process.env.REACT_APP_IRONAVIRUS, {

@@ -5,12 +5,12 @@ import {
     CardHeader,
     CardContent,
     IconButton,
-    Typography,
-    Link,
+    // Typography,
+    // Link,
 } from '@material-ui/core/'
-import { 
-    useSelector,
-} from 'react-redux'
+// import { 
+//     useSelector,
+// } from 'react-redux'
 import { 
     Icon,
 } from './'
@@ -30,28 +30,28 @@ export default function Privacy() {
   const classes = useStyles()
   const history = useHistory()
 
-  const pushToTalkSlice = useSelector(state => state.pushToTalk)
-  const {
-    fingerprint,
-    ipgeo,
-    ua,
-  } = pushToTalkSlice
-  let ip = `0.0.0.0`
-  let city = `City`
-  let country = `Country`
-  let browser = `Browser`
-  let device = `Device`
-  let os = `OS`
-  if (ua) {
-    browser = ua.browser.name
-    os = ua.os.name
-    device = ua.device.model === undefined ? `Desktop` : ua.device.model
-  }
-  if(ipgeo){
-    ip = ipgeo.ip
-    city = ipgeo.city
-    country = ipgeo.countryName
-  }
+  // const pushToTalkSlice = useSelector(state => state.pushToTalk)
+  // const {
+  //   fingerprint,
+  //   ipgeo,
+  //   ua,
+  // } = pushToTalkSlice
+  // let ip = `0.0.0.0`
+  // let city = `City`
+  // let country = `Country`
+  // let browser = `Browser`
+  // let device = `Device`
+  // let os = `OS`
+  // if (ua) {
+  //   browser = ua.browser.name
+  //   os = ua.os.name
+  //   device = ua.device.model === undefined ? `Desktop` : ua.device.model
+  // }
+  // if(ipgeo){
+  //   ip = ipgeo.ip
+  //   city = ipgeo.city
+  //   country = ipgeo.countryName
+  // }
     
   return <div className={classes.card} >
             <CardHeader 
@@ -68,6 +68,14 @@ export default function Privacy() {
             	</IconButton>}
             />
             <CardContent>
+
+  
+            </CardContent>
+          </div>
+}
+
+/*
+
             <Typography variant={`body2`} gutterBottom>
               Your device's request for this app includes a userAgent string. 
               When we parse that with <Link style={{cursor: 'pointer'}} onClick={(e) => {
@@ -104,7 +112,5 @@ export default function Privacy() {
               It resolves to <span className={classes.varHighlight}>{city}, {country}</span>. 
               If you wish to obscure that information, you should use a VPN.
             </Typography>
-  
-            </CardContent>
-          </div>
-}
+
+*/

@@ -16,14 +16,30 @@ import {
   virusLoaded,
 } from "./actions"
 
+const defaultMessage = {
+  platitudeTop: `Write`,
+  platitudeMiddleA: `your`,
+  platitudeMiddleB: `own`,
+  platitudeBottom: `slogan`,
+  threatLevel: `warning`
+}
+   
+// const defaultMessage = {
+//   platitudeTop: `STAY ALERT`,
+//   platitudeMiddleA: `CONTROL`,
+//   platitudeMiddleB: `THE VIRUS`,
+//   platitudeBottom: `SAVE LIVES`,
+//   threatLevel: `warning`
+// }
+
 export const theMessageSlice = {
   error: null,
   publishing: false,
-  platitudeTop: `STAY ALERT`,
-  platitudeMiddleA: `CONTROL`,
-  platitudeMiddleB: `THE VIRUS`,
-  platitudeBottom: `SAVE LIVES`,
-  threatLevel: `warning`,
+  platitudeTop: defaultMessage.platitudeTop,
+  platitudeMiddleA: defaultMessage.platitudeMiddleA,
+  platitudeMiddleB: defaultMessage.platitudeMiddleB,
+  platitudeBottom: defaultMessage.platitudeBottom,
+  threatLevel: defaultMessage.threatLevel,
   initted: false,
   isPristine: true,
   virus: null,

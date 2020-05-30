@@ -9,6 +9,7 @@ import {
   snackbar,
   editorOpen,
   infoOpen,
+  spreadOpen,
 } from "./actions"
 
 export const appSlice = {
@@ -16,12 +17,18 @@ export const appSlice = {
   error: null,
   infoOpen: true,
   editorOpen: false,
+  spreadOpen: true,
   snackbar: null,
   logoFaded: false,
   logoFading: false,
 }
 
 const appReducer = createReducer(appSlice, {
+
+  [spreadOpen]: (state, action) => {
+    state.spreadOpen = action.spreadOpen
+    return state
+  },
 
   [error]: (state, action) => {
     state.error = action.error
