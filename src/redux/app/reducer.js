@@ -17,7 +17,7 @@ export const appSlice = {
   error: null,
   infoOpen: true,
   editorOpen: false,
-  spreadOpen: true,
+  spreadOpen: false,
   snackbar: null,
   logoFaded: false,
   logoFading: false,

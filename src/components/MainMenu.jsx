@@ -123,19 +123,6 @@ export default function MainMenu() {
                   />
                 </ListItem>
 
-                <ListItem button
-                    onClick={(e) => {
-                      e.preventDefault()
-                      dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: true })
-                      dispatch({type:`APP/INFO_OPEN`, infoOpen: false})
-                    }}>
-                  <ListItemIcon>
-                    <Icon icon={`edit`} color={`error`} />
-                  </ListItemIcon>
-                  <ListItemText 
-                    primary={`Edit Virus`}
-                  />
-                </ListItem>
 
                 <ListItem button
                     onClick={(e) => {
@@ -148,11 +135,24 @@ export default function MainMenu() {
                     <Icon icon={`add`} color={`error`} />
                   </ListItemIcon>
                   <ListItemText 
-                    primary={`New Virus`}
+                    primary={`New`}
                   />
                 </ListItem>
 
-                
+                <ListItem button
+                    onClick={(e) => {
+                      e.preventDefault()
+                      dispatch({ type: `APP/EDITOR_OPEN`, editorOpen: true })
+                      dispatch({type:`APP/INFO_OPEN`, infoOpen: false})
+                    }}>
+                  <ListItemIcon>
+                    <Icon icon={`edit`} color={`error`} />
+                  </ListItemIcon>
+                  <ListItemText 
+                    primary={`Edit`}
+                  />
+                </ListItem>
+
 
                 <ListItem button
                   onClick={(e) => {
@@ -164,7 +164,7 @@ export default function MainMenu() {
                     <Icon icon={`github`} color={`#01a43b`} />
                   </ListItemIcon>
                   <ListItemText 
-                    primary={`Develop Virus`}
+                    primary={`Developer`}
                   />
                 </ListItem>
 
