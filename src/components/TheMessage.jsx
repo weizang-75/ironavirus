@@ -28,8 +28,9 @@ export default function TheMessage(props) {
         background: `#fef600`,
         elements: threatLevel === `warning` ? `#01a43b` : `#eb1c24`,
     }
-    let platitudeTopFontSize = 58
-    let platitudeTopYpos = 61
+    
+        let platitudeTopFontSize = 58
+    let platitudeTopYpos = 65
     if (platitudeTop.length > 10) {
         platitudeTopFontSize = 46
         platitudeTopYpos = 60
@@ -40,19 +41,44 @@ export default function TheMessage(props) {
     }
 
     let platitudeMiddleAFontSize = 72
-    if (platitudeMiddleA.length > 8) platitudeMiddleAFontSize = 62
-    if (platitudeMiddleA.length > 10) platitudeMiddleAFontSize = 42
-    if (platitudeMiddleA.length > 12) platitudeMiddleAFontSize = 32
+    let platitudeMiddleAYpos = 178
+    if (platitudeMiddleA.length > 7) {
+        platitudeMiddleAFontSize = 62
+    }
+    if (platitudeMiddleA.length > 10) {
+        platitudeMiddleAFontSize = 42
+        platitudeMiddleAYpos = 158
+    }
+    if (platitudeMiddleA.length > 12) {
+        platitudeMiddleAFontSize = 32
+    }
 
     let platitudeMiddleBFontSize = 68
-    if (platitudeMiddleB.length > 8) platitudeMiddleBFontSize = 58
-    if (platitudeMiddleB.length > 10) platitudeMiddleBFontSize = 38
-    if (platitudeMiddleB.length > 12) platitudeMiddleBFontSize = 28
+    let platitudeMiddleBYpos = 244
+    if (platitudeMiddleB.length > 8) {
+        platitudeMiddleBFontSize = 58
+    }
+    if (platitudeMiddleB.length > 10) {
+        platitudeMiddleBFontSize = 48
+        platitudeMiddleBYpos = 234
+    }
+    if (platitudeMiddleB.length > 11) {
+        platitudeMiddleBFontSize = 38
+    }
 
+    
     let platitudeBottomFontSize = 64
-    if (platitudeBottom.length > 6) platitudeBottomFontSize = 54
-    if (platitudeBottom.length > 9) platitudeBottomFontSize = 44
-    if (platitudeBottom.length > 12) platitudeBottomFontSize = 34
+    let platitudeBottomBYpos = 345
+    if (platitudeBottom.length > 6) {
+        platitudeBottomFontSize = 54
+        platitudeBottomBYpos = 335
+    }
+    if (platitudeBottom.length > 9) {
+        platitudeBottomFontSize = 44
+    }
+    if (platitudeBottom.length > 12) {
+        platitudeBottomFontSize = 34
+    }
     
 
     
@@ -100,17 +126,17 @@ export default function TheMessage(props) {
                                 </tspan>
                             </text>
                             <text id="SAVE-LIVES" fontSize={platitudeBottomFontSize} textAnchor="middle">
-                                <tspan x="9.188" y="345">
+                                <tspan x="9.188" y={platitudeBottomBYpos}>
                                     { platitudeBottom.toUpperCase() }
                                 </tspan>
                             </text>
                             <text id="CONTROL" fontSize={platitudeMiddleAFontSize} textAnchor="middle">
-                                <tspan x="15.092" y="178">
+                                <tspan x="15.092" y={platitudeMiddleAYpos}>
                                     { platitudeMiddleA.toUpperCase() }
                                 </tspan>
                             </text>
                             <text id="THE-VIRUS" fontSize={platitudeMiddleBFontSize} textAnchor="middle">
-                                <tspan x="11.878" y="244">
+                                <tspan x="11.878" y={platitudeMiddleBYpos}>
                                     { platitudeMiddleB.toUpperCase() }
                                 </tspan>
                             </text>

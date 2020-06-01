@@ -1,7 +1,7 @@
 {
   "name": "ironavirus",
   "description": "厌倦了相同的旧信息？ 自己做",
-  "version": "0.7.7",
+  "version": "0.7.9",
   "author": {
     "name": "weizang75",
     "email": "weizang75@gmail.com"
@@ -40,6 +40,7 @@
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
+    "react-share": "^4.1.0",
     "react-with-firebase-auth": "^1.3.0",
     "recompose": "^0.30.0",
     "redux": "^4.0.5",

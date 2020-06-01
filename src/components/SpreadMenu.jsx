@@ -1,6 +1,8 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom'
 import { Share } from 'react-facebook'
+import { TwitterShareButton } from 'react-share';
+
 import { 
     useSelector,
     useDispatch,
@@ -31,6 +33,9 @@ const useStyles = makeStyles(theme => ({
   },
   fbBtn:{
     paddingLeft: theme.spacing(1.25),
+  },
+  twBtn:{
+    paddingLeft: theme.spacing(-1),
   },
   fbBtnTxt:{
     paddingLeft: theme.spacing(4),
@@ -149,8 +154,30 @@ export default function SpreadMenu(props) {
                     )}
                   </Share>
                 </div>
+
                 
-                  <ListItem button
+
+                  <TwitterShareButton
+                    className={classes.none}
+                    url={`https://ironavirus.web.app/virus/${id}`}
+                    title={virusTitle}
+                  >
+                  <ListItem button>
+                    <ListItemIcon>
+                      <div className={classes.twBtn}>
+                        <Icon icon={`twitter`} color={`#01a43b`} />
+                      </div>
+                    </ListItemIcon>
+                    <ListItemText 
+                      primary={`SPREAD ON TWITTER`}
+                    />
+                  </ListItem>      
+                    
+                  </TwitterShareButton>
+                
+
+                
+                <ListItem button
                     onClick={(e) => {
                       e.preventDefault()
                       history.push('/virus/new')
@@ -189,4 +216,21 @@ export default function SpreadMenu(props) {
     />
   </ListItem>
 
+                <ListItem 
+                button
+                    onClick={(e) => {
+                      e.preventDefault()
+                      // history.push('/virus/new')
+                      // dispatch({type: `APP/SPREAD_OPEN`, spreadOpen: false})
+                      // window.location.assign('/virus/new', `_self`)
+                    }}>
+                  <ListItemIcon>
+                    <Icon icon={`twitter`} color={`#01a43b`} />
+                  </ListItemIcon>
+
+
+                  <ListItemText 
+                    primary={`SPREAD ON TWITTER`}
+                  />
+                </ListItem>
 */

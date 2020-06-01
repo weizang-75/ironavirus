@@ -17,10 +17,10 @@ import {
 } from "./actions"
 
 const defaultMessage = {
-  platitudeTop: `Write`,
-  platitudeMiddleA: `your`,
-  platitudeMiddleB: `own`,
-  platitudeBottom: `slogan`,
+  platitudeTop: `WRITE`,
+  platitudeMiddleA: `YOUR`,
+  platitudeMiddleB: `OWN`,
+  platitudeBottom: `SLOGAN`,
   threatLevel: `warning`
 }
    

@@ -59,6 +59,7 @@ import {
     Github,
     Ironavirus,
     Facebook,
+    Twitter,
 } from '../graphics/'
 
 const styles = theme => ({
@@ -101,8 +102,6 @@ class Icon extends Component {
             case `copy`:
                 return (<IconCopy color={iconColor} />)
 
-                
-
             case `navigation`:
                 return (<IconNav color={iconColor} />)
 
@@ -114,6 +113,9 @@ class Icon extends Component {
 
             case `settings`:
                 return (<IconSettings color={iconColor} />)
+
+            case `twitter`:
+                return (<Twitter className={classes.iconButton} color={iconColor} />)
 
             case `ironavirus`:
                 return (<Ironavirus className={classes.iconButton} color={iconColor} />)

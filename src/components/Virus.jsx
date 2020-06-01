@@ -115,10 +115,10 @@ export default function Virus() {
       platitudeMiddleA,
       platitudeMiddleB,
       platitudeBottom,
-      threatLevel,
+      // threatLevel,
     } = virus
-    virusTitle = `${threatLevel.toUpperCase()}! ${platitudeTop} ${platitudeMiddleA} 
-    ${platitudeMiddleB} ${platitudeBottom}`
+    // ${threatLevel.toUpperCase()}! 
+    virusTitle = `${platitudeTop.toUpperCase()} ${platitudeMiddleA.toUpperCase()} ${platitudeMiddleB.toUpperCase()} ${platitudeBottom.toUpperCase()}`
     document.title = virusTitle
   }
   
@@ -142,7 +142,7 @@ export default function Virus() {
                       e.preventDefault()
                       showSpreadMenu()
                     }}>
-                    <Icon icon={`menu`} color={`inherit`} />
+                    <Icon icon={`share`} color={`inherit`} />
                   </Fab>
                 </Toolbar>
               </AppBar>
