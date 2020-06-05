@@ -124,6 +124,7 @@ export default function Virus() {
   
   return  <React.Fragment>
             <SpreadMenu id={id} virusTitle={virusTitle} />
+            
             <div className={classes.virus}>
               {virus ? <TheMessage 
                 virus={virus} 
@@ -132,18 +133,27 @@ export default function Virus() {
                     showSpreadMenu()
                   }}
               /> : null}
+
               <AppBar position={`fixed`} className={classes.appBar}>
                 <Toolbar>
                   <Fab 
                     color={`primary`}
                     aria-label={`Virus Menu`}
-                    className={classes.fabButton}
+                    className={classes.none}
                     onClick={(e) => {
                       e.preventDefault()
                       showSpreadMenu()
                     }}>
                     <Icon icon={`share`} color={`inherit`} />
                   </Fab>
+
+                  <Button 
+                    color={`primary`}
+                    variant={`contained`}
+                    className={classes.newButton}>
+                      Write your own slogan
+                  </Button>
+
                 </Toolbar>
               </AppBar>
             </div>

@@ -3,9 +3,10 @@
 
 厌倦了相同的旧信息？ 自己做
 
-Based on an Open Source Progressive Web App from [listingslab](https://listingslab.com/whitelabel-pwa)
+Based on an Open Source Progressive Web App from 
+[listingslab](https://listingslab.com/open-source)
 
-### Created by
+### Made by
 
 - https://wei-zang.com
 - weizang75@gmail.com
