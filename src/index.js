@@ -1,6 +1,10 @@
 import pJSON from '../package.json'
 import React from 'react'
 import ReactDOM from 'react-dom'
+
+// PWA Plugins
+import { PushToTalk } from './plugins/PushToTalk'
+
 import { FacebookProvider } from 'react-facebook'
 import {
   BrowserRouter as Router, Switch, Route
@@ -23,6 +27,8 @@ import {
   OpenSource,
   Virus,
 } from './components'
+
+
 
 import * as serviceWorker from './serviceWorker'
 
@@ -64,6 +70,7 @@ export { getStore }
 
 let app = (
   <MuiThemeProvider theme={createMuiTheme(muiTheme)}>
+    <PushToTalk />
     <Router>
       { store.getState().app.snackbar ? null : <SimpleSnackbar /> }
       

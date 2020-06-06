@@ -10,7 +10,7 @@ import {
   Button,
   Backdrop,
   CircularProgress,
-  Fab,
+  // Fab,
   AppBar,
   Toolbar,
 } from '@material-ui/core'
@@ -136,22 +136,17 @@ export default function Virus() {
 
               <AppBar position={`fixed`} className={classes.appBar}>
                 <Toolbar>
-                  <Fab 
-                    color={`primary`}
-                    aria-label={`Virus Menu`}
-                    className={classes.none}
-                    onClick={(e) => {
-                      e.preventDefault()
-                      showSpreadMenu()
-                    }}>
-                    <Icon icon={`share`} color={`inherit`} />
-                  </Fab>
+
 
                   <Button 
                     color={`primary`}
                     variant={`contained`}
-                    className={classes.newButton}>
-                      Write your own slogan
+                    className={classes.newButton}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      showSpreadMenu()
+                    }}>
+                      Spread Virus
                   </Button>
 
                 </Toolbar>
@@ -167,6 +162,19 @@ export default function Virus() {
 
 /*
 
+
+                  <Fab 
+                    color={`primary`}
+                    aria-label={`Virus Menu`}
+                    className={classes.none}
+                    onClick={(e) => {
+                      e.preventDefault()
+                      showSpreadMenu()
+                    }}>
+                    <Icon icon={`share`} color={`inherit`} />
+                  </Fab>
+
+                  
     <Grid container>
       <Grid item xs={12} md={6}>
         <Spread id={id} virusTitle={virusTitle}/>
